@@ -2,20 +2,18 @@ import type { Meta, StoryObj } from '@storybook/react';
 import CustomButton from './CustomButton';
 
 const meta: Meta<typeof CustomButton> = {
-    title: 'Components/Button',
+    title: 'Componentss/Button',
     component: CustomButton,
-    // ...
   };
 
   type Story = StoryObj<typeof CustomButton>;
   
 export const Primary: Story = {
     args: {
-        labelContent: "TestContent",
-        labelFont: "TestFont",
-        labelSize: 15,
-        icon: "TestImgURL"
-      }
+      children: 'Primary Button',
+      styles: { color: 'white' },
+      variant: "contained"  
+    }
 };
       
   export default meta;

@@ -2,13 +2,11 @@
 import CustomButton from './components/CustomButton/CustomButton';
 
 function App() {
-
   const customButtonProps = {
-    styles: { fontSize: "2rem" , 
-              fontFamily: "Roboto"},
+    styles: { fontSize: "2rem", fontFamily: "Roboto" },
     onClick: () => console.log('Button clicked'),
     disabled: false,
-    variant: "outlined"
+    variant: "contained" as "contained"
   };
 
   return (

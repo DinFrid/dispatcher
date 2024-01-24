@@ -1,13 +1,13 @@
-
 import React, { ReactNode } from 'react';
-import Button from '@mui/material/Button';
+import Button, { ButtonProps as MuiButtonProps }from '@mui/material/Button';
 
-type CustomButtonProps = {
+export interface CustomButtonProps extends MuiButtonProps {
   styles?: React.CSSProperties;
   children?: ReactNode;
 };
 
-const CustomButton: React.FC<CustomButtonProps> = ({ styles, children, ...restProps }) => {
+function CustomButton({styles , children, ...restProps } : CustomButtonProps) {
+   
   return (
     <Button 
       sx={styles}
