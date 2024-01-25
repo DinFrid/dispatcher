@@ -3,7 +3,7 @@ import RightArrowIcon from './images/Arrow - Right.svg'
 
 function App() {
   const customButtonProps = {
-    styles: { fontSize: "2rem", fontFamily: "Roboto" },
+    styles: { fontSize: "14px", fontFamily: "Roboto",height: "26px", borderRadius: '20px' },
     onClick: () => console.log('Button clicked'),
     disabled: false,
     variant: "contained" as "contained",
