@@ -1,12 +1,13 @@
 import Button from '@mui/material/Button';
 import { StyledButtonProps } from '../../Interfaces/Interfaces';
 import styled from 'styled-components';
+import RightArrowIcon from '../../images/RightArrow.svg'
 
 const CustomStyledButton = styled(Button)`
   && {
     color: var(--Grayscale-White, #FFF);
     font-feature-settings: 'clig' off, 'liga' off;
-    font-family: 'Arial';
+    font-family: 'Roboto';
     font-size: 14px;
     font-style: normal;
     font-weight: 500;
@@ -31,5 +32,7 @@ const CustomStyledButton = styled(Button)`
 `;
 
 export const StyledButton: React.FC<StyledButtonProps> = (props) => {
-  return <CustomStyledButton {...props} />;
+  return <CustomStyledButton 
+  endIcon={<img src={RightArrowIcon} alt="Right Arrow" />}
+  {...props} />;
 };
