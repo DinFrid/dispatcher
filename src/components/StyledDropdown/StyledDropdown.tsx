@@ -54,7 +54,7 @@ const DropdownIcon = () => (
   <img src={DropdownArrow} alt="Dropdown Arrow" />
 );
 
-export const StyledDropdown: React.FC<StyledDropdownProps> = ({ label,onChange, ...props }) => {
+export const StyledDropdown: React.FC<StyledDropdownProps> = ({styles, label,onChange, ...props }) => {
 
   return (
     <FormControl>
