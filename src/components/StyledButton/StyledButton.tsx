@@ -31,6 +31,8 @@ const CustomStyledButton = styled(Button)`
   }
 `;
 
+//TODO: add types: type size: {sm: {padding: 14px, height: 10px}}
+
 export const StyledButton: React.FC<StyledButtonProps> = (props) => {
   return <CustomStyledButton 
   endIcon={<img src={RightArrowIcon} alt="Right Arrow" />}

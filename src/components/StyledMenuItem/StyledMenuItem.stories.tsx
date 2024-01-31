@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { StyledMenuItem } from './StyledMenuItem';
+import { StyledFiltersMenuItem } from '../StyledDropdown/StyledFiltersMenuItem';
 
 const meta: Meta<typeof StyledMenuItem> = {
   title: 'Components/StyledMenuItem',
@@ -10,6 +11,8 @@ type Story = StoryObj<typeof StyledMenuItem>;
 
 export const Primary: Story = {
   args: {
+    value: "option1",
+    StyledComponent: StyledFiltersMenuItem,
     children: 'MenuItem',
     style:{color:"black", backgroundColor: '#FFF',fontFamily: 'Mulish',
     fontSize: '12px',

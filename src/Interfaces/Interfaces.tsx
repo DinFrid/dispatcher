@@ -1,5 +1,6 @@
 import { ButtonProps as MuiButtonProps } from '@mui/material/Button';
-import { MenuItemProps, SelectProps } from "@mui/material";
+import { SelectProps } from "@mui/material";
+import {StyledMenuItemProps} from '../components/StyledMenuItem/StyledMenuItem';
 
 export interface StyledButtonProps extends MuiButtonProps {
     
@@ -11,13 +12,19 @@ export interface StyledButtonProps extends MuiButtonProps {
     selectedOption?: string;
   }
 
-  export interface StyledMenuItemProps extends MenuItemProps {
-    height?: string;
-    width?: string;
-    value: string;
-  }
-
   export interface StyledLabelProps {
     image?: string;
     label : string;
+  }
+
+  export interface RecentSearchesProps {
+    options: StyledMenuItemProps[];
+    onRemove?: (value: string) => void;
+    onClear?: () => void;
+    removeIcon ?: React.ReactElement;
+  }
+
+  export interface RemoveIconProps {
+    width: number;
+    height: number;
   }
