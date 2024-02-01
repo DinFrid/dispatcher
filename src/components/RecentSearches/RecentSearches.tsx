@@ -31,7 +31,7 @@ const CustomTypography = styled(Typography)`
 `;
 
 const StyledClearButton = styled(Button)`
-&& {
+  && {
     color: #5A5A89;
     font-feature-settings: 'clig' off, 'liga' off;
     font-family: 'Roboto';
@@ -50,11 +50,10 @@ const StyledClearButton = styled(Button)`
 
 
 const StyledRemoveIcon = styled(RemoveIcon)`
-  &&& {
     flex-shrink: 0;
     fill-rule: rgba(90, 90, 137, 0.50);
-  }
 `;
+
 export const RecentSearches: React.FC<RecentSearchesProps> = ({ options, onRemove,onClear, ...props }) => {
   return (
     <CustomRecentSearches {...props}>
