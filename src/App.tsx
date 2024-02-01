@@ -5,7 +5,12 @@ import {StyledDropdown} from './components/StyledDropdown/StyledDropdown';
 import { RecentSearches } from './components/RecentSearches/RecentSearches';
 import { StyledFiltersMenuItem } from './components/StyledDropdown/StyledFiltersMenuItem';
 import { StyledRecentSearchesMenuItem } from './components/RecentSearches/StyledRecentSearchesMenuItem';
-import { DateTimePicker, DateTimePickerTabs } from '@mui/x-date-pickers';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
+import { DatePicker, DateTimePicker } from '@mui/x-date-pickers';
+import DateComponent from './components/DateComponent/DateComponent';
+import SearchBar from './components/SearchBar/SearchBar';
+
 
 function App() {
 
@@ -43,6 +48,9 @@ function App() {
     ]}>
     </RecentSearches>
     </div>
+    <div>
+      <DateComponent/>
+    </div>  
     </div>
   );
 }
