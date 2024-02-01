@@ -1,44 +1,68 @@
-import React, { useState } from 'react';
-import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import * as React from 'react';
+import { Dayjs } from 'dayjs';
 import IconButton from '@mui/material/IconButton';
 import CalendarTodayOutlined from '@mui/icons-material/CalendarTodayOutlined';
-import { Box, Typography } from '@mui/material';
-import dayjs, { Dayjs } from 'dayjs';
-import TextField from '@mui/material/TextField'; // Import TextField for renderInput
+import { DateRange } from '@mui/x-date-pickers-pro';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import {
+  DateRangePicker,
+  DateRangePickerProps,
+} from '@mui/x-date-pickers-pro/DateRangePicker';
+import { SingleInputDateRangeFieldProps } from '@mui/x-date-pickers-pro/SingleInputDateRangeField';
 
-interface DateProps {
-  value?: Dayjs | null;
-  onChange?: (value: Dayjs | null) => void;
+interface DateRangeButtonFieldProps extends SingleInputDateRangeFieldProps<Dayjs> {
+  setOpen?: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const DateComponent: React.FC<DateProps> = ({ value, onChange }) => {
-  const [open, setOpen] = useState(false);
+type DateRangeButtonFieldComponent = ((
+  props: DateRangeButtonFieldProps & React.RefAttributes<HTMLDivElement>,
+) => React.ReactElement) & { fieldType?: string };
+
+const DateRangeButtonField = React.forwardRef<HTMLDivElement, DateRangeButtonFieldProps>(
+  (props) => {
+    const { setOpen } = props;
+
+    return (
+      <IconButton
+        onClick={() => setOpen?.((prev) => !prev)}
+        size="large"
+      >
+        <CalendarTodayOutlined />
+      </IconButton>
+    );
+  },
+) as DateRangeButtonFieldComponent;
+
+DateRangeButtonField.fieldType = 'single-input';
+
+const ButtonDateRangePicker = React.forwardRef<HTMLDivElement, Omit<DateRangePickerProps<Dayjs>, 'open' | 'onOpen' | 'onClose'>>(
+  (props, ref) => {
+    const [open, setOpen] = React.useState(false);
+
+    return (
+      <DateRangePicker
+        slots={{ field: DateRangeButtonField, ...props.slots }}
+        slotProps={{ field: { setOpen } as any }}
+        ref={ref}
+        {...props}
+        open={open}
+        onClose={() => setOpen(false)}
+        onOpen={() => setOpen(true)}
+      />
+    );
+  },
+);
+
+export default function DateComponent() {
+  const [value, setValue] = React.useState<DateRange<Dayjs>>([null, null]);
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, padding: 1, borderRadius: '16px', boxShadow: '0 2px 5px rgba(0,0,0,0.1)', backgroundColor: 'white' }}>
-        <Typography component="span">Dates</Typography>
-        <IconButton
-          size="small"
-          onClick={() => setOpen(true)}
-          sx={{ padding: 0 }}
-        >
-          <CalendarTodayOutlined />
-        </IconButton>
-      </Box>
-      <DatePicker
-        open={open}
-        onOpen={() => setOpen(true)}
-        onClose={() => setOpen(false)}
+      <ButtonDateRangePicker
         value={value}
-        onChange={onChange}
-        slots={{
-            textField: textFieldProps => <TextField {...textFieldProps} />
-          }}
+        onChange={(newValue: DateRange<Dayjs>) => setValue(newValue)}
       />
     </LocalizationProvider>
   );
-};
-
-export default DateComponent;
+}
