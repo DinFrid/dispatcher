@@ -5,11 +5,8 @@ import {StyledDropdown} from './components/StyledDropdown/StyledDropdown';
 import { RecentSearches } from './components/RecentSearches/RecentSearches';
 import { StyledFiltersMenuItem } from './components/StyledDropdown/StyledFiltersMenuItem';
 import { StyledRecentSearchesMenuItem } from './components/RecentSearches/StyledRecentSearchesMenuItem';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
-import { DatePicker, DateTimePicker } from '@mui/x-date-pickers';
-import DateComponent from './components/DateComponent/DateComponent';
 import SearchBar from './components/SearchBar/SearchBar';
+import DateComponent from './components/DateComponent/DateComponent';
 
 
 function App() {
@@ -21,7 +18,11 @@ function App() {
 
   const onRemoveClick = (value : string) => {
     console.log("Value removed: {}", value)
-  }
+  };
+
+
+  const searchMenuOptions = [{value: "1", StyledComponent: StyledFiltersMenuItem, children: "Everything" },
+  {value: "2", StyledComponent: StyledFiltersMenuItem, children: "Top Headlines" }];
 
   return (
     <div>
@@ -32,7 +33,7 @@ function App() {
       </StyledButton>
     </div>
     <div>
-      <StyledDropdown label='Sources'>
+      <StyledDropdown label='Sources' type={"filtersDropdown"}>
         <StyledMenuItem StyledComponent={StyledFiltersMenuItem} value="1" >Mako</StyledMenuItem>
         <StyledMenuItem StyledComponent={StyledFiltersMenuItem} value="2" >Walla</StyledMenuItem>
         <StyledMenuItem StyledComponent={StyledFiltersMenuItem} value="3" >BBC</StyledMenuItem>
@@ -49,8 +50,13 @@ function App() {
     </RecentSearches>
     </div>
     <div>
-      <DateComponent/>
+      <SearchBar type={"type2"} dropDownOptions={searchMenuOptions}>
+        
+      </SearchBar>
     </div>  
+    <div>
+      <DateComponent/>
+    </div>
     </div>
   );
 }
