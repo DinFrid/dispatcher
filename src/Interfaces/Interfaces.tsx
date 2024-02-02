@@ -8,13 +8,8 @@ export interface StyledButtonProps extends MuiButtonProps {
 
   export interface StyledDropdownProps extends SelectProps {
     styles?: React.CSSProperties;
-    label: string;
-    selectedOption?: string;
-  }
-
-  export interface StyledLabelProps {
-    image?: string;
-    label : string;
+    label?: string;
+    type: string;
   }
 
   export interface RecentSearchesProps {
