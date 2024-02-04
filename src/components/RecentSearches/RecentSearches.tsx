@@ -1,9 +1,15 @@
 import { Button, Card, IconButton, Typography } from "@mui/material";
 import styled from "styled-components";
-import { RecentSearchesProps } from "../../Interfaces/Interfaces";
-import { StyledMenuItem } from "../StyledMenuItem/StyledMenuItem";
+import { StyledMenuItem, StyledMenuItemProps } from "../StyledMenuItem/StyledMenuItem";
 import RemoveIcon from '../../images/RemoveIcon';
+import { MenuItemTypeEnum } from "../../utils/Enums";
 
+export interface RecentSearchesProps {
+  options: StyledMenuItemProps[];
+  onRemove?: (value: string) => void;
+  onClear?: () => void;
+  removeIcon ?: React.ReactElement;
+}
 
 
 const CustomRecentSearches = styled(Card)`
@@ -73,7 +79,7 @@ export const RecentSearches: React.FC<RecentSearchesProps> = ({ options, onRemov
           justifyContent: 'space-between', 
           marginBottom: '4.31px'
         }}>
-          <StyledMenuItem StyledComponent={option.StyledComponent} value={option.value}>
+          <StyledMenuItem menuItemType={MenuItemTypeEnum.RecentSearchesMenuItem} value={option.value}>
             {option.children}
           </StyledMenuItem>
           <IconButton onClick={() => onRemove && onRemove(option.value)}>

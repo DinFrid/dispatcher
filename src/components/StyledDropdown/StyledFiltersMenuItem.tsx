@@ -4,7 +4,7 @@ import styled from "styled-components";
 export const StyledFiltersMenuItem = styled(MenuItem)`
 &&& {
   background-color: #FFF;
-  font-family: 'Mulish';
+  font-family: 'Roboto';
   font-size: 12px;
   font-style: normal;
   font-weight: 400;

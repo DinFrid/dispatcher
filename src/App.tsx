@@ -3,13 +3,34 @@ import {StyledMenuItem} from './components/StyledMenuItem/StyledMenuItem';
 import { StyledButton } from './components/StyledButton/StyledButton';
 import {StyledDropdown} from './components/StyledDropdown/StyledDropdown';
 import { RecentSearches } from './components/RecentSearches/RecentSearches';
-import { StyledFiltersMenuItem } from './components/StyledDropdown/StyledFiltersMenuItem';
-import { StyledRecentSearchesMenuItem } from './components/RecentSearches/StyledRecentSearchesMenuItem';
 import SearchBar from './components/SearchBar/SearchBar';
-import DateComponent from './components/DateComponent/DateComponent';
+import { DropdownTypeEnum, MenuItemTypeEnum } from './utils/Enums';
 
 
 function App() {
+
+  const filtersMenuProps = {
+    PaperProps: {
+      style: {
+        marginTop: '6px',
+        minWidth: '189px', 
+        marginLeft: '0px',
+        height: '120px',  
+      },
+      sx: {
+        '::-webkit-scrollbar': {
+          width: '3px',
+        },
+        '::-webkit-scrollbar-track': {
+          backgroundColor: 'transparent',
+        },
+        '::-webkit-scrollbar-thumb': {
+          backgroundColor: 'rgba(0,0,0,0.2)',
+          borderRadius: '6px',
+        },
+      }
+    },
+  };
 
   const styledButtonProps = {
     onClick: () => console.log('Navigate Button clicked'),
@@ -21,8 +42,8 @@ function App() {
   };
 
 
-  const searchMenuOptions = [{value: "1", StyledComponent: StyledFiltersMenuItem, children: "Everything" },
-  {value: "2", StyledComponent: StyledFiltersMenuItem, children: "Top Headlines" }];
+  const searchMenuOptions = [{value: "1", menuItemType : MenuItemTypeEnum.FiltersMenuItem, children: "Everything" },
+  {value: "2", menuItemType : MenuItemTypeEnum.FiltersMenuItem, children: "Top Headlines" }];
 
   return (
     <div>
@@ -33,30 +54,29 @@ function App() {
       </StyledButton>
     </div>
     <div>
-      <StyledDropdown label='Sources' type={"filtersDropdown"}>
-        <StyledMenuItem StyledComponent={StyledFiltersMenuItem} value="1" >Mako</StyledMenuItem>
-        <StyledMenuItem StyledComponent={StyledFiltersMenuItem} value="2" >Walla</StyledMenuItem>
-        <StyledMenuItem StyledComponent={StyledFiltersMenuItem} value="3" >BBC</StyledMenuItem>
-        <StyledMenuItem StyledComponent={StyledFiltersMenuItem} value="4" >Ynet</StyledMenuItem>
-        <StyledMenuItem StyledComponent={StyledFiltersMenuItem} value="5" >Option 5</StyledMenuItem>
+      <StyledDropdown label='Sources' dropDownType={DropdownTypeEnum.FiltersDropdown}
+      MenuProps={filtersMenuProps}>
+        <StyledMenuItem menuItemType={MenuItemTypeEnum.FiltersMenuItem} value="1" >Mako</StyledMenuItem>
+        <StyledMenuItem menuItemType={MenuItemTypeEnum.FiltersMenuItem} value="2" >Walla</StyledMenuItem>
+        <StyledMenuItem menuItemType={MenuItemTypeEnum.FiltersMenuItem} value="3" >BBC</StyledMenuItem>
+        <StyledMenuItem menuItemType={MenuItemTypeEnum.FiltersMenuItem} value="4" >Ynet</StyledMenuItem>
+        <StyledMenuItem menuItemType={MenuItemTypeEnum.FiltersMenuItem} value="5" >Option 5</StyledMenuItem>
       </StyledDropdown>
     </div>
     <div>
     <RecentSearches onRemove={onRemoveClick} options={[
-      { StyledComponent: StyledRecentSearchesMenuItem, value: "option1", children: "crypto" },
-      { StyledComponent: StyledRecentSearchesMenuItem, value: "option2", children: "soccer" },
-      { StyledComponent: StyledRecentSearchesMenuItem, value: "option3", children: "soccer" }
+      { menuItemType : MenuItemTypeEnum.RecentSearchesMenuItem, value: "option1", children: "crypto" },
+      { menuItemType : MenuItemTypeEnum.RecentSearchesMenuItem, value: "option2", children: "soccer" },
+      { menuItemType : MenuItemTypeEnum.RecentSearchesMenuItem, value: "option3", children: "soccer" }
     ]}>
     </RecentSearches>
     </div>
     <div>
-      <SearchBar type={"type2"} dropDownOptions={searchMenuOptions}>
+      <SearchBar dropDownType={DropdownTypeEnum.RecentSearchesDropdown} dropDownOptions={searchMenuOptions}>
         
       </SearchBar>
     </div>  
-    <div>
-      <DateComponent/>
-    </div>
+  
     </div>
   );
 }
