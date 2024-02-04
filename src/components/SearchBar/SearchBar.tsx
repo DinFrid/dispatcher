@@ -2,12 +2,24 @@
 import { Card, InputBase } from '@mui/material';
 import styled from 'styled-components';
 import SearchImg from '../../images/SearchIcon.svg';
-import StyledDropdown from '../StyledDropdown/StyledDropdown';
-import { StyledMenuItemProps } from '../StyledMenuItem/StyledMenuItem';
+import StyledDropdown, { DropdownType } from '../StyledDropdown/StyledDropdown';
+import { StyledMenuItem, StyledMenuItemProps } from '../StyledMenuItem/StyledMenuItem';
+import { MenuItemTypeEnum } from '../../utils/Enums';
+
+const recentSearchesMenuProps = {
+  PaperProps: {
+    style: {
+      marginTop: '6px',
+      width: '60px', 
+      marginLeft: '0px',
+      height: '70px',  
+    },
+  }
+};
 
 interface SearchBarProps {
     dropDownOptions : StyledMenuItemProps[];
-    type: string;
+    dropDownType: keyof DropdownType;
     dropDownLabel ?: string;
   }
 
@@ -47,7 +59,7 @@ flex-grow: 1; // Allow the input to take up available space
 }
 `;
 
-const SearchBar = ({dropDownOptions,dropDownLabel,type, ...props} : SearchBarProps) => {
+const SearchBar = ({dropDownOptions,dropDownLabel,dropDownType, ...props} : SearchBarProps) => {
 
   return (
     <SearchBarCard>
@@ -55,11 +67,11 @@ const SearchBar = ({dropDownOptions,dropDownLabel,type, ...props} : SearchBarPro
       <img src={SearchImg} alt="Search Icon" />
       </SearchIconWrapper>
       <StyledInputBase placeholder='Search' />
-      <StyledDropdown label={dropDownLabel} type={type}>
+      <StyledDropdown label={dropDownLabel} dropDownType={dropDownType} MenuProps={recentSearchesMenuProps}>
         {dropDownOptions.map((option) => (
-          <option.StyledComponent key={option.value} value={option.value}>
+          <StyledMenuItem key={option.value} menuItemType={MenuItemTypeEnum.FiltersMenuItem} value={option.value}>
             {option.children}
-          </option.StyledComponent>
+          </StyledMenuItem>
         ))}
       </StyledDropdown>
     </SearchBarCard>
