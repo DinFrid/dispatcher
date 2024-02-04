@@ -5,9 +5,17 @@ import {StyledDropdown} from './components/StyledDropdown/StyledDropdown';
 import { RecentSearches } from './components/RecentSearches/RecentSearches';
 import SearchBar from './components/SearchBar/SearchBar';
 import { DropdownTypeEnum, MenuItemTypeEnum } from './utils/Enums';
-
+import HeadlineCard from './components/HeadlineCard/HeadlineCard';
 
 function App() {
+
+  const headlineProps = {
+    imageUrl: 'https://mmajunkie.usatoday.com/wp-content/uploads/sites/91/2021/07/uriah-hall-sean-strickland-ufc-on-espn-28-official-weigh-ins-5.jpg?w=1000&h=600&crop=1',
+    date: 'Friday Jun 25, 2021',
+    headline: 'Turkey: Foreign tourists evacuated as wildfires threaten resorts - BBC News',
+    source: 'BBC News',
+    summary: 'A helicopter is deployed against a fire near Marmaris in south-western Turkey\r\nTourists have been evacuated from beaches in south-western Turkey, where raging wildfires are now threateni… [+1829 chars]'
+  };
 
   const filtersMenuProps = {
     PaperProps: {
@@ -76,7 +84,7 @@ function App() {
         
       </SearchBar>
     </div>  
-  
+      <HeadlineCard {...headlineProps}></HeadlineCard>
     </div>
   );
 }
