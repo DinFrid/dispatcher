@@ -5,7 +5,7 @@ import RightArrowIcon from '../../images/RightArrow.svg'
 
 const CustomStyledButton = styled(Button)`
   && {
-    color: var(--Grayscale-White, #FFF);
+    color: '#FFF';
     font-feature-settings: 'clig' off, 'liga' off;
     font-family: 'Roboto';
     font-size: 14px;
@@ -17,7 +17,6 @@ const CustomStyledButton = styled(Button)`
     background-color: #0058B9; 
     border-radius: 20px; 
     padding: 5px 20px; 
-    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25); 
     height: auto;
     white-space: nowrap; 
     display: flex; 
@@ -30,8 +29,6 @@ const CustomStyledButton = styled(Button)`
     }
   }
 `;
-
-//TODO: add types: type size: {sm: {padding: 14px, height: 10px}}
 
 export const StyledButton: React.FC<StyledButtonProps> = (props) => {
   return <CustomStyledButton 
