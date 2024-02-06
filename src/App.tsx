@@ -6,6 +6,7 @@ import { RecentSearches } from './components/RecentSearches/RecentSearches';
 import SearchBar from './components/SearchBar/SearchBar';
 import { DropdownTypeEnum, MenuItemTypeEnum } from './utils/Enums';
 import HeadlineCard from './components/HeadlineCard/HeadlineCard';
+import PieGraph from './components/graphs/PieGraph/PieGraph';
 
 function App() {
 
@@ -53,6 +54,13 @@ function App() {
   const searchMenuOptions = [{value: "1", menuItemType : MenuItemTypeEnum.FiltersMenuItem, children: "Everything" },
   {value: "2", menuItemType : MenuItemTypeEnum.FiltersMenuItem, children: "Top Headlines" }];
 
+  const pieGraphData = [
+    { value: 10, label: 'NBC' },
+    { value: 30, label: 'Vulture' },
+    { value: 50, label: 'CNN' },
+    { value: 10, label: 'ESPN' },
+  ];
+
   return (
     <div>
     
@@ -85,6 +93,8 @@ function App() {
       </SearchBar>
     </div>  
       <HeadlineCard {...headlineProps}></HeadlineCard>
+      <PieGraph label={'Sum'} data={pieGraphData}></PieGraph>
+      
     </div>
   );
 }

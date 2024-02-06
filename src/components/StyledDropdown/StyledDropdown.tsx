@@ -114,6 +114,7 @@ const CustomDropdown = styled(Select)<{dropdownstyles : DropdownStyles}>`
     .MuiSelect-select {
       padding-right: '24px';
     }
+    
 `;
 
 const DropdownIcon = () => (
