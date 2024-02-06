@@ -3,6 +3,7 @@ import { PieChart, Pie, Cell, Legend } from 'recharts';
 import { Card, Typography } from '@mui/material';
 import styled from 'styled-components';
 import StyledLegend from './StyledLegend';
+import HorizontalLine from '../HorizontalLine';
 
 interface PieData {
   value: number;
@@ -22,21 +23,19 @@ const CustomCard = styled(Card)`
     border: 1px solid #D9DBE9;
     padding: 25px 15px 25px 25px;
     box-sizing: border-box;
-
-    .recharts-legend-wrapper {
         
-        .recharts-default-legend{
-            display: flex;
-            flex-direction: column;
-            gap: 11px;
-            padding-left: 10px !important;
-        }
+    .recharts-default-legend{
+        display: flex;
+        flex-direction: column;
+        gap: 11px;
+        padding-left: 10px !important;
     }
   }
 `;
 
 const StyledTypography = styled(Typography)`
   && {
+    position: relative;
     width: 89px;
     height: 32px;
     font-size: 24px;
@@ -57,6 +56,7 @@ const PieGraph: React.FC<PieGraphProps> = ({ data, label }) => {
   return (
     <CustomCard>
       <StyledTypography>Sources</StyledTypography>
+        <HorizontalLine/>
       <PieChart width={372} height={275} margin={{ top: 0, right: 0, bottom: 0, left: 0 }}>
         <Pie
           data={data}
