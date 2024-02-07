@@ -7,6 +7,7 @@ import SearchBar from './components/SearchBar/SearchBar';
 import { DropdownTypeEnum, MenuItemTypeEnum } from './utils/Enums';
 import HeadlineCard from './components/HeadlineCard/HeadlineCard';
 import PieGraph from './components/graphs/PieGraph/PieGraph';
+import AreaGraph from './components/graphs/AreaGraph/AreaGraph';
 
 function App() {
 
@@ -61,6 +62,16 @@ function App() {
     { value: 10, label: 'ESPN' },
   ];
 
+  const areaGraphData = [
+    { date: 'MAR', sourcesNumber: 100 },
+    { date: 'APR', sourcesNumber: 450 },
+    { date: 'MAY', sourcesNumber: 200 },
+    { date: 'JUN', sourcesNumber: 350 },
+    { date: 'JUL', sourcesNumber: 500 },
+    { date: 'AUG', sourcesNumber: 350 },
+    { date: 'SEP', sourcesNumber: 500 },
+];
+
   return (
     <div>
     
@@ -93,8 +104,8 @@ function App() {
       </SearchBar>
     </div>  
       <HeadlineCard {...headlineProps}></HeadlineCard>
-      <PieGraph label={'Sum'} data={pieGraphData}></PieGraph>
-      
+      <PieGraph title={"Sources"} label={'Sum'} data={pieGraphData}></PieGraph>
+      <AreaGraph title={"Dates"} data={areaGraphData}></AreaGraph>
     </div>
   );
 }

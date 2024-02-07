@@ -12,7 +12,8 @@ interface PieData {
 
 export interface PieGraphProps {
   data: PieData[];
-  label: string;
+  title: string;
+  label?: string;
 }
 
 const CustomCard = styled(Card)`
@@ -47,15 +48,15 @@ const StyledTypography = styled(Typography)`
 
 const COLORS = ['#FF9800', '#030035', '#E8E8E8', '#343A6E', '#DDF3FE'];
 
-const renderColorfulLegendText = (value: string, entry: any) => {
+const renderLegend = (value: string, entry: any) => {
     return <StyledLegend entry={entry}></StyledLegend>
   };
 
-const PieGraph: React.FC<PieGraphProps> = ({ data, label }) => {
+const PieGraph: React.FC<PieGraphProps> = ({ data, title, label }) => {
 
   return (
     <CustomCard>
-      <StyledTypography>Sources</StyledTypography>
+      <StyledTypography>{title}</StyledTypography>
         <HorizontalLine/>
       <PieChart width={372} height={275} margin={{ top: 0, right: 0, bottom: 0, left: 0 }}>
         <Pie
@@ -71,14 +72,14 @@ const PieGraph: React.FC<PieGraphProps> = ({ data, label }) => {
           dataKey="value"
         >
           {data.map((entry, index) => (
-            <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+            <Cell style={{outline: 'none'}} key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
           ))}
         </Pie>
        <text style={{width: '26px', height: '16px', fontFamily: 'Roboto', fontWeight: '400', fontSize: '12px', lineHeight: '16px'}}
             x="50%" y="24%" color='black' textAnchor="middle" dominantBaseline="middle">
                 {label}
             </text>
-        <Legend formatter={renderColorfulLegendText} align='left' iconType='circle' iconSize={5} />
+        <Legend formatter={renderLegend} align='left' iconType='circle' iconSize={5} />
       </PieChart>
     </CustomCard>
   );
