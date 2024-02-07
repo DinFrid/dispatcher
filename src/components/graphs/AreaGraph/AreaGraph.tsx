@@ -62,7 +62,7 @@ const AreaGraph = ({ data, title }: AreaGraphProps) => {
               padding={{ left: 0, right: 0 }}
             />
             <CartesianGrid strokeDasharray="3 3" vertical={false} horizontal={false} />
-            <Area type="monotone" dataKey="sourcesNumber" stroke="#0058B9" strokeWidth={4} fillOpacity={0.15} fill="url(#colorGradient)" />
+            <Area type="monotone" dataKey="sourcesNumber" stroke="#0058B9" strokeWidth={4} fillOpacity={0.15} fill="url(#colorGradient)" isAnimationActive={false} />
           </AreaChart>
           </ResponsiveContainer>
       </StyledCard>

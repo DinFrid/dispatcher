@@ -6,8 +6,8 @@ import { RecentSearches } from './components/RecentSearches/RecentSearches';
 import SearchBar from './components/SearchBar/SearchBar';
 import { DropdownTypeEnum, MenuItemTypeEnum } from './utils/Enums';
 import HeadlineCard from './components/HeadlineCard/HeadlineCard';
-import PieGraph from './components/graphs/PieGraph/PieGraph';
-import AreaGraph from './components/graphs/AreaGraph/AreaGraph';
+import PieGraph from './components/Graphs/PieGraph/PieGraph';
+import AreaGraph from './components/Graphs/AreaGraph/AreaGraph';
 
 function App() {
 
