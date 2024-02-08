@@ -8,6 +8,9 @@ import { DropdownTypeEnum, MenuItemTypeEnum } from './utils/Enums';
 import HeadlineCard from './components/HeadlineCard/HeadlineCard';
 import PieGraph from './components/Graphs/PieGraph/PieGraph';
 import AreaGraph from './components/Graphs/AreaGraph/AreaGraph';
+import DateComponent from './components/DateComponent/DateComponent';
+import 'rsuite/dist/rsuite.min.css'; 
+
 
 function App() {
 
@@ -44,7 +47,7 @@ function App() {
 
   const styledButtonProps = {
     onClick: () => console.log('Navigate Button clicked'),
-    variant: "contained" as "contained",
+    
   };
 
   const onRemoveClick = (value : string) => {
@@ -79,9 +82,10 @@ function App() {
       <StyledButton {...styledButtonProps}>
         Navigate to dispatch
       </StyledButton>
+      <DateComponent></DateComponent>
     </div>
     <div>
-      <StyledDropdown label='Sources' dropDownType={DropdownTypeEnum.FiltersDropdown}
+      <StyledDropdown label='Sources' dropDownType={"FiltersDropdown"}
       MenuProps={filtersMenuProps}>
         <StyledMenuItem menuItemType={MenuItemTypeEnum.FiltersMenuItem} value="1" >Mako</StyledMenuItem>
         <StyledMenuItem menuItemType={MenuItemTypeEnum.FiltersMenuItem} value="2" >Walla</StyledMenuItem>

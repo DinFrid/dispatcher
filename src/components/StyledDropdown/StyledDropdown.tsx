@@ -31,7 +31,7 @@ type DropdownStyles = {
   boxShadow?: string;
 };
 
-export type DropdownType = {
+type DropdownType = {
   FiltersDropdown: DropdownStyles;
   RecentSearchesDropdown: DropdownStyles;
 };
@@ -114,24 +114,52 @@ const CustomDropdown = styled(Select)<{dropdownstyles : DropdownStyles}>`
     .MuiSelect-select {
       padding-right: '24px';
     }
-    
+`;
+
+const StyledInputLabel = styled(InputLabel) `
+&&{
+  label.MuiFormLabel-root.MuiInputLabel-root {
+  display: none;
+}
+  }
 `;
 
 const DropdownIcon = () => (
   <img src={DropdownArrow} alt="Dropdown Arrow" />
 );
 
-export const StyledDropdown: React.FC<StyledDropdownProps> = ({MenuProps,dropDownType, label,onChange, ...props }) => {
+export const StyledDropdown: React.FC<StyledDropdownProps> = ({dropDownType, label,onChange, ...props }) => {
   const styles = dropDownStyles[dropDownType]; 
 
   return (
     <FormControl>
-      <InputLabel shrink={false}>{label}</InputLabel>
+      <StyledInputLabel >{label}</StyledInputLabel>
 
       <CustomDropdown 
       dropdownstyles={styles}
       IconComponent={DropdownIcon}
-      MenuProps={MenuProps} 
+      MenuProps={{
+        PaperProps: {
+          style: {
+            marginTop: '6px',
+            minWidth: '189px', 
+            marginLeft: '0px',
+            height: '120px',  
+          },
+          sx: {
+            '::-webkit-scrollbar': {
+              width: '3px',
+            },
+            '::-webkit-scrollbar-track': {
+              backgroundColor: 'transparent',
+            },
+            '::-webkit-scrollbar-thumb': {
+              backgroundColor: 'rgba(0,0,0,0.2)',
+              borderRadius: '6px',
+            },
+          }
+        },
+      }} 
       {...props}>
         {props.children}
 
