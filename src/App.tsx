@@ -1,4 +1,3 @@
-
 import {StyledMenuItem} from './components/StyledMenuItem/StyledMenuItem';
 import { StyledButton } from './components/StyledButton/StyledButton';
 import {StyledDropdown} from './components/StyledDropdown/StyledDropdown';
@@ -10,6 +9,7 @@ import PieGraph from './components/Graphs/PieGraph/PieGraph';
 import AreaGraph from './components/Graphs/AreaGraph/AreaGraph';
 import DateComponent from './components/DateComponent/DateComponent';
 import 'rsuite/dist/rsuite.min.css'; 
+import { SelectChangeEvent } from '@mui/material';
 
 
 function App() {
@@ -22,29 +22,6 @@ function App() {
     summary: 'A helicopter is deployed against a fire near Marmaris in south-western Turkey\r\nTourists have been evacuated from beaches in south-western Turkey, where raging wildfires are now threateni… [+1829 chars]'
   };
 
-  const filtersMenuProps = {
-    PaperProps: {
-      style: {
-        marginTop: '6px',
-        minWidth: '189px', 
-        marginLeft: '0px',
-        height: '120px',  
-      },
-      sx: {
-        '::-webkit-scrollbar': {
-          width: '3px',
-        },
-        '::-webkit-scrollbar-track': {
-          backgroundColor: 'transparent',
-        },
-        '::-webkit-scrollbar-thumb': {
-          backgroundColor: 'rgba(0,0,0,0.2)',
-          borderRadius: '6px',
-        },
-      }
-    },
-  };
-
   const styledButtonProps = {
     onClick: () => console.log('Navigate Button clicked'),
     
@@ -53,10 +30,15 @@ function App() {
   const onRemoveClick = (value : string) => {
     console.log("Value removed: {}", value)
   };
+  
+  const handleDropdownChange = (event: SelectChangeEvent<unknown>, child: React.ReactNode) => {
+    console.log("Selected value:", event.target.value);
+    console.log("Child: ",child);
+  };
 
 
-  const searchMenuOptions = [{value: "1", menuItemType : MenuItemTypeEnum.FiltersMenuItem, children: "Everything" },
-  {value: "2", menuItemType : MenuItemTypeEnum.FiltersMenuItem, children: "Top Headlines" }];
+  const searchMenuOptions = [{value: "Everything", menuItemType : MenuItemTypeEnum.FiltersMenuItem, children: "Everything" },
+  {value: "Top Headlines", menuItemType : MenuItemTypeEnum.FiltersMenuItem, children: "Top Headlines" }];
 
   const pieGraphData = [
     { value: 10, label: 'NBC' },
@@ -76,7 +58,7 @@ function App() {
 ];
 
   return (
-    <div>
+    <div style={{backgroundColor: '#D9DBE9'}}>
     
     <div>
       <StyledButton {...styledButtonProps}>
@@ -85,20 +67,19 @@ function App() {
       <DateComponent></DateComponent>
     </div>
     <div>
-      <StyledDropdown label='Sources' dropDownType={"FiltersDropdown"}
-      MenuProps={filtersMenuProps}>
-        <StyledMenuItem menuItemType={MenuItemTypeEnum.FiltersMenuItem} value="1" >Mako</StyledMenuItem>
-        <StyledMenuItem menuItemType={MenuItemTypeEnum.FiltersMenuItem} value="2" >Walla</StyledMenuItem>
-        <StyledMenuItem menuItemType={MenuItemTypeEnum.FiltersMenuItem} value="3" >BBC</StyledMenuItem>
-        <StyledMenuItem menuItemType={MenuItemTypeEnum.FiltersMenuItem} value="4" >Ynet</StyledMenuItem>
-        <StyledMenuItem menuItemType={MenuItemTypeEnum.FiltersMenuItem} value="5" >Option 5</StyledMenuItem>
+      <StyledDropdown label='Sources' dropDownType={DropdownTypeEnum.FiltersDropdown} onChange={handleDropdownChange}>
+        <StyledMenuItem menuItemType={MenuItemTypeEnum.FiltersMenuItem} value="Mako" >Mako</StyledMenuItem>
+        <StyledMenuItem menuItemType={MenuItemTypeEnum.FiltersMenuItem} value="Walla" >Walla</StyledMenuItem>
+        <StyledMenuItem menuItemType={MenuItemTypeEnum.FiltersMenuItem} value="BBC" >BBC</StyledMenuItem>
+        <StyledMenuItem menuItemType={MenuItemTypeEnum.FiltersMenuItem} value="Ynet" >Ynet</StyledMenuItem>
+        <StyledMenuItem menuItemType={MenuItemTypeEnum.FiltersMenuItem} value="Option 5" >Option 5</StyledMenuItem>
       </StyledDropdown>
     </div>
     <div>
     <RecentSearches onRemove={onRemoveClick} options={[
-      { menuItemType : MenuItemTypeEnum.RecentSearchesMenuItem, value: "option1", children: "crypto" },
-      { menuItemType : MenuItemTypeEnum.RecentSearchesMenuItem, value: "option2", children: "soccer" },
-      { menuItemType : MenuItemTypeEnum.RecentSearchesMenuItem, value: "option3", children: "soccer" }
+      { menuItemType : MenuItemTypeEnum.RecentSearchesMenuItem, value: "crypto", children: "crypto" },
+      { menuItemType : MenuItemTypeEnum.RecentSearchesMenuItem, value: "football", children: "football" },
+      { menuItemType : MenuItemTypeEnum.RecentSearchesMenuItem, value: "soccer", children: "soccer" }
     ]}>
     </RecentSearches>
     </div>

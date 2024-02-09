@@ -1,56 +1,55 @@
-import { InputLabel, Select } from "@mui/material";
+import { Select } from "@mui/material";
 import styled from "styled-components";
-import { DropdownStyles, DropdownType } from "./StyledDropdown";
+import { DropdownType } from "./StyledDropdown";
 
 export const dropDownStyles: DropdownType = {
   FiltersDropdown: {
-    padding: '8px 16px',
+    padding: '11.5px 15px',
     borderRadius: '10px',
     backgroundColor: '#FFF',
     color: '#5A5A89',
     fontFamily: 'Roboto',
     fontSize: '14px',
-    fontStyle: 'normal',
     fontWeight: '400',
     lineHeight: '22px',
     letterSpacing: '0.25px',
     display: 'flex',
-    width: '189px',
+    width: '175px',
     justifyContent: 'space-between',
     alignItems: 'center',
-
     height: '47px',
     gap: '14px',
-
-    boxShadow: '0px 4px 12px 0px rgba(0, 0, 0, 0.08)'
+    borderLeft: '1px solid #0808ffbcbcbd',
+    hoverBackgroundColor: '#5ba8fa'
   },
   RecentSearchesDropdown: {
-    padding: '8px 16px',
-    borderRadius: '10px',
+    padding: '11.5px 15px',
+    borderRadius: '0px',
     backgroundColor: '#FFF',
     color: '#5A5A89',
     fontFamily: 'Roboto',
     fontSize: '14px',
-    fontStyle: 'normal',
     fontWeight: '500',
     lineHeight: '22px',
     letterSpacing: '0.25px',
     display: 'flex',
-    width: '189px',
+    width: '175px',
     justifyContent: 'space-between',
     alignItems: 'center',
-
-    height: '40px',
+    height: '47px',
     gap: '14px',
+    borderLeft: '0.5px outset #D9DBE9',
+    placeholder: 'Everything'
   }
 };
 
 export const CustomDropdown = styled(Select)<{dropdownstyles : DropdownStyles}>`
   &&& {
-    height: ${({ dropdownstyles }) => dropdownstyles.height || '40px'};
+    height: ${({ dropdownstyles }) => dropdownstyles.height || '47px'};
     font-family: ${({ dropdownstyles }) => dropdownstyles.fontFamily || 'Roboto'};
     font-weight: ${({ dropdownstyles }) => dropdownstyles.fontWeight || '500'};
-    padding: ${({ dropdownstyles }) => dropdownstyles.padding || '8px 16px'};
+    font-style: normal;
+    padding: ${({ dropdownstyles }) => dropdownstyles.padding || '11.5px 15px'};
     border-radius: ${({ dropdownstyles }) => dropdownstyles.borderRadius || '10px'};
     background-color: ${({ dropdownstyles }) => dropdownstyles.backgroundColor || '#FFF'};
     color: ${({ dropdownstyles }) => dropdownstyles.color || '#5A5A89'};
@@ -62,30 +61,55 @@ export const CustomDropdown = styled(Select)<{dropdownstyles : DropdownStyles}>`
     justify-content: ${({ dropdownstyles }) => dropdownstyles.justifyContent || 'space-between'};
     align-items: ${({ dropdownstyles }) => dropdownstyles.alignItems || 'center'};
     gap: ${({ dropdownstyles }) => dropdownstyles.gap || '14px'};
-    width: ${({ dropdownstyles }) => dropdownstyles.width || '189px'};
-    box-shadow: ${({ dropdownstyles }) => dropdownstyles.boxShadow || 'inherit'};
+    width: ${({ dropdownstyles }) => dropdownstyles.width || '175px'};
+    border-left: ${({ dropdownstyles }) => dropdownstyles.borderLeft || 'none'};
+    cursor: pointer;
   };
-    
-    &:focus {
-      border-color: '#FFF';
-      background-color: '#FFF';
-    }
 
     .MuiSelect-icon {
-      color: '#000';
+      color: #000;
     }
-    .MuiOutlinedInput-notchedOutline {
-      border: none;
+
+    .css-78trlr-MuiButtonBase-root-MuiIconButton-root:hover{
+        background-color: #FFF;
     }
-    .MuiSelect-select {
-      padding-right: '24px';
+
+    .MuiOutlinedInput-notchedOutline:not(:hover) {
+      border: none; 
     }
+
+    .css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input.css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input.css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input{
+        padding: 0px;
+    }
+    &.Mui-focused {
+    border: ${({ dropdownstyles }) => `1px solid ${dropdownstyles.focusBorderColor || 'none'}`};
+    }
+
 `;
 
-export const StyledInputLabel = styled(InputLabel) `
-&&{
-  label.MuiFormLabel-root.MuiInputLabel-root {
-  display: none;
-}
-  }
-`;
+
+export type DropdownStyles = {
+    padding?: string;
+    borderRadius?: string;
+    display?: string;
+    justifyContent ?: string;
+    alignItems?: string;
+    fontFamily?: string;
+    fontSize?: string;
+    color?: string;
+    height?: string;
+    width?: string;
+    paddingLeft?: string;
+    backgroundColor?: string;
+    hoverBackgroundColor?: string;
+    selectedBackgroundColor?: string;
+    fontStyle?: string;
+    fontWeight?: string;
+    lineHeight?: string;
+    flexShrink?: string;
+    letterSpacing?: string;
+    gap?: string;
+    borderLeft?: string;
+    focusBorderColor?: string;
+    placeholder?: string;
+  };
