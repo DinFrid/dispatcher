@@ -35,7 +35,7 @@ const menuItemStyles: MenuItemType = {
       fontSize: '12px',
       color: '#5A5A89',
       height: '28px',
-      width: '189px',
+      width: '175px',
       paddingLeft: '23.94px',
       backgroundColor: '#FFF',
       hoverBackgroundColor: 'rgba(223, 224, 235, 0.41)',
@@ -57,7 +57,7 @@ const menuItemStyles: MenuItemType = {
         fontWeight: '400',
         lineHeight: '16px', 
         letterSpacing: '0.1px',
-        hoverBackgroundColor: '#FFF',
+        hoverBackgroundColor: 'rgba(223, 224, 235, 0.41)',
     }
 };
 
@@ -67,7 +67,7 @@ const CustomMenuItem = styled(MenuItem)<{ menuitemstyles: MenuItemStyles }>`
     font-size: ${({ menuitemstyles }) => menuitemstyles.fontSize || '12px'};
     color: ${({ menuitemstyles }) => menuitemstyles.color || '#5A5A89'};
     height: ${({ menuitemstyles }) => menuitemstyles.height || '28px'};
-    width: ${({ menuitemstyles }) => menuitemstyles.width || '189px'};
+    width: ${({ menuitemstyles }) => menuitemstyles.width || '175px'};
     padding-left: ${({ menuitemstyles }) => menuitemstyles.paddingLeft || '23.94px'};
     background-color: ${({ menuitemstyles }) => menuitemstyles.backgroundColor || '#FFF'};
 

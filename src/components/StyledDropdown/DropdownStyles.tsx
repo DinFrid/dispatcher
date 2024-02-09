@@ -18,7 +18,6 @@ export const dropDownStyles: DropdownType = {
     justifyContent: 'space-between',
     alignItems: 'center',
     height: '47px',
-    gap: '14px',
     borderLeft: '1px solid #0808ffbcbcbd',
     hoverBackgroundColor: '#5ba8fa'
   },
@@ -37,7 +36,6 @@ export const dropDownStyles: DropdownType = {
     justifyContent: 'space-between',
     alignItems: 'center',
     height: '47px',
-    gap: '14px',
     borderLeft: '0.5px outset #D9DBE9',
     placeholder: 'Everything'
   }
@@ -60,7 +58,6 @@ export const CustomDropdown = styled(Select)<{dropdownstyles : DropdownStyles}>`
     display: ${({ dropdownstyles }) => dropdownstyles.display || 'flex'};
     justify-content: ${({ dropdownstyles }) => dropdownstyles.justifyContent || 'space-between'};
     align-items: ${({ dropdownstyles }) => dropdownstyles.alignItems || 'center'};
-    gap: ${({ dropdownstyles }) => dropdownstyles.gap || '14px'};
     width: ${({ dropdownstyles }) => dropdownstyles.width || '175px'};
     border-left: ${({ dropdownstyles }) => dropdownstyles.borderLeft || 'none'};
     cursor: pointer;
@@ -113,3 +110,8 @@ export type DropdownStyles = {
     focusBorderColor?: string;
     placeholder?: string;
   };
+
+  export const StyledParagraph = styled.p`
+    padding-left: 10px;
+    
+  `;

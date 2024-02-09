@@ -33,7 +33,6 @@ function App() {
   
   const handleDropdownChange = (event: SelectChangeEvent<unknown>, child: React.ReactNode) => {
     console.log("Selected value:", event.target.value);
-    console.log("Child: ",child);
   };
 
 
@@ -84,7 +83,7 @@ function App() {
     </RecentSearches>
     </div>
     <div>
-      <SearchBar dropDownType={DropdownTypeEnum.RecentSearchesDropdown} dropDownOptions={searchMenuOptions}>
+      <SearchBar dropDownProps={{dropDownType : DropdownTypeEnum.RecentSearchesDropdown, onChange : handleDropdownChange}} dropDownOptions={searchMenuOptions}>
         
       </SearchBar>
     </div>  

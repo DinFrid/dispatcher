@@ -1,6 +1,6 @@
 import React from 'react';
 import "rsuite/dist/rsuite.min.css";
-import Calender from '../../images/Calender';
+import Calendar from '../../images/Calendar';
 import { StyledDatePicker } from './DateStyling';
 
 
@@ -11,7 +11,7 @@ const DateComponent: React.FC = () => {
      showOneCalendar
      showHeader={false}
      format="dd/MM/yy"
-     caretAs={Calender} 
+     caretAs={Calendar} 
      appearance="subtle" 
      placeholder="Dates" />
   );

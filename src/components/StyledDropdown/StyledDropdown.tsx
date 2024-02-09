@@ -1,6 +1,6 @@
 import { FormControl, IconButton, Select, SelectChangeEvent, SelectProps } from '@mui/material';
 import DropdownArrow from '../../images/dropdown.svg';
-import { CustomDropdown, DropdownStyles, dropDownStyles } from './DropdownStyles';
+import { CustomDropdown, DropdownStyles, StyledParagraph, dropDownStyles } from './DropdownStyles';
 import { useState } from 'react';
 
 export interface StyledDropdownProps extends SelectProps {
@@ -57,7 +57,8 @@ export const StyledDropdown: React.FC<StyledDropdownProps> = ({
         displayEmpty
         input={<CustomDropdown dropdownstyles={styles} />}
         IconComponent={DropdownIconButton}
-        renderValue={(selected) => selected === '' ? <p>{placeholder}</p> : <p>{selected as string}</p>}
+        renderValue={(selected) => selected === '' ? <StyledParagraph>{placeholder}</StyledParagraph> 
+        : <StyledParagraph>{selected as string}</StyledParagraph>}
         sx={{
           "&:hover": {
             "&& fieldset": {

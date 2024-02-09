@@ -32,7 +32,6 @@ export const StyledDatePicker = styled(DateRangePicker)` &&{
 
     .rs-input-group.rs-input-group-inside .rs-input {
     color: #5A5A89;
-    
   }
   
 }
