@@ -19,7 +19,8 @@ const CustomRecentSearches = styled(Card)`
     flex-shrink: 0;
     border-radius: 10px;
     background:  #FFF;
-    box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.08);
+    box-shadow: 0px 4px 12px 0px #00000014;
+
   }
 `;
 

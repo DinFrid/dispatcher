@@ -30,6 +30,7 @@ export const SearchBarCard = styled(Card)`
     width: 663px;
     height: 50px;
     border-radius: 10px;
+    box-shadow: none;
   }
 `;
 

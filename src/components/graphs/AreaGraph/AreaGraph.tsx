@@ -34,6 +34,8 @@ const StyledCard = styled(Card)`
     box-sizing: border-box;
     padding-left: 10px;
     padding-right: 10px;
+    box-shadow: 0px 32px 64px 0px #0000000D;
+
   }
 `;
   

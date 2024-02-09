@@ -16,6 +16,8 @@ const StyledCard = styled(Card)`
   width: 986px;
   height: 242px;
   border-radius: 20px !important; 
+  box-shadow: 0px 32px 64px 0px #0000000D;
+
 `;
 
 const StyledCardContent = styled(CardContent)`

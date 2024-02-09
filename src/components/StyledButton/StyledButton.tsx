@@ -12,7 +12,15 @@ const CustomStyledButton = styled(Button)`
     border-radius: 20px; 
     padding: 5px 20px; 
     white-space: nowrap; 
-    
+    box-shadow: none;
+
+    &:hover {
+      box-shadow: none; 
+    }
+
+    &:active {
+      box-shadow: none; 
+    }
   }
 `;
 

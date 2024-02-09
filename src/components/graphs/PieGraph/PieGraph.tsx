@@ -24,6 +24,8 @@ const CustomCard = styled(Card)`
     border: 1px solid #D9DBE9;
     padding: 25px 15px 25px 25px;
     box-sizing: border-box;
+    box-shadow: 0px 32px 64px 0px #0000000D;
+
         
     .recharts-default-legend{
         display: flex;
