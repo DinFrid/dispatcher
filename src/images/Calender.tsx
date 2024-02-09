@@ -1,9 +1,9 @@
 function Calender() {
   return (
     <svg
-      width="22"
-      height="25"
-      viewBox="0 0 22 25"
+      width="16"
+      height="16"
+      viewBox="0 0 16 16"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
@@ -13,13 +13,13 @@ function Calender() {
         maskUnits="userSpaceOnUse"
         x="0"
         y="0"
-        width="22"
-        height="25"
+        width="16"
+        height="16"
       >
-        <rect y="0.5" width="22" height="24" fill="url(#pattern0)" />
+        <rect y="0.5" width="16" height="16" fill="url(#pattern0)" />
       </mask>
       <g mask="url(#mask0_47_21)">
-        <rect x="-1" y="0.5" width="24" height="24" fill="#5A5A89" />
+        <rect x="-1" y="0.5" width="16" height="16" fill="#5A5A89" />
       </g>
       <defs>
         <pattern

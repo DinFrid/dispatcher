@@ -7,7 +7,6 @@ import { StyledDatePicker } from './DateStyling';
 const DateComponent: React.FC = () => {
 
   return (
-    <>
     <StyledDatePicker 
      showOneCalendar
      showHeader={false}
@@ -15,7 +14,6 @@ const DateComponent: React.FC = () => {
      caretAs={Calender} 
      appearance="subtle" 
      placeholder="Dates" />
-    </>
   );
 };
 
