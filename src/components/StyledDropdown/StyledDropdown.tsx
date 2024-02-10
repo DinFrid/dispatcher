@@ -41,7 +41,7 @@ export const StyledDropdown: React.FC<StyledDropdownProps> = ({
   };
   
   const DropdownIconButton = () => (
-    <IconButton  onClick={handleOpen} >
+    <IconButton style={{padding: `${styles.iconPadding || '8px'}`}} onClick={handleOpen} >
       <img src={DropdownArrow} alt="Dropdown Arrow" />
     </IconButton>
   );
@@ -75,7 +75,6 @@ export const StyledDropdown: React.FC<StyledDropdownProps> = ({
               paddingLeft: '0px',
               height: '120px',
               boxShadow: '0px 4px 12px 0px #00000014',
-
             },
             sx: {
               '::-webkit-scrollbar': {
@@ -85,8 +84,9 @@ export const StyledDropdown: React.FC<StyledDropdownProps> = ({
                 backgroundColor: 'transparent',
               },
               '::-webkit-scrollbar-thumb': {
-                backgroundColor: 'rgba(0,0,0,0.2)',
+                backgroundColor: '#5A5A89',
                 borderRadius: '6px',
+
               },
               
             },

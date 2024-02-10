@@ -72,6 +72,10 @@ function App() {
         <StyledMenuItem menuItemType={MenuItemTypeEnum.FiltersMenuItem} value="BBC" >BBC</StyledMenuItem>
         <StyledMenuItem menuItemType={MenuItemTypeEnum.FiltersMenuItem} value="Ynet" >Ynet</StyledMenuItem>
         <StyledMenuItem menuItemType={MenuItemTypeEnum.FiltersMenuItem} value="Option 5" >Option 5</StyledMenuItem>
+        <StyledMenuItem menuItemType={MenuItemTypeEnum.FiltersMenuItem} value="Option 6" >Option 6</StyledMenuItem>
+        <StyledMenuItem menuItemType={MenuItemTypeEnum.FiltersMenuItem} value="Option 7" >Option 7</StyledMenuItem>
+        <StyledMenuItem menuItemType={MenuItemTypeEnum.FiltersMenuItem} value="Option 8" >Option 8</StyledMenuItem>
+        <StyledMenuItem menuItemType={MenuItemTypeEnum.FiltersMenuItem} value="Option 9" >Option 9</StyledMenuItem>
       </StyledDropdown>
     </div>
     <div>

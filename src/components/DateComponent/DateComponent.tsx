@@ -2,7 +2,9 @@ import React from 'react';
 import "rsuite/dist/rsuite.min.css";
 import Calendar from '../../images/Calendar';
 import { StyledDatePicker } from './DateStyling';
+import { DatePickerProps } from 'rsuite';
 
+export interface DateProps extends DatePickerProps {};
 
 const DateComponent: React.FC = () => {
 
@@ -13,6 +15,7 @@ const DateComponent: React.FC = () => {
      format="dd/MM/yy"
      caretAs={Calendar} 
      appearance="subtle" 
+     character='-' 
      placeholder="Dates" />
   );
 };

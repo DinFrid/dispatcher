@@ -4,7 +4,7 @@ import { DropdownType } from "./StyledDropdown";
 
 export const dropDownStyles: DropdownType = {
   FiltersDropdown: {
-    padding: '11.5px 15px',
+    padding: '11.5px 5px',
     borderRadius: '10px',
     backgroundColor: '#FFF',
     color: '#5A5A89',
@@ -22,7 +22,7 @@ export const dropDownStyles: DropdownType = {
     hoverBackgroundColor: '#5ba8fa'
   },
   RecentSearchesDropdown: {
-    padding: '11.5px 15px',
+    padding: '1px',
     borderRadius: '0px',
     backgroundColor: '#FFF',
     color: '#5A5A89',
@@ -32,12 +32,13 @@ export const dropDownStyles: DropdownType = {
     lineHeight: '22px',
     letterSpacing: '0.25px',
     display: 'flex',
-    width: '175px',
+    maxWidth: '160px',
     justifyContent: 'space-between',
     alignItems: 'center',
     height: '47px',
     borderLeft: '0.5px outset #D9DBE9',
-    placeholder: 'Everything'
+    placeholder: 'Everything',
+    iconPadding: '21.5px 21.5px 21.5px 16px'
   }
 };
 
@@ -47,7 +48,7 @@ export const CustomDropdown = styled(Select)<{dropdownstyles : DropdownStyles}>`
     font-family: ${({ dropdownstyles }) => dropdownstyles.fontFamily || 'Roboto'};
     font-weight: ${({ dropdownstyles }) => dropdownstyles.fontWeight || '500'};
     font-style: normal;
-    padding: ${({ dropdownstyles }) => dropdownstyles.padding || '11.5px 15px'};
+    padding: ${({ dropdownstyles }) => dropdownstyles.padding || '11.5px 5px'};
     border-radius: ${({ dropdownstyles }) => dropdownstyles.borderRadius || '10px'};
     background-color: ${({ dropdownstyles }) => dropdownstyles.backgroundColor || '#FFF'};
     color: ${({ dropdownstyles }) => dropdownstyles.color || '#5A5A89'};
@@ -58,7 +59,8 @@ export const CustomDropdown = styled(Select)<{dropdownstyles : DropdownStyles}>`
     display: ${({ dropdownstyles }) => dropdownstyles.display || 'flex'};
     justify-content: ${({ dropdownstyles }) => dropdownstyles.justifyContent || 'space-between'};
     align-items: ${({ dropdownstyles }) => dropdownstyles.alignItems || 'center'};
-    width: ${({ dropdownstyles }) => dropdownstyles.width || '175px'};
+    max-width: ${({ dropdownstyles }) => dropdownstyles.maxWidth || '175px'};
+    width: ${({ dropdownstyles }) => dropdownstyles.width || 'none'};
     border-left: ${({ dropdownstyles }) => dropdownstyles.borderLeft || 'none'};
     cursor: pointer;
   };
@@ -96,6 +98,7 @@ export type DropdownStyles = {
     color?: string;
     height?: string;
     width?: string;
+    maxWidth?: string;
     paddingLeft?: string;
     backgroundColor?: string;
     hoverBackgroundColor?: string;
@@ -109,6 +112,7 @@ export type DropdownStyles = {
     borderLeft?: string;
     focusBorderColor?: string;
     placeholder?: string;
+    iconPadding?: string;
   };
 
   export const StyledParagraph = styled.p`
