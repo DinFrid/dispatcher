@@ -1,8 +1,6 @@
 import {StyledMenuItem} from './components/StyledMenuItem/StyledMenuItem';
 import { StyledButton } from './components/StyledButton/StyledButton';
 import {StyledDropdown} from './components/StyledDropdown/StyledDropdown';
-import { RecentSearches } from './components/RecentSearches/RecentSearches';
-import SearchBar from './components/SearchBar/SearchBar';
 import { DropdownTypeEnum, MenuItemTypeEnum } from './utils/Enums';
 import HeadlineCard from './components/HeadlineCard/HeadlineCard';
 import PieGraph from './components/Graphs/PieGraph/PieGraph';
@@ -10,9 +8,23 @@ import AreaGraph from './components/Graphs/AreaGraph/AreaGraph';
 import DateComponent from './components/DateComponent/DateComponent';
 import 'rsuite/dist/rsuite.min.css'; 
 import { SelectChangeEvent } from '@mui/material';
+import SearchComponent from './components/SearchComponent/SearchComponent';
 
 
 function App() {
+  const onRemoveClick = (value : string) => {
+    console.log("Value removed: {}", value)
+  };
+
+  const onClearClick = () => {
+    console.log("Clear button clicked!")
+  };
+
+  const recentSearchesProps = {onRemove: onRemoveClick, onClear: onClearClick, options: [
+    { menuItemType : MenuItemTypeEnum.RecentSearchesMenuItem, value: "crypto", children: "crypto" },
+    { menuItemType : MenuItemTypeEnum.RecentSearchesMenuItem, value: "football", children: "football" },
+    { menuItemType : MenuItemTypeEnum.RecentSearchesMenuItem, value: "soccer", children: "soccer" }
+  ]};
 
   const headlineProps = {
     imageUrl: 'https://mmajunkie.usatoday.com/wp-content/uploads/sites/91/2021/07/uriah-hall-sean-strickland-ufc-on-espn-28-official-weigh-ins-5.jpg?w=1000&h=600&crop=1',
@@ -27,23 +39,19 @@ function App() {
     
   };
 
-  const onRemoveClick = (value : string) => {
-    console.log("Value removed: {}", value)
-  };
-  
-  const handleDropdownChange = (event: SelectChangeEvent<unknown>, child: React.ReactNode) => {
+  const handleDropdownChange = (event: SelectChangeEvent<unknown>) => {
     console.log("Selected value:", event.target.value);
   };
-
-
-  const searchMenuOptions = [{value: "Everything", menuItemType : MenuItemTypeEnum.FiltersMenuItem, children: "Everything" },
-  {value: "Top Headlines", menuItemType : MenuItemTypeEnum.FiltersMenuItem, children: "Top Headlines" }];
 
   const pieGraphData = [
     { value: 10, label: 'NBC' },
     { value: 30, label: 'Vulture' },
     { value: 50, label: 'CNN' },
     { value: 10, label: 'ESPN' },
+    { value: 10, label: 'A' },
+    { value: 30, label: 'B' },
+    { value: 50, label: 'C' },
+    { value: 10, label: 'D' },
   ];
 
   const areaGraphData = [
@@ -79,17 +87,7 @@ function App() {
       </StyledDropdown>
     </div>
     <div>
-    <RecentSearches onRemove={onRemoveClick} options={[
-      { menuItemType : MenuItemTypeEnum.RecentSearchesMenuItem, value: "crypto", children: "crypto" },
-      { menuItemType : MenuItemTypeEnum.RecentSearchesMenuItem, value: "football", children: "football" },
-      { menuItemType : MenuItemTypeEnum.RecentSearchesMenuItem, value: "soccer", children: "soccer" }
-    ]}>
-    </RecentSearches>
-    </div>
-    <div>
-      <SearchBar dropDownProps={{dropDownType : DropdownTypeEnum.RecentSearchesDropdown, onChange : handleDropdownChange}} dropDownOptions={searchMenuOptions}>
-        
-      </SearchBar>
+      <SearchComponent recentSearchesProps={recentSearchesProps}></SearchComponent>
     </div>  
       <HeadlineCard {...headlineProps}></HeadlineCard>
       <PieGraph title={"Sources"} label={'Sum'} data={pieGraphData}></PieGraph>

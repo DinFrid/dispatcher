@@ -32,6 +32,8 @@ const CustomCard = styled(Card)`
         flex-direction: column;
         gap: 11px;
         padding-left: 10px !important;
+        overflow-y: auto;
+        max-height: 120px;
     }
   }
 `;
