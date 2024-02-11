@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { DropdownTypeEnum, MenuItemTypeEnum } from '../../utils/Enums';
+import { MenuItemTypeEnum } from '../../utils/Enums';
 import SearchComponent from './SearchComponent';
 
 const meta: Meta<typeof SearchComponent> = {
@@ -7,15 +7,23 @@ const meta: Meta<typeof SearchComponent> = {
     component: SearchComponent,
   };
 
-  type Story = StoryObj<typeof SearchComponent>;
+  const onRemoveClick = (value : string) => {
+    console.log("Value removed: {}", value)
+  };
 
-  const searchMenuOptions = [{value: "Everything", menuItemType : MenuItemTypeEnum.FiltersMenuItem, children: "Everything" },
-  {value: "Top Headlines", menuItemType : MenuItemTypeEnum.FiltersMenuItem, children: "Top Headlines" }];
+  const onClearClick = () => {
+    console.log("Clear button clicked!")
+  };
+
+  type Story = StoryObj<typeof SearchComponent>;
   
 export const Primary: Story = {
     args: {
-        dropDownProps : {dropDownType : DropdownTypeEnum.RecentSearchesDropdown},
-        dropDownOptions: {searchMenuOptions}
+      recentSearchesProps : {onRemove: onRemoveClick, onClear: onClearClick, options: [
+        { menuItemType : MenuItemTypeEnum.RecentSearchesMenuItem, value: "crypto", children: "crypto" },
+        { menuItemType : MenuItemTypeEnum.RecentSearchesMenuItem, value: "football", children: "football" },
+        { menuItemType : MenuItemTypeEnum.RecentSearchesMenuItem, value: "soccer", children: "soccer" }
+      ]}
     }
 };
       
