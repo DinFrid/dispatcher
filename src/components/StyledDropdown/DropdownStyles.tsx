@@ -35,7 +35,7 @@ export const dropDownStyles: DropdownType = {
     maxWidth: '160px',
     justifyContent: 'space-between',
     alignItems: 'center',
-    height: '47px',
+    height: '40px',
     borderLeft: '0.5px outset #D9DBE9',
     placeholder: 'Everything',
     iconPadding: '21.5px 21.5px 21.5px 16px'

@@ -11,6 +11,7 @@ export const CustomRecentSearches = styled(Card)`
     background:  #FFF;
     box-shadow: 0px 4px 12px 0px #00000014;
     margin-top: 6px;
+    position: absolute;
   }
 `;
 

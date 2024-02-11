@@ -8,23 +8,10 @@ import AreaGraph from './components/Graphs/AreaGraph/AreaGraph';
 import DateComponent from './components/DateComponent/DateComponent';
 import 'rsuite/dist/rsuite.min.css'; 
 import { SelectChangeEvent } from '@mui/material';
-import SearchComponent from './components/SearchComponent/SearchComponent';
+import Navbar from './components/Navbar/Navbar';
 
 
 function App() {
-  const onRemoveClick = (value : string) => {
-    console.log("Value removed: {}", value)
-  };
-
-  const onClearClick = () => {
-    console.log("Clear button clicked!")
-  };
-
-  const recentSearchesProps = {onRemove: onRemoveClick, onClear: onClearClick, options: [
-    { menuItemType : MenuItemTypeEnum.RecentSearchesMenuItem, value: "crypto", children: "crypto" },
-    { menuItemType : MenuItemTypeEnum.RecentSearchesMenuItem, value: "football", children: "football" },
-    { menuItemType : MenuItemTypeEnum.RecentSearchesMenuItem, value: "soccer", children: "soccer" }
-  ]};
 
   const headlineProps = {
     imageUrl: 'https://mmajunkie.usatoday.com/wp-content/uploads/sites/91/2021/07/uriah-hall-sean-strickland-ufc-on-espn-28-official-weigh-ins-5.jpg?w=1000&h=600&crop=1',
@@ -68,6 +55,7 @@ function App() {
     <div style={{backgroundColor: '#D9DBE9'}}>
     
     <div>
+      <Navbar></Navbar>
       <StyledButton {...styledButtonProps}>
         Navigate to dispatch
       </StyledButton>
@@ -86,9 +74,6 @@ function App() {
         <StyledMenuItem menuItemType={MenuItemTypeEnum.FiltersMenuItem} value="Option 9" >Option 9</StyledMenuItem>
       </StyledDropdown>
     </div>
-    <div>
-      <SearchComponent recentSearchesProps={recentSearchesProps}></SearchComponent>
-    </div>  
       <HeadlineCard {...headlineProps}></HeadlineCard>
       <PieGraph title={"Sources"} label={'Sum'} data={pieGraphData}></PieGraph>
       <AreaGraph title={"Dates"} data={areaGraphData}></AreaGraph>

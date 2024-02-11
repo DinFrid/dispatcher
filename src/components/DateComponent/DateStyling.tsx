@@ -4,7 +4,8 @@ import styled from "styled-components";
 export const StyledDatePicker = styled(DateRangePicker)` &&{
 
     display: flex;
-  
+    width: 175px; 
+    height: 47px;
     justify-content: space-between;
     align-items: center;
 
@@ -17,7 +18,6 @@ export const StyledDatePicker = styled(DateRangePicker)` &&{
       cursor: pointer;
       width: 175px; 
       height: 47px;
-      
       font-family: 'Roboto';
       font-size: 14px;
       font-style: normal;
@@ -26,11 +26,13 @@ export const StyledDatePicker = styled(DateRangePicker)` &&{
       letter-spacing: 0.25px;
       
       .rs-input-group-addon {
-          color: #5A5A89;
+        color: #5A5A89;
+      }
+
+      .rs-btn-close:focus, .rs-btn-close:hover {
+        color: #5A5A89;
       }
     }
-
-    
 
     .rs-input-group.rs-input-group-inside .rs-input {
     color: #5A5A89;

@@ -13,7 +13,6 @@ export type DropdownType = {
   RecentSearchesDropdown: DropdownStyles;
 };
 
-
 export const StyledDropdown: React.FC<StyledDropdownProps> = ({
   dropDownType,
   label,
@@ -22,8 +21,8 @@ export const StyledDropdown: React.FC<StyledDropdownProps> = ({
   ...props }) => {
 
   const [value, setValue] = useState<string>('');
-  const styles = dropDownStyles[dropDownType];
   const [open, setOpen] = useState(false);
+  const styles = dropDownStyles[dropDownType];
   const placeholder = label ? label : styles.placeholder;
   
   const handleValueChange = (event: SelectChangeEvent<unknown>, child: React.ReactNode) => {
@@ -41,7 +40,7 @@ export const StyledDropdown: React.FC<StyledDropdownProps> = ({
   };
   
   const DropdownIconButton = () => (
-    <IconButton style={{padding: `${styles.iconPadding || '8px'}`}} onClick={handleOpen} >
+    <IconButton style={{padding: `${styles.iconPadding || '8px'}`}} onClick={handleOpen}  >
       <img src={DropdownArrow} alt="Dropdown Arrow" />
     </IconButton>
   );

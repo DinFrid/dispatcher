@@ -18,9 +18,8 @@ export const SearchIconWrapper = styled('div')`
   display: flex;
   align-items: center;
   justify-content: center;
-  left: 17px; 
+  margin-left: 15.5px;
 `;
-
 
 export const SearchBarCard = styled(Card)`
   &&& {
@@ -40,7 +39,7 @@ color: inherit;
 flex-grow: 1; 
 
 .MuiInputBase-input {
-  width: calc(100% - 55px);
-  padding-left: 55px;
+  width: calc(100% - 64px);
+  margin-left: 55px;
 }
 `;
