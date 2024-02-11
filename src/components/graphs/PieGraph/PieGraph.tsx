@@ -5,7 +5,7 @@ import HorizontalLine from '../HorizontalLine';
 import { PieGraphContainer, StyledTypography } from './styles';
 import { COLORS } from './consts';
 
-interface PieData {
+export interface PieData {
   value: number;
   label: string;
 }

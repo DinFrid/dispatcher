@@ -2,7 +2,7 @@ import { Area, AreaChart, XAxis, CartesianGrid, ResponsiveContainer } from 'rech
 import HorizontalLine from '../HorizontalLine';
 import { StyledCard, StyledTypography } from './styles';
 
-interface AreaGraphData {
+export interface AreaGraphData {
   date: string;
   sourcesNumber: number;
 }
