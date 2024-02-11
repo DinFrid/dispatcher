@@ -2,7 +2,7 @@ import SearchImg from '../../images/SearchIcon.svg';
 import StyledDropdown, { StyledDropdownProps } from '../StyledDropdown/StyledDropdown';
 import { StyledMenuItem, StyledMenuItemProps } from '../StyledMenuItem/StyledMenuItem';
 import { MenuItemTypeEnum } from '../../utils/Enums';
-import { SearchBarCard, SearchIconWrapper, StyledInputBase, recentSearchesMenuProps } from './SearchBarStyles';
+import { SearchBarCard, SearchIconWrapper, StyledInputBase, recentSearchesMenuProps } from './styles';
 
 export interface SearchBarProps{
   dropDownOptions : StyledMenuItemProps[];

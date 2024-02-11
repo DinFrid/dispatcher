@@ -1,7 +1,7 @@
 import { IconButton } from "@mui/material";
 import { StyledMenuItem, StyledMenuItemProps } from "../StyledMenuItem/StyledMenuItem";
 import { MenuItemTypeEnum } from "../../utils/Enums";
-import { CustomRecentSearches, CustomTypography, StyledClearButton, StyledRemoveIcon } from "./RecentSearchesStyles";
+import { CustomRecentSearches, CustomTypography, StyledClearButton, StyledRemoveIcon } from "./styles";
 
 export interface RecentSearchesProps {
   options: StyledMenuItemProps[];

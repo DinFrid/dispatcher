@@ -1,6 +1,6 @@
 import { Select } from "@mui/material";
 import styled from "styled-components";
-import { DropdownType } from "./StyledDropdown";
+import { DropdownStyles, DropdownType } from "./types";
 
 export const dropDownStyles: DropdownType = {
   FiltersDropdown: {
@@ -85,35 +85,6 @@ export const CustomDropdown = styled(Select)<{dropdownstyles : DropdownStyles}>`
     }
 
 `;
-
-
-export type DropdownStyles = {
-    padding?: string;
-    borderRadius?: string;
-    display?: string;
-    justifyContent ?: string;
-    alignItems?: string;
-    fontFamily?: string;
-    fontSize?: string;
-    color?: string;
-    height?: string;
-    width?: string;
-    maxWidth?: string;
-    paddingLeft?: string;
-    backgroundColor?: string;
-    hoverBackgroundColor?: string;
-    selectedBackgroundColor?: string;
-    fontStyle?: string;
-    fontWeight?: string;
-    lineHeight?: string;
-    flexShrink?: string;
-    letterSpacing?: string;
-    gap?: string;
-    borderLeft?: string;
-    focusBorderColor?: string;
-    placeholder?: string;
-    iconPadding?: string;
-  };
 
   export const StyledParagraph = styled.p`
     padding-left: 10px;

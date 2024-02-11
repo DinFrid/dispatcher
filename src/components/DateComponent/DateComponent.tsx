@@ -1,7 +1,7 @@
 import React from 'react';
 import "rsuite/dist/rsuite.min.css";
 import Calendar from '../../images/Calendar';
-import { StyledDatePicker } from './DateStyling';
+import { StyledDatePicker } from './styles';
 import { DatePickerProps } from 'rsuite';
 
 export interface DateProps extends DatePickerProps {};

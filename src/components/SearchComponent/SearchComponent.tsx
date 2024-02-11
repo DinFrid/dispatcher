@@ -9,9 +9,9 @@ export interface SearchComponentProps {
     recentSearchesProps: RecentSearchesProps;
 }
 
-const searchMenuOptions = [
+const searchMenuOptions = [ //TODO: change menuItem types
   {value: "Everything", menuItemType: MenuItemTypeEnum.FiltersMenuItem, children: "Everything"},
-  {value: "Top Headlines", menuItemType: MenuItemTypeEnum.FiltersMenuItem, children: "Top Headlines"}
+  {value: "Top Headlines", menuItemType: MenuItemTypeEnum.FiltersMenuItem, children: "Top Headlines"} 
 ];
 
 const SearchComponent = ({recentSearchesProps} : SearchComponentProps) => {
@@ -37,13 +37,12 @@ const SearchComponent = ({recentSearchesProps} : SearchComponentProps) => {
     const dropDownProps = {dropDownType : DropdownTypeEnum.RecentSearchesDropdown,
         onChange : handleDropdownChange}
 
-        
-
     return (
         <div ref={recentSearchesRef}>
             <SearchBar
+
             dropDownProps={dropDownProps}
-            dropDownOptions={searchMenuOptions}
+            dropDownOptions={searchMenuOptions}//TODO: change to menuItems
             onSearchInputClick={handleSearchInputClick} 
             />
             {recentSearchesOpen && <RecentSearches {...recentSearchesProps}></RecentSearches>}
