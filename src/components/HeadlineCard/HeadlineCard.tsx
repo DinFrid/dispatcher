@@ -1,6 +1,6 @@
-import styled from 'styled-components';
-import { Card, CardContent, Typography } from '@mui/material';
+import { Typography } from '@mui/material';
 import { StyledButton } from '../StyledButton/StyledButton';
+import { NewsImage, StyledCard, StyledCardContent } from './styles';
 
 interface HeadlineCardProps {
     imageUrl: string;
@@ -9,26 +9,6 @@ interface HeadlineCardProps {
     summary: string;
     source: string;
 }
-
-
-const StyledCard = styled(Card)`
-  display: flex;
-  width: 986px;
-  height: 242px;
-  border-radius: 20px !important; 
-`;
-
-const StyledCardContent = styled(CardContent)`
- padding: 16px !important;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-`;
-
-const NewsImage = styled.img`
-    width: 244px;
-    height: 242px;
-`;
 
 const styledButtonProps = {
     onClick: () => console.log('Navigate Button clicked'),

@@ -11,6 +11,7 @@ const meta: Meta<typeof StyledButton> = {
 export const Primary: Story = {
     args: {
       children: 'Primary Button',
+      
       sx: { color: 'white', borderRadius: "20px",fontSize: "14px",fontFamily: "Roboto", height: "26px" },
       variant: "contained"
     }

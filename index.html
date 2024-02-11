@@ -1,10 +1,21 @@
 <!doctype html>
 <html lang="en">
   <head>
+    <script>
+      window.addEventListener('load', () => {
+        const style = document.createElement('style');
+        style.innerHTML = `
+          :root {
+            --rs-close-button-hover-color: 'none';
+          }
+        `;
+        document.head.appendChild(style);
+      });
+    </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dispatcher</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet">
   </head>
   <body>
     <div id="root"></div>

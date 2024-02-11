@@ -1,11 +1,15 @@
-
 import {StyledMenuItem} from './components/StyledMenuItem/StyledMenuItem';
 import { StyledButton } from './components/StyledButton/StyledButton';
 import {StyledDropdown} from './components/StyledDropdown/StyledDropdown';
-import { RecentSearches } from './components/RecentSearches/RecentSearches';
-import SearchBar from './components/SearchBar/SearchBar';
 import { DropdownTypeEnum, MenuItemTypeEnum } from './utils/Enums';
 import HeadlineCard from './components/HeadlineCard/HeadlineCard';
+import PieGraph from './components/Graphs/PieGraph/PieGraph';
+import AreaGraph from './components/Graphs/AreaGraph/AreaGraph';
+import DateComponent from './components/DateComponent/DateComponent';
+import 'rsuite/dist/rsuite.min.css'; 
+import { SelectChangeEvent } from '@mui/material';
+import Navbar from './components/Navbar/Navbar';
+
 
 function App() {
 
@@ -17,74 +21,62 @@ function App() {
     summary: 'A helicopter is deployed against a fire near Marmaris in south-western Turkey\r\nTourists have been evacuated from beaches in south-western Turkey, where raging wildfires are now threateni… [+1829 chars]'
   };
 
-  const filtersMenuProps = {
-    PaperProps: {
-      style: {
-        marginTop: '6px',
-        minWidth: '189px', 
-        marginLeft: '0px',
-        height: '120px',  
-      },
-      sx: {
-        '::-webkit-scrollbar': {
-          width: '3px',
-        },
-        '::-webkit-scrollbar-track': {
-          backgroundColor: 'transparent',
-        },
-        '::-webkit-scrollbar-thumb': {
-          backgroundColor: 'rgba(0,0,0,0.2)',
-          borderRadius: '6px',
-        },
-      }
-    },
-  };
-
   const styledButtonProps = {
     onClick: () => console.log('Navigate Button clicked'),
-    variant: "contained" as "contained",
+    
   };
 
-  const onRemoveClick = (value : string) => {
-    console.log("Value removed: {}", value)
+  const handleDropdownChange = (event: SelectChangeEvent<unknown>) => {
+    console.log("Selected value:", event.target.value);
   };
 
+  const pieGraphData = [
+    { value: 10, label: 'NBC' },
+    { value: 30, label: 'Vulture' },
+    { value: 50, label: 'CNN' },
+    { value: 10, label: 'ESPN' },
+    { value: 10, label: 'A' },
+    { value: 30, label: 'B' },
+    { value: 50, label: 'C' },
+    { value: 10, label: 'D' },
+  ];
 
-  const searchMenuOptions = [{value: "1", menuItemType : MenuItemTypeEnum.FiltersMenuItem, children: "Everything" },
-  {value: "2", menuItemType : MenuItemTypeEnum.FiltersMenuItem, children: "Top Headlines" }];
+  const areaGraphData = [
+    { date: 'MAR', sourcesNumber: 100 },
+    { date: 'APR', sourcesNumber: 450 },
+    { date: 'MAY', sourcesNumber: 200 },
+    { date: 'JUN', sourcesNumber: 350 },
+    { date: 'JUL', sourcesNumber: 500 },
+    { date: 'AUG', sourcesNumber: 350 },
+    { date: 'SEP', sourcesNumber: 500 },
+];
 
   return (
-    <div>
+    <div style={{backgroundColor: '#D9DBE9'}}>
     
     <div>
+      <Navbar></Navbar>
       <StyledButton {...styledButtonProps}>
         Navigate to dispatch
       </StyledButton>
+      <DateComponent></DateComponent>
     </div>
     <div>
-      <StyledDropdown label='Sources' dropDownType={DropdownTypeEnum.FiltersDropdown}
-      MenuProps={filtersMenuProps}>
-        <StyledMenuItem menuItemType={MenuItemTypeEnum.FiltersMenuItem} value="1" >Mako</StyledMenuItem>
-        <StyledMenuItem menuItemType={MenuItemTypeEnum.FiltersMenuItem} value="2" >Walla</StyledMenuItem>
-        <StyledMenuItem menuItemType={MenuItemTypeEnum.FiltersMenuItem} value="3" >BBC</StyledMenuItem>
-        <StyledMenuItem menuItemType={MenuItemTypeEnum.FiltersMenuItem} value="4" >Ynet</StyledMenuItem>
-        <StyledMenuItem menuItemType={MenuItemTypeEnum.FiltersMenuItem} value="5" >Option 5</StyledMenuItem>
+      <StyledDropdown label='Sources' dropDownType={DropdownTypeEnum.FiltersDropdown} onChange={handleDropdownChange}>
+        <StyledMenuItem menuItemType={MenuItemTypeEnum.FiltersMenuItem} value="Mako" >Mako</StyledMenuItem>
+        <StyledMenuItem menuItemType={MenuItemTypeEnum.FiltersMenuItem} value="Walla" >Walla</StyledMenuItem>
+        <StyledMenuItem menuItemType={MenuItemTypeEnum.FiltersMenuItem} value="BBC" >BBC</StyledMenuItem>
+        <StyledMenuItem menuItemType={MenuItemTypeEnum.FiltersMenuItem} value="Ynet" >Ynet</StyledMenuItem>
+        <StyledMenuItem menuItemType={MenuItemTypeEnum.FiltersMenuItem} value="Option 5" >Option 5</StyledMenuItem>
+        <StyledMenuItem menuItemType={MenuItemTypeEnum.FiltersMenuItem} value="Option 6" >Option 6</StyledMenuItem>
+        <StyledMenuItem menuItemType={MenuItemTypeEnum.FiltersMenuItem} value="Option 7" >Option 7</StyledMenuItem>
+        <StyledMenuItem menuItemType={MenuItemTypeEnum.FiltersMenuItem} value="Option 8" >Option 8</StyledMenuItem>
+        <StyledMenuItem menuItemType={MenuItemTypeEnum.FiltersMenuItem} value="Option 9" >Option 9</StyledMenuItem>
       </StyledDropdown>
     </div>
-    <div>
-    <RecentSearches onRemove={onRemoveClick} options={[
-      { menuItemType : MenuItemTypeEnum.RecentSearchesMenuItem, value: "option1", children: "crypto" },
-      { menuItemType : MenuItemTypeEnum.RecentSearchesMenuItem, value: "option2", children: "soccer" },
-      { menuItemType : MenuItemTypeEnum.RecentSearchesMenuItem, value: "option3", children: "soccer" }
-    ]}>
-    </RecentSearches>
-    </div>
-    <div>
-      <SearchBar dropDownType={DropdownTypeEnum.RecentSearchesDropdown} dropDownOptions={searchMenuOptions}>
-        
-      </SearchBar>
-    </div>  
       <HeadlineCard {...headlineProps}></HeadlineCard>
+      <PieGraph title={"Sources"} label={'Sum'} data={pieGraphData}></PieGraph>
+      <AreaGraph title={"Dates"} data={areaGraphData}></AreaGraph>
     </div>
   );
 }
