@@ -1,12 +1,12 @@
-import { Typography } from '@mui/material';
 import { StyledButton } from '../StyledButton/StyledButton';
-import { NewsImage, StyledCard, StyledCardContent } from './styles';
+import { NewsImage, StyledCard, StyledCardContent, StyledTypography } from './styles';
+import { contentStyles, dateStyles, sourceStyles, titleStyles } from './consts';
 
-interface HeadlineCardProps {
-    imageUrl: string;
+export interface HeadlineCardProps {
+    url: string;
     date: string;
-    headline: string;
-    summary: string;
+    title: string;
+    content: string;
     source: string;
 }
 
@@ -15,23 +15,23 @@ const styledButtonProps = {
     variant: "contained" as "contained",
   };
 
-const HeadlineCard = ({ imageUrl, date, headline, summary, source } : HeadlineCardProps) => {
+const HeadlineCard = ({ url, date, title, content, source } : HeadlineCardProps) => {
   return (
     <StyledCard>
-      <NewsImage src={imageUrl} alt="News" />
+      <NewsImage src={url} alt="News" />
       <StyledCardContent>
-        <Typography sx={{width:'126px', height:'22px', fontFamily: 'Roboto', fontWeight: '400', fontSize: '14px', lineHeight: '22px', letterSpacing: '0.25px', color: '#5A5A8980'}}>
+        <StyledTypography styles={dateStyles}>
           {date}
-        </Typography>
-        <Typography sx={{width:'470px', height:'42px', fontFamily: 'Roboto', fontWeight: '700', fontSize: '18px', lineHeight: '21.09px', color: '#14142B'}}>
-          {headline}
-        </Typography>
-        <Typography sx={{width:'67px', height:'22px', fontFamily: 'Roboto', fontWeight: '400', fontSize: '14px', lineHeight: '22px', color: '#5A5A8980'}}>
+        </StyledTypography>
+        <StyledTypography styles={titleStyles}>
+          {title}
+        </StyledTypography>
+        <StyledTypography styles={sourceStyles}>
           {source}
-        </Typography>
-        <Typography  sx={{width:'711px', height:'32px', fontFamily: 'Roboto', fontWeight: '400', fontSize: '14px', lineHeight: '16.41px', color: '#5A5A89'}}>
-          {summary}
-        </Typography>
+        </StyledTypography>
+        <StyledTypography styles={contentStyles}>
+          {content}
+        </StyledTypography>
         
         <div style={{alignSelf:'flex-end'}}>
           <StyledButton {...styledButtonProps}>

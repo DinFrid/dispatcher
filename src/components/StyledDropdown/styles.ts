@@ -90,3 +90,17 @@ export const CustomDropdown = styled(Select)<{dropdownstyles : DropdownStyles}>`
     padding-left: 10px;
     
   `;
+
+  export const menuScrollerStyles = {
+    '::-webkit-scrollbar': {
+      width: '3px',
+    },
+    '::-webkit-scrollbar-track': {
+      backgroundColor: 'transparent',
+    },
+    '::-webkit-scrollbar-thumb': {
+      backgroundColor: '#5A5A89',
+      borderRadius: '6px',
+
+    },
+  }

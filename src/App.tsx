@@ -1,5 +1,4 @@
 import {StyledMenuItem} from './components/StyledMenuItem/StyledMenuItem';
-import { StyledButton } from './components/StyledButton/StyledButton';
 import {StyledDropdown} from './components/StyledDropdown/StyledDropdown';
 import { DropdownTypeEnum, MenuItemTypeEnum } from './utils/Enums';
 import HeadlineCard from './components/HeadlineCard/HeadlineCard';
@@ -9,22 +8,68 @@ import DateComponent from './components/DateComponent/DateComponent';
 import 'rsuite/dist/rsuite.min.css'; 
 import { SelectChangeEvent } from '@mui/material';
 import Navbar from './components/Navbar/Navbar';
+import HeadlinesLayout from './layout/HeadlinesLayout/HeadlinesLayout';
 
 
 function App() {
 
-  const headlineProps = {
-    imageUrl: 'https://mmajunkie.usatoday.com/wp-content/uploads/sites/91/2021/07/uriah-hall-sean-strickland-ufc-on-espn-28-official-weigh-ins-5.jpg?w=1000&h=600&crop=1',
+  const headlines = [{
+    url: 'https://mmajunkie.usatoday.com/wp-content/uploads/sites/91/2021/07/uriah-hall-sean-strickland-ufc-on-espn-28-official-weigh-ins-5.jpg?w=1000&h=600&crop=1',
     date: 'Friday Jun 25, 2021',
-    headline: 'Turkey: Foreign tourists evacuated as wildfires threaten resorts - BBC News',
+    title: 'Turkey: Foreign tourists evacuated as wildfires threaten resorts - BBC News',
     source: 'BBC News',
-    summary: 'A helicopter is deployed against a fire near Marmaris in south-western Turkey\r\nTourists have been evacuated from beaches in south-western Turkey, where raging wildfires are now threateni… [+1829 chars]'
-  };
-
-  const styledButtonProps = {
-    onClick: () => console.log('Navigate Button clicked'),
-    
-  };
+    content: 'A helicopter is deployed against a fire near Marmaris in south-western Turkey\r\nTourists have been evacuated from beaches in south-western Turkey, where raging wildfires are now threateni… [+1829 chars]'
+  },
+  {
+    url: 'https://mmajunkie.usatoday.com/wp-content/uploads/sites/91/2021/07/uriah-hall-sean-strickland-ufc-on-espn-28-official-weigh-ins-5.jpg?w=1000&h=600&crop=1',
+    date: 'Friday Jun 25, 2021',
+    title: 'Turkey: Foreign tourists evacuated as wildfires threaten resorts - BBC News',
+    source: 'BBC News',
+    content: 'A helicopter is deployed against a fire near Marmaris in south-western Turkey\r\nTourists have been evacuated from beaches in south-western Turkey, where raging wildfires are now threateni… [+1829 chars]'
+  },
+  {
+    url: 'https://mmajunkie.usatoday.com/wp-content/uploads/sites/91/2021/07/uriah-hall-sean-strickland-ufc-on-espn-28-official-weigh-ins-5.jpg?w=1000&h=600&crop=1',
+    date: 'Friday Jun 25, 2021',
+    title: 'Turkey: Foreign tourists evacuated as wildfires threaten resorts - BBC News',
+    source: 'BBC News',
+    content: 'A helicopter is deployed against a fire near Marmaris in south-western Turkey\r\nTourists have been evacuated from beaches in south-western Turkey, where raging wildfires are now threateni… [+1829 chars]'
+  },
+  {
+    url: 'https://mmajunkie.usatoday.com/wp-content/uploads/sites/91/2021/07/uriah-hall-sean-strickland-ufc-on-espn-28-official-weigh-ins-5.jpg?w=1000&h=600&crop=1',
+    date: 'Friday Jun 25, 2021',
+    title: 'Turkey: Foreign tourists evacuated as wildfires threaten resorts - BBC News',
+    source: 'BBC News',
+    content: 'A helicopter is deployed against a fire near Marmaris in south-western Turkey\r\nTourists have been evacuated from beaches in south-western Turkey, where raging wildfires are now threateni… [+1829 chars]'
+  },
+  {
+    url: 'https://mmajunkie.usatoday.com/wp-content/uploads/sites/91/2021/07/uriah-hall-sean-strickland-ufc-on-espn-28-official-weigh-ins-5.jpg?w=1000&h=600&crop=1',
+    date: 'Friday Jun 25, 2021',
+    title: 'Turkey: Foreign tourists evacuated as wildfires threaten resorts - BBC News',
+    source: 'BBC News',
+    content: 'A helicopter is deployed against a fire near Marmaris in south-western Turkey\r\nTourists have been evacuated from beaches in south-western Turkey, where raging wildfires are now threateni… [+1829 chars]'
+  },
+  {
+    url: 'https://mmajunkie.usatoday.com/wp-content/uploads/sites/91/2021/07/uriah-hall-sean-strickland-ufc-on-espn-28-official-weigh-ins-5.jpg?w=1000&h=600&crop=1',
+    date: 'Friday Jun 25, 2021',
+    title: 'Turkey: Foreign tourists evacuated as wildfires threaten resorts - BBC News',
+    source: 'BBC News',
+    content: 'A helicopter is deployed against a fire near Marmaris in south-western Turkey\r\nTourists have been evacuated from beaches in south-western Turkey, where raging wildfires are now threateni… [+1829 chars]'
+  },
+  {
+    url: 'https://mmajunkie.usatoday.com/wp-content/uploads/sites/91/2021/07/uriah-hall-sean-strickland-ufc-on-espn-28-official-weigh-ins-5.jpg?w=1000&h=600&crop=1',
+    date: 'Friday Jun 25, 2021',
+    title: 'Turkey: Foreign tourists evacuated as wildfires threaten resorts - BBC News',
+    source: 'BBC News',
+    content: 'A helicopter is deployed against a fire near Marmaris in south-western Turkey\r\nTourists have been evacuated from beaches in south-western Turkey, where raging wildfires are now threateni… [+1829 chars]'
+  },
+  {
+    url: 'https://mmajunkie.usatoday.com/wp-content/uploads/sites/91/2021/07/uriah-hall-sean-strickland-ufc-on-espn-28-official-weigh-ins-5.jpg?w=1000&h=600&crop=1',
+    date: 'Friday Jun 25, 2021',
+    title: 'Turkey: Foreign tourists evacuated as wildfires threaten resorts - BBC News',
+    source: 'BBC News',
+    content: 'A helicopter is deployed against a fire near Marmaris in south-western Turkey\r\nTourists have been evacuated from beaches in south-western Turkey, where raging wildfires are now threateni… [+1829 chars]'
+  }
+];
 
   const handleDropdownChange = (event: SelectChangeEvent<unknown>) => {
     console.log("Selected value:", event.target.value);
@@ -42,8 +87,8 @@ function App() {
   ];
 
   const areaGraphData = [
-    { date: 'MAR', sourcesNumber: 100 },
-    { date: 'APR', sourcesNumber: 450 },
+    { date: 'MAR', sourcesNumber: 70 },
+    { date: 'APR', sourcesNumber: 400 },
     { date: 'MAY', sourcesNumber: 200 },
     { date: 'JUN', sourcesNumber: 350 },
     { date: 'JUL', sourcesNumber: 500 },
@@ -53,12 +98,10 @@ function App() {
 
   return (
     <div style={{backgroundColor: '#D9DBE9'}}>
-    
+    <Navbar></Navbar>
+      <HeadlinesLayout headlines={headlines}/>
     <div>
-      <Navbar></Navbar>
-      <StyledButton {...styledButtonProps}>
-        Navigate to dispatch
-      </StyledButton>
+      
       <DateComponent></DateComponent>
     </div>
     <div>
@@ -74,7 +117,7 @@ function App() {
         <StyledMenuItem menuItemType={MenuItemTypeEnum.FiltersMenuItem} value="Option 9" >Option 9</StyledMenuItem>
       </StyledDropdown>
     </div>
-      <HeadlineCard {...headlineProps}></HeadlineCard>
+      <HeadlineCard {...headlines[0]}></HeadlineCard>
       <PieGraph title={"Sources"} label={'Sum'} data={pieGraphData}></PieGraph>
       <AreaGraph title={"Dates"} data={areaGraphData}></AreaGraph>
     </div>
