@@ -1,5 +1,5 @@
 import { StyledButton } from '../StyledButton/StyledButton';
-import { NewsImage, StyledCard, StyledCardContent, StyledTypography } from './styles';
+import { ButtonContainer, NewsImage, StyledCard, StyledCardContent, StyledTypography } from './styles';
 import { contentStyles, dateStyles, sourceStyles, titleStyles } from './consts';
 
 export interface HeadlineCardProps {
@@ -18,7 +18,8 @@ const styledButtonProps = {
 const HeadlineCard = ({ url, date, title, content, source } : HeadlineCardProps) => {
   return (
     <StyledCard>
-      <NewsImage src={url} alt="News" />
+        <NewsImage src={url} alt="News" />
+      
       <StyledCardContent>
         <StyledTypography styles={dateStyles}>
           {date}
@@ -33,11 +34,11 @@ const HeadlineCard = ({ url, date, title, content, source } : HeadlineCardProps)
           {content}
         </StyledTypography>
         
-        <div style={{alignSelf:'flex-end'}}>
+        <ButtonContainer>
           <StyledButton {...styledButtonProps}>
             NAVIGATE TO DISPATCH
           </StyledButton>
-        </div>
+        </ButtonContainer>
       </StyledCardContent>
         
     </StyledCard>

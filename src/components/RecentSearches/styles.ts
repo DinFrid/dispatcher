@@ -3,7 +3,7 @@ import styled from "styled-components";
 import RemoveIcon from "../../images/RemoveIcon";
 
 export const CustomRecentSearches = styled(Card)`
-    width: 663px;
+    width: 424px;
     height: 132px;
     flex-shrink: 0;
     border-radius: 10px;
@@ -11,6 +11,7 @@ export const CustomRecentSearches = styled(Card)`
     box-shadow: 0px 4px 12px 0px #00000014;
     margin-top: 6px;
     position: absolute;
+    z-index: 1000;
 `;
 
 export const CustomTypography = styled(Typography)`

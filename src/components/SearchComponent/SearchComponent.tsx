@@ -38,7 +38,7 @@ const SearchComponent = ({recentSearchesProps} : SearchComponentProps) => {
         onChange : handleDropdownChange, dropdownItems : searchMenuOptions}
 
     return (
-        <div ref={recentSearchesRef}>
+        <div ref={recentSearchesRef} style={{marginLeft: 'calc(12.5% - 75px)'}}>
             <SearchBar
             dropDownProps={dropDownProps}
             onSearchInputClick={handleSearchInputClick} 

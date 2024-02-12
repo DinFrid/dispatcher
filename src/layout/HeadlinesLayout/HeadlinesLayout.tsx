@@ -1,5 +1,5 @@
 import HeadlineCard, { HeadlineCardProps } from '../../components/HeadlineCard/HeadlineCard'
-import { HeadlinesContainer } from './styles'
+import { HeadlinesBody, HeadlinesContainer } from './styles'
 
 export interface HeadLinesLayoutProps {
     headlines : HeadlineCardProps[];
@@ -8,6 +8,7 @@ export interface HeadLinesLayoutProps {
 const HeadlinesLayout = ({headlines} : HeadLinesLayoutProps) => {
   return (
     <HeadlinesContainer>
+      <HeadlinesBody>
         {headlines.map((headline, index) => (
             <HeadlineCard key={index} 
                 url={headline.url} 
@@ -17,6 +18,7 @@ const HeadlinesLayout = ({headlines} : HeadLinesLayoutProps) => {
                 source={headline.source}
                 />
         ))}
+      </HeadlinesBody>
     </HeadlinesContainer>
   )
 }

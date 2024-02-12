@@ -22,13 +22,15 @@ export const SearchIconWrapper = styled('div')`
 `;
 
 export const SearchBarCard = styled(Card)`
+&&{
     display: flex;
     align-items: center; 
     justify-content: space-between; 
-    width: 663px;
+    width: 424px;
     height: 50px;
     border-radius: 10px;
     box-shadow: none;
+}
 `;
 
 

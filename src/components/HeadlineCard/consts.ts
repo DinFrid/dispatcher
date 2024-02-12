@@ -1,6 +1,6 @@
 export const dateStyles = {
-    width:'126px',
-    height:'22px', 
+    width:'50%',
+    height:'10%', 
     fontFamily: 'Roboto', 
     fontWeight: '400', 
     fontSize: '14px', 
@@ -10,8 +10,8 @@ export const dateStyles = {
 };
 
 export const titleStyles = {
-    width:'470px', 
-    height:'42px', 
+    width:'65%', 
+    height:'fit-content', 
     fontFamily: 'Roboto', 
     fontWeight: '700', 
     fontSize: '18px', 
@@ -20,8 +20,8 @@ export const titleStyles = {
 };
 
 export const sourceStyles = {
-    width:'67px', 
-    height:'22px', 
+    width:'30%', 
+    height:'10%', 
     fontFamily: 'Roboto', 
     fontWeight: '400', 
     fontSize: '14px', 
@@ -30,8 +30,8 @@ export const sourceStyles = {
 };
 
 export const contentStyles = {
-    width:'711px', 
-    height:'32px', 
+    width:'100%', 
+    height:'fit-content', 
     fontFamily: 'Roboto', 
     fontWeight: '400', 
     fontSize: '14px', 

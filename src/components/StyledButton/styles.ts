@@ -12,6 +12,7 @@ export const CustomStyledButton = styled(Button)`
     padding: 5px 20px; 
     white-space: nowrap; 
     box-shadow: none;
+    width: 100%;
 
     &:hover {
       box-shadow: none; 
