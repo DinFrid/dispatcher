@@ -1,10 +1,11 @@
 import { IconButton } from "@mui/material";
-import { StyledMenuItem, StyledMenuItemProps } from "../StyledMenuItem/StyledMenuItem";
+import { StyledMenuItem } from "../StyledMenuItem/StyledMenuItem";
 import { MenuItemTypeEnum } from "../../utils/Enums";
 import { CustomRecentSearches, CustomTypography, StyledClearButton, StyledRemoveIcon } from "./styles";
+import { DropdownItem } from "../StyledDropdown/types";
 
 export interface RecentSearchesProps {
-  options: StyledMenuItemProps[];
+  options: DropdownItem[];
   onRemove: (value: string) => void;
   onClear: () => void;
 }
@@ -28,8 +29,7 @@ export const RecentSearches: React.FC<RecentSearchesProps> = ({ options, onRemov
           justifyContent: 'space-between', 
           marginBottom: '4.31px'
         }}>
-          <StyledMenuItem menuItemType={MenuItemTypeEnum.RecentSearchesMenuItem} value={option.value}>
-            {option.children}
+          <StyledMenuItem label={option.label} menuItemType={MenuItemTypeEnum.RecentSearchesMenuItemType} value={option.value}>
           </StyledMenuItem>
           <IconButton onClick={() => onRemove(option.value)}>
             <StyledRemoveIcon width={9.222} height={9.222}/>

@@ -2,11 +2,15 @@ import { FormControl, IconButton, Select, SelectChangeEvent, SelectProps } from 
 import DropdownArrow from '../../images/dropdown.svg';
 import { CustomDropdown, StyledParagraph, dropDownStyles, menuScrollerStyles } from './styles';
 import { useState } from 'react';
-import { DropdownType } from './types';
+import { DropdownItem, DropdownType } from './types';
+import { StyledMenuItem } from '../StyledMenuItem/StyledMenuItem';
+import { DropdownTypeToMenuItemTypeConverter } from '../../utils/Enums';
+
 
 export interface StyledDropdownProps extends SelectProps {
   label?: string;
   dropDownType: keyof DropdownType;
+  dropdownItems: DropdownItem[];
 }
 
 const paperPropsStyles = {
@@ -21,12 +25,13 @@ export const StyledDropdown: React.FC<StyledDropdownProps> = ({
   dropDownType,
   label,
   onChange,
-  children,
+  dropdownItems,
   ...props }) => {
 
   const [value, setValue] = useState<string>('');
   const [open, setOpen] = useState(false);
   const styles = dropDownStyles[dropDownType];
+  const menuItemType = DropdownTypeToMenuItemTypeConverter[dropDownType];
   const placeholder = label ? label : styles.placeholder;
   
   const handleValueChange = (event: SelectChangeEvent<unknown>, child: React.ReactNode) => {
@@ -44,7 +49,7 @@ export const StyledDropdown: React.FC<StyledDropdownProps> = ({
   };
   
   const DropdownIconButton = () => (
-    <IconButton style={{padding: `${styles.iconPadding || '8px'}`}} onClick={handleOpen}  >
+    <IconButton style={{padding: `${styles.iconPadding || '8px'}`}} onClick={handleOpen}   >
       <img src={DropdownArrow} alt="Dropdown Arrow" />
     </IconButton>
   );
@@ -78,7 +83,9 @@ export const StyledDropdown: React.FC<StyledDropdownProps> = ({
         }}
         {...props}
       >
-        {children}
+        {dropdownItems.map((dropdownItem) => {
+          return <StyledMenuItem key={dropdownItem.value} value={dropdownItem.value} menuItemType={menuItemType} label={dropdownItem.label}> </StyledMenuItem>
+        })}
       </Select>
     </FormControl>
   );

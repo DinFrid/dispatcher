@@ -4,11 +4,7 @@ import StyledLegend from './StyledLegend';
 import HorizontalLine from '../HorizontalLine';
 import { PieGraphContainer, StyledTypography } from './styles';
 import { COLORS } from './consts';
-
-export interface PieData {
-  value: number;
-  label: string;
-}
+import { PieData } from './types';
 
 export interface PieGraphProps {
   data: PieData[];

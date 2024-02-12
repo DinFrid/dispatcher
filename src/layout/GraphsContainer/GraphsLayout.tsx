@@ -1,6 +1,8 @@
-import PieGraph, { PieData } from '../../components/Graphs/PieGraph/PieGraph'
+import PieGraph from '../../components/Graphs/PieGraph/PieGraph'
 import { GraphsContainer } from './styles'
-import AreaGraph, { AreaGraphData } from '../../components/Graphs/AreaGraph/AreaGraph';
+import AreaGraph from '../../components/Graphs/AreaGraph/AreaGraph';
+import { PieData } from '../../components/Graphs/PieGraph/types';
+import { AreaGraphData } from '../../components/Graphs/AreaGraph/types';
 
 export interface GraphsLayoutProps {
     areaData: AreaGraphData[];

@@ -39,6 +39,25 @@ export const dropDownStyles: DropdownType = {
     borderLeft: '0.5px outset #D9DBE9',
     placeholder: 'Everything',
     iconPadding: '21.5px 21.5px 21.5px 16px'
+  },
+  SearchBarDropdown: {
+    padding: '1px',
+    borderRadius: '0px',
+    backgroundColor: '#FFF',
+    color: '#5A5A89',
+    fontFamily: 'Roboto',
+    fontSize: '14px',
+    fontWeight: '500',
+    lineHeight: '22px',
+    letterSpacing: '0.25px',
+    display: 'flex',
+    maxWidth: '160px',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    height: '40px',
+    borderLeft: '0.5px outset #D9DBE9',
+    placeholder: 'Everything',
+    iconPadding: '21.5px 21.5px 21.5px 16px'
   }
 };
 

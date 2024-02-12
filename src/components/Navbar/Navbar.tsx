@@ -1,4 +1,3 @@
-import { MenuItemTypeEnum } from '../../utils/Enums';
 import SearchComponent from '../SearchComponent/SearchComponent';
 import NavbarLogo from './NavbarLogo.svg';
 import { StyledImage, StyledNavbar } from './styles';
@@ -12,9 +11,9 @@ const onRemoveClick = (value : string) => {
   };
 
 const recentSearchesProps = {onRemove: onRemoveClick, onClear: onClearClick, options: [//TODO: pass 3 seperated props
-    { menuItemType : MenuItemTypeEnum.RecentSearchesMenuItem, value: "crypto", children: "crypto" },
-    { menuItemType : MenuItemTypeEnum.RecentSearchesMenuItem, value: "football", children: "football" },
-    { menuItemType : MenuItemTypeEnum.RecentSearchesMenuItem, value: "soccer", children: "soccer" }
+    { value: "crypto", label: "crypto" },
+    { value: "football", label: "football" },
+    { value: "soccer", label: "soccer" }
   ]};
 
 const Navbar = () => {
