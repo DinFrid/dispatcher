@@ -1,11 +1,11 @@
 import React from 'react';
 import { PieChart, Pie, Cell, Legend } from 'recharts';
-import { Card, Typography } from '@mui/material';
-import styled from 'styled-components';
 import StyledLegend from './StyledLegend';
 import HorizontalLine from '../HorizontalLine';
+import { PieGraphContainer, StyledTypography } from './styles';
+import { COLORS } from './consts';
 
-interface PieData {
+export interface PieData {
   value: number;
   label: string;
 }
@@ -16,42 +16,6 @@ export interface PieGraphProps {
   label?: string;
 }
 
-const CustomCard = styled(Card)`
-  && {
-    width: 412px;
-    height: 378px;
-    border-radius: 20px;
-    border: 1px solid #D9DBE9;
-    padding: 25px 15px 25px 25px;
-    box-sizing: border-box;
-    box-shadow: 0px 32px 64px 0px #0000000D;
-
-        
-    .recharts-default-legend{
-        display: flex;
-        flex-direction: column;
-        gap: 11px;
-        padding-left: 10px !important;
-        overflow-y: auto;
-        max-height: 120px;
-    }
-  }
-`;
-
-const StyledTypography = styled(Typography)`
-  && {
-    position: relative;
-    width: 89px;
-    height: 32px;
-    font-size: 24px;
-    line-height: 32px;
-    font-family: 'Roboto';
-    font-weight: 700;
-  }
-`;
-
-const COLORS = ['#FF9800', '#030035', '#E8E8E8', '#343A6E', '#DDF3FE'];
-
 const renderLegend = (value: string, entry: any) => {
     return <StyledLegend entry={entry}></StyledLegend>
   };
@@ -59,7 +23,7 @@ const renderLegend = (value: string, entry: any) => {
 const PieGraph: React.FC<PieGraphProps> = ({ data, title, label }) => {
 
   return (
-    <CustomCard>
+    <PieGraphContainer>
       <StyledTypography>{title}</StyledTypography>
         <HorizontalLine/>
       <PieChart width={372} height={275} margin={{ top: 0, right: 0, bottom: 0, left: 0 }}>
@@ -85,7 +49,7 @@ const PieGraph: React.FC<PieGraphProps> = ({ data, title, label }) => {
             </text>
         <Legend formatter={renderLegend} align='left' iconType='circle' iconSize={5} />
       </PieChart>
-    </CustomCard>
+    </PieGraphContainer>
   );
 };
 

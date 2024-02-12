@@ -1,6 +1,6 @@
 import { FormControl, IconButton, Select, SelectChangeEvent, SelectProps } from '@mui/material';
 import DropdownArrow from '../../images/dropdown.svg';
-import { CustomDropdown, StyledParagraph, dropDownStyles } from './styles';
+import { CustomDropdown, StyledParagraph, dropDownStyles, menuScrollerStyles } from './styles';
 import { useState } from 'react';
 import { DropdownType } from './types';
 
@@ -73,20 +73,7 @@ export const StyledDropdown: React.FC<StyledDropdownProps> = ({
         MenuProps={{
           PaperProps: {
             style: paperPropsStyles,
-            sx: {
-              '::-webkit-scrollbar': {
-                width: '3px',
-              },
-              '::-webkit-scrollbar-track': {
-                backgroundColor: 'transparent',
-              },
-              '::-webkit-scrollbar-thumb': {
-                backgroundColor: '#5A5A89',
-                borderRadius: '6px',
-
-              },
-              
-            },
+            sx: menuScrollerStyles,
           },
         }}
         {...props}
