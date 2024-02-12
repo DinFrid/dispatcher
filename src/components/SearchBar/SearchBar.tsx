@@ -9,8 +9,6 @@ export interface SearchBarProps{
 
 const SearchBar = ({dropDownProps,onSearchInputClick} : SearchBarProps) => {
 
-  console.log(dropDownProps);
-
   return (
     <SearchBarCard>
       <SearchIconWrapper>

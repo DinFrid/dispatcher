@@ -6,11 +6,13 @@ export enum MenuItemTypeEnum {
 export enum DropdownTypeEnum {
   FiltersDropdown = 'FiltersDropdown',
   RecentSearchesDropdown = 'RecentSearchesDropdown',
-  SearchBarDropdown = 'SearchBarDropdown'
+  SearchBarDropdown = 'SearchBarDropdown',
+  DateDropdown = 'DateDropdown'
 }
 
 export enum DropdownTypeToMenuItemTypeConverter {
   FiltersDropdown = 'FiltersMenuItemType',
   RecentSearchesDropdown = 'RecentSearchesMenuItemType',
-  SearchBarDropdown = 'FiltersMenuItemType'
+  SearchBarDropdown = 'FiltersMenuItemType',
+  DateDropdown = 'FiltersMenuItemType'
 }

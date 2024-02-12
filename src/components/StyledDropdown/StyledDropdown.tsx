@@ -1,6 +1,6 @@
 import { FormControl, IconButton, Select, SelectChangeEvent, SelectProps } from '@mui/material';
 import DropdownArrow from '../../images/dropdown.svg';
-import { CustomDropdown, StyledParagraph, dropDownStyles, menuScrollerStyles } from './styles';
+import { CustomDropdown, StyledParagraph, dropDownStyles, menuScrollerStyles, paperPropsStyles } from './styles';
 import { useState } from 'react';
 import { DropdownItem, DropdownType } from './types';
 import { StyledMenuItem } from '../StyledMenuItem/StyledMenuItem';
@@ -10,15 +10,7 @@ import { DropdownTypeToMenuItemTypeConverter } from '../../utils/Enums';
 export interface StyledDropdownProps extends SelectProps {
   label?: string;
   dropDownType: keyof DropdownType;
-  dropdownItems: DropdownItem[];
-}
-
-const paperPropsStyles = {
-  marginTop: '6px',
-  minWidth: '175px',
-  paddingLeft: '0px',
-  height: '120px',
-  boxShadow: '0px 4px 12px 0px #00000014'
+  dropdownItems?: DropdownItem[];
 }
 
 export const StyledDropdown: React.FC<StyledDropdownProps> = ({
@@ -83,9 +75,10 @@ export const StyledDropdown: React.FC<StyledDropdownProps> = ({
         }}
         {...props}
       >
-        {dropdownItems.map((dropdownItem) => {
+        {dropdownItems && dropdownItems.map((dropdownItem) => {
           return <StyledMenuItem key={dropdownItem.value} value={dropdownItem.value} menuItemType={menuItemType} label={dropdownItem.label}> </StyledMenuItem>
         })}
+        
       </Select>
     </FormControl>
   );

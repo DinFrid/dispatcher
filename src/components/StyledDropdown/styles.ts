@@ -58,6 +58,9 @@ export const dropDownStyles: DropdownType = {
     borderLeft: '0.5px outset #D9DBE9',
     placeholder: 'Everything',
     iconPadding: '21.5px 21.5px 21.5px 16px'
+  },
+  DateDropdown: {
+    
   }
 };
 
@@ -122,4 +125,12 @@ export const CustomDropdown = styled(Select)<{dropdownstyles : DropdownStyles}>`
       borderRadius: '6px',
 
     },
+  }
+
+  export const paperPropsStyles = {
+    marginTop: '6px',
+    minWidth: '175px',
+    paddingLeft: '0px',
+    height: '120px',
+    boxShadow: '0px 4px 12px 0px #00000014'
   }

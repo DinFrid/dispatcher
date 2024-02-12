@@ -8,6 +8,9 @@ import HeadlinesLayout from './layout/HeadlinesLayout/HeadlinesLayout';
 import { mockedHeadlines } from './mockData/MockHeadlines';
 import GraphsLayout from './layout/GraphsContainer/GraphsLayout';
 import { mockedAreaGraphData, mockedPieGraphData } from './mockData/MockGraphs';
+import { mockedFiltersMenuItems } from './mockData/MockMenuItems';
+import { FiltersBar } from './layout/FiltersBar/FiltersBar';
+import { mockedDropdowns } from './mockData/MockDropdowns';
 
 
 function App() {
@@ -23,42 +26,16 @@ function App() {
       <GraphsLayout 
         pieData={mockedPieGraphData} pieTitle='Sources' pieLabel='sum'
         areaData={mockedAreaGraphData} areaTitle='Dates'/>
+        <FiltersBar dropdowns={mockedDropdowns}/>
     <div>
       
       <DateComponent></DateComponent>
     </div>
     <div>
-      <StyledDropdown label='Sources' dropDownType={DropdownTypeEnum.FiltersDropdown} onChange={handleDropdownChange} dropdownItems={filtersMenuItems}/>
+      <StyledDropdown label='Sources' dropDownType={DropdownTypeEnum.FiltersDropdown} onChange={handleDropdownChange} dropdownItems={mockedFiltersMenuItems}/>
     </div>
     </div>
   );
 }
-
-const filtersMenuItems = [
-  {
-  value: 'Mako',
-  label: 'Mako'
-},
-{
-  value: 'Walla',
-  label: 'Walla'
-},
-{
-  value: 'BBC',
-  label: 'BBC'
-},
-{
-  value: 'Ynet',
-  label: 'Ynet'
-},
-{
-  value: 'Option 5',
-  label: 'Option 5'
-},
-{
-  value: 'Option 6',
-  label: 'Option 6'
-},
-];
 
 export default App;

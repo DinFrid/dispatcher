@@ -4,7 +4,7 @@ import Calendar from '../../images/Calendar';
 import { StyledDatePicker } from './styles';
 import { DatePickerProps } from 'rsuite';
 
-export interface DateProps extends DatePickerProps {};
+export interface DateComponentProps extends DatePickerProps {};
 
 const DateComponent: React.FC = () => {
 

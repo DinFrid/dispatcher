@@ -30,6 +30,7 @@ export type DropdownStyles = {
     FiltersDropdown: DropdownStyles;
     RecentSearchesDropdown: DropdownStyles;
     SearchBarDropdown: DropdownStyles;
+    DateDropdown: DropdownStyles;
   };
 
   export type DropdownItem = {
