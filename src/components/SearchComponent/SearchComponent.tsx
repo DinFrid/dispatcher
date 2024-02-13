@@ -1,20 +1,20 @@
 import { useRef, useState } from 'react';
 import { DropdownTypeEnum } from '../../utils/Enums';
-import { SelectChangeEvent } from '@mui/material';
 import SearchBar from '../SearchBar/SearchBar';
-import { RecentSearches, RecentSearchesProps } from '../RecentSearches/RecentSearches';
+import { RecentSearches } from '../RecentSearches/RecentSearches';
 import useOutsideClick from './useOutsideClick';
+import { DropdownItem } from '../StyledDropdown/types';
+import { searchMenuOptions } from './consts';
 
 export interface SearchComponentProps {
-    recentSearchesProps: RecentSearchesProps;
+    onRemove : (value : string) => void;
+    onClear : () => void;
+    onSearchAction : (value : string) => void;
+    onDropdownChange : (value : string, label : string) => void;
+    recentSearches : DropdownItem[];
 }
 
-const searchMenuOptions = [
-  {value: "Everything", label: "Everything"},
-  {value: "Top Headlines", label: "Top Headlines"} 
-];
-
-const SearchComponent = ({recentSearchesProps} : SearchComponentProps) => {
+const SearchComponent = ({onRemove, onClear, onSearchAction, onDropdownChange, recentSearches} : SearchComponentProps) => {
     const [recentSearchesOpen, setRecentSearchesOpen] = useState(false);
     const recentSearchesRef = useRef(null);
 
@@ -24,26 +24,28 @@ const SearchComponent = ({recentSearchesProps} : SearchComponentProps) => {
         }
     });
 
-    const handleDropdownChange = (event: SelectChangeEvent<unknown>) => {
-        console.log("Selected value:", event.target.value);
-        setRecentSearchesOpen(false);
-    };
-
-    const handleSearchInputClick = () => {
+    const handleSearchInputFieldClick = () => {
         setRecentSearchesOpen(true); 
-        console.log("Recent searches state opened");
     };
-
+    
     const dropDownProps = {dropDownType : DropdownTypeEnum.SearchBarDropdown,
-        onChange : handleDropdownChange, dropdownItems : searchMenuOptions}
+         dropdownItems : searchMenuOptions}
 
     return (
-        <div ref={recentSearchesRef} style={{marginLeft: 'calc(12.5% - 75px)'}}>
+        <div ref={recentSearchesRef} style={{marginLeft: 'calc(12.5% - 78px)'}}>
             <SearchBar
             dropDownProps={dropDownProps}
-            onSearchInputClick={handleSearchInputClick} 
+            onSearchInputFieldClick={handleSearchInputFieldClick} 
+            onSearchAction={onSearchAction}
+            onDropdownChange={onDropdownChange}
             />
-            {recentSearchesOpen && <RecentSearches {...recentSearchesProps}></RecentSearches>}
+            {recentSearchesOpen && 
+                <RecentSearches 
+                    onRemove={onRemove} 
+                    onClear={onClear} 
+                    options={recentSearches}
+                />
+            }
         </div>
     );
 };

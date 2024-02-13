@@ -4,18 +4,39 @@ import { SearchBarCard, SearchIconWrapper, StyledInputBase, recentSearchesMenuPr
 
 export interface SearchBarProps{
   dropDownProps: StyledDropdownProps;
-  onSearchInputClick: () => void;
+  onSearchAction: (value : string) => void;
+  onSearchInputFieldClick: () => void;
+  onDropdownChange : (value : string, label : string) => void;
 }
 
-const SearchBar = ({dropDownProps,onSearchInputClick} : SearchBarProps) => {
+const SearchBar = ({dropDownProps, onSearchAction, onSearchInputFieldClick, onDropdownChange} : SearchBarProps) => {
+
+  const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
+
+    if (event.key === 'Enter') {
+
+      event.preventDefault();
+
+      onSearchAction(event.currentTarget.value);
+    }
+  };
 
   return (
     <SearchBarCard>
       <SearchIconWrapper>
       <img src={SearchImg} alt="Search Icon" />
       </SearchIconWrapper>
-      <StyledInputBase placeholder='Search' onClick={onSearchInputClick}/>
-      <StyledDropdown MenuProps={recentSearchesMenuProps} dropDownType={dropDownProps.dropDownType} dropdownItems={dropDownProps.dropdownItems}/>
+      <StyledInputBase 
+        placeholder='Search'
+        onClick={onSearchInputFieldClick}
+        onKeyUp={handleKeyPress}
+      />
+      <StyledDropdown 
+      MenuProps={recentSearchesMenuProps} 
+      dropDownType={dropDownProps.dropDownType} 
+      dropdownItems={dropDownProps.dropdownItems}
+      onDropdownChange={onDropdownChange}
+      />
     </SearchBarCard>
   );
 }

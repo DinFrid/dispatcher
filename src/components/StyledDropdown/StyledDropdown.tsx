@@ -11,12 +11,13 @@ export interface StyledDropdownProps extends SelectProps {
   label?: string;
   dropDownType: keyof DropdownType;
   dropdownItems?: DropdownItem[];
+  onDropdownChange ?: (value : string, label : string) => void;
 }
 
 export const StyledDropdown: React.FC<StyledDropdownProps> = ({
   dropDownType,
   label,
-  onChange,
+  onDropdownChange,
   dropdownItems,
   ...props }) => {
 
@@ -31,8 +32,8 @@ export const StyledDropdown: React.FC<StyledDropdownProps> = ({
     setValue(newValue); 
     setOpen(false);
   
-    if (onChange) {
-      onChange(event,child); 
+    if (onDropdownChange) {
+      onDropdownChange(event.target.value as string, placeholder as string); 
     }
   };
 

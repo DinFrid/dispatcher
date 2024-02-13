@@ -24,3 +24,9 @@ export const mockedFiltersMenuItems = [
     label: 'Option 6'
   },
   ];
+
+export const mockedRecentSearchesOptions =  [
+  { value: "crypto", label: "crypto" },
+  { value: "football", label: "football" },
+  { value: "soccer", label: "soccer" }
+  ]
