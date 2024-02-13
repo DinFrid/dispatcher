@@ -1,0 +1,1 @@
+export const defaultHeadlinesTitle = "Top Headlines in Israel";

@@ -1,22 +1,69 @@
-import React from "react";
+import React, { useState } from "react";
 import HeadlinesLayout from "../HeadlinesLayout/HeadlinesLayout";
-import { mockedHeadlines } from "../../mockData/MockHeadlines";
 import GraphsLayout from "../GraphsContainer/GraphsLayout";
 import { mockedAreaGraphData, mockedPieGraphData } from "../../mockData/MockGraphs";
 import { BodyContainer, DataLayout, HeadlinesTitle } from "./styles";
+import { defaultHeadlinesTitle } from "./consts";
+import { apiKeys, keyIndex } from "../../utils/APIkeys";
+import { useInfiniteQuery } from "@tanstack/react-query";
+import axios from 'axios';
+import { HeadlineCardProps } from "../../components/HeadlineCard/HeadlineCard";
+import { Article } from "./types";
 
 interface BodyLayoutProps {
-
+    filters : Map<string, string>;
+    searchScope : string;
+    searchInput : string;
 };
 
-const headlinesTitle = "Top Headlines in Israel";
 
-const BodyLayout:React.FC<BodyLayoutProps> = (props) => {
+const BodyLayout:React.FC<BodyLayoutProps> = ({filters, searchScope, searchInput}) => {
+    const [headlinesTitle,setHeadlinesTitle] = useState(defaultHeadlinesTitle);
+
+    const fetchHeadlines = async ({ pageParam = 1 }: { pageParam: number }) => {
+        try {
+          const response = await axios.get(`https://newsapi.org/v2/${searchScope}?q=${searchInput}&page=${pageParam}`, {
+            headers: {
+              'Authorization': `Bearer ${apiKeys[keyIndex]}`, 
+            },
+          });
+          return response.data; 
+        } catch (error) {
+            if (axios.isAxiosError(error)) {
+                console.error('Axios error:', error.response?.data);
+                throw new Error('Axios network response was not ok');
+            } else {
+                console.error('Unexpected error:', error);
+                throw new Error('An unexpected error occurred');
+            }
+        }
+      };
+
+    const {data} = useInfiniteQuery({
+        queryKey: ["headlines", {filters,searchScope, searchInput}],
+        queryFn: fetchHeadlines,
+        initialPageParam : 1,
+        getNextPageParam: (lastPage) => {return lastPage;} 
+    });
+
+    const headlines = data?.pages.flatMap(page => 
+        page.articles.map((article: Article) => ({
+          urlToImage: article.urlToImage,
+          urlToDispatch: article.url,
+          publishedAt: article.publishedAt,
+          title: article.title,
+          content: article.content,
+          source: article.source.name
+        }))
+      ) as HeadlineCardProps[] ?? [];
+            
+    console.log(headlines);
+
     return (
         <BodyContainer>
             <HeadlinesTitle>{headlinesTitle}</HeadlinesTitle>
             <DataLayout>
-                <HeadlinesLayout headlines={mockedHeadlines}/>
+                <HeadlinesLayout headlines={headlines}/>
                 <GraphsLayout 
                     pieData={mockedPieGraphData} pieTitle='Sources' pieLabel='sum'
                     areaData={mockedAreaGraphData} areaTitle='Dates'/>

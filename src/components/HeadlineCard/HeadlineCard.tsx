@@ -1,10 +1,11 @@
 import { StyledButton } from '../StyledButton/StyledButton';
 import { ButtonContainer, NewsImage, StyledCard, StyledCardContent, StyledTypography } from './styles';
-import { contentStyles, dateStyles, sourceStyles, titleStyles } from './consts';
+import { contentStyles, dateStyles, fallbackImg, sourceStyles, titleStyles } from './consts';
 
 export interface HeadlineCardProps {
-    url: string;
-    date: string;
+    urlToImage: string;
+    urlToDispatch: string;
+    publishedAt: string;
     title: string;
     content: string;
     source: string;
@@ -15,14 +16,14 @@ const styledButtonProps = {
     variant: "contained" as "contained",
   };
 
-const HeadlineCard = ({ url, date, title, content, source } : HeadlineCardProps) => {
+const HeadlineCard = ({ urlToImage, urlToDispatch, publishedAt, title, content, source } : HeadlineCardProps) => {
   return (
     <StyledCard>
-        <NewsImage src={url} alt="News" />
+        <NewsImage src={urlToImage} fallbackImage={fallbackImg} alt="News" />
       
       <StyledCardContent>
         <StyledTypography styles={dateStyles}>
-          {date}
+          {publishedAt}
         </StyledTypography>
         <StyledTypography styles={titleStyles}>
           {title}

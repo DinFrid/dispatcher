@@ -1,6 +1,7 @@
 import { Card, CardContent, Typography } from "@mui/material";
 import styled from "styled-components";
 import { HeadlineTypographyStyles } from "./types";
+import ReactImageFallback from "react-image-fallback";
 
 export const StyledCard = styled(Card)`
 &&{
@@ -25,8 +26,9 @@ export const StyledCardContent = styled(CardContent)`
 }
 `;
 
-export const NewsImage = styled.img`
+export const NewsImage = styled(ReactImageFallback)`
     width: 25%;
+    object-fit: cover;
 `;
 
 export const ButtonContainer = styled.div `

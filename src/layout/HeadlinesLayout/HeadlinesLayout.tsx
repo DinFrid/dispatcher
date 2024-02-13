@@ -11,8 +11,9 @@ const HeadlinesLayout = ({headlines} : HeadLinesLayoutProps) => {
       <HeadlinesBody>
         {headlines.map((headline, index) => (
             <HeadlineCard key={index} 
-                url={headline.url} 
-                date={headline.date}
+                urlToImage={headline.urlToImage} 
+                urlToDispatch={headline.urlToDispatch}
+                publishedAt={headline.publishedAt}
                 title={headline.title}
                 content={headline.content}
                 source={headline.source}
