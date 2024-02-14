@@ -1,4 +1,4 @@
-import { mockedRecentSearchesOptions } from '../../mockData/MockMenuItems';
+import { mockedRecentSearchesOptions } from '../../utils/consts/ConstsMenuItems';
 import SearchComponent from '../SearchComponent/SearchComponent';
 import NavbarLogo from './NavbarLogo.svg';
 import { StyledImage, StyledNavbar } from './styles';

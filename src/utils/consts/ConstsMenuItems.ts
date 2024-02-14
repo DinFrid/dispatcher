@@ -5,6 +5,12 @@ export const mockedRecentSearchesOptions =  [
   { value: "soccer", label: "soccer" }
   ];
 
+  export const searchMenuOptions = [
+    {label: "Top Headlines", value: "Top Headlines"},
+    {label: "Everything", value: "Everything"}
+
+  ];
+
   export const sortByMenuItems = [
     {
       label: 'Relevancy',
@@ -179,15 +185,6 @@ export const mockedRecentSearchesOptions =  [
         "category": "general",
         "language": "en",
         "country": "us"
-    },
-    {
-        "id": "abc-news-au",
-        "name": "ABC News (AU)",
-        "description": "Australia's most trusted source of local, national and world news. Comprehensive, independent, in-depth analysis, the latest business, sport, weather and more.",
-        "url": "https://www.abc.net.au/news",
-        "category": "general",
-        "language": "en",
-        "country": "au"
     },
     {
         "id": "aftenposten",
@@ -1327,6 +1324,6 @@ export const mockedRecentSearchesOptions =  [
 ];
 
 export const sourceMenuItems = sources.map(source => ({
-  value: source.name.replace(/\s/g, '-').toLowerCase(),
-  label: source.name.replace(/\s/g, '-').toLowerCase(),
+    value: source.name.replace(/\s/g, '-').replace(/\(/g, '').replace(/\)/g, '').toLowerCase(),
+    label: source.name.replace(/\s/g, '-').toLowerCase(),
 }));

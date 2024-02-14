@@ -3,33 +3,18 @@ import {PageContainer } from "./styles";
 import BodyLayout from "../BodyLayout/BodyLayout";
 import Navbar from "../../components/Navbar/Navbar";
 import { FiltersBar } from "../FiltersBar/FiltersBar";
-import { everythingFilters, topHeadlinesFilters } from "../../mockData/FiltersBankImpl";
 import { FiltersBank } from "../../utils/Enums";
+import { parseFilters, replaceWhiteSpacesAndToLowerCase, toCamelCase } from "./functions";
+import { everythingFilters, topHeadlinesFilters } from "../../utils/consts/FiltersBankImpl";
+import { StyledDropdownProps } from "../../components/StyledDropdown/StyledDropdown";
 
 interface PageLayoutProps {};
 
-const replaceWhiteSpacesAndToLowerCase = (value : string) => {
-    return value.replace(/\s/g, '-').toLowerCase();
-}
-
-function toCamelCase(value : string) {
-    return value
-      .split(/[\s-_]+/)
-      .map((word, index) => {
-        if (index === 0) {
-          return word.toLowerCase();
-        } else {
-          return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
-        }
-      })
-      .join('');
-  }
-
 const PageLayout:React.FC<PageLayoutProps> = () => {
-    const [filters, setFilters] = useState(everythingFilters);
+    const [filters, setFilters] = useState<StyledDropdownProps[]>(topHeadlinesFilters);
     const [chosenFiltersMap, setChosenFiltersMap] = useState<Map<string, string>>(new Map());
     const [disabledFilters, setDisabledFilters] = useState<Set<string>>(new Set());
-    const [searchScope, setSearchScope] = useState('Everything');
+    const [searchScope, setSearchScope] = useState('Top-Headlines');
     const [searchInput, setSearchInput] = useState('israel');
     
     const onSearchAction = (value : string) => {
@@ -46,7 +31,8 @@ const PageLayout:React.FC<PageLayoutProps> = () => {
             setFilters(topHeadlinesFilters);
         }
         
-        setChosenFiltersMap(new Map())
+        setChosenFiltersMap(new Map());
+        setDisabledFilters(new Set());
         setSearchScope(replaceWhiteSpacesAndToLowerCase(value));
         
         //console.log(`Dropdown ${label} new value : ${value} :`);
@@ -105,7 +91,7 @@ const PageLayout:React.FC<PageLayoutProps> = () => {
         <PageContainer>
             <Navbar onSearchAction={onSearchAction} handleSearchDropdownChange={handleSearchDropdownChange}/>
             <FiltersBar dropdowns={filters} onFilterDropdownChange={handleFilterDropdownChange} disabledFilters={disabledFilters}/>
-           <BodyLayout filters={chosenFiltersMap} searchScope={searchScope} searchInput={searchInput}/>
+            <BodyLayout filters={parseFilters(chosenFiltersMap)} searchScope={searchScope} searchInput={searchInput}/>
         </PageContainer>
     );
 };

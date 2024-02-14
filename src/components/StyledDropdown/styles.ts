@@ -37,7 +37,7 @@ export const dropDownStyles: DropdownType = {
     alignItems: 'center',
     height: '40px',
     borderLeft: '0.5px outset #D9DBE9',
-    placeholder: 'Everything',
+    placeholder: 'Top Headlines',
     iconPadding: '21.5px 21.5px 21.5px 16px'
   },
   SearchBarDropdown: {
@@ -56,7 +56,7 @@ export const dropDownStyles: DropdownType = {
     alignItems: 'center',
     height: '40px',
     borderLeft: '0.5px outset #D9DBE9',
-    placeholder: 'Everything',
+    placeholder: 'Top Headlines',
     iconPadding: '21.5px 21.5px 21.5px 16px'
   },
   DateDropdown: {
@@ -88,7 +88,7 @@ export const CustomDropdown = styled(Select)<{dropdownstyles : DropdownStyles}>`
   };
 
     .MuiSelect-icon {
-      color: #000;
+      
     }
 
     .css-78trlr-MuiButtonBase-root-MuiIconButton-root:hover{

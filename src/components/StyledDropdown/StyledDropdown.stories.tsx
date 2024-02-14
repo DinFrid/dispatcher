@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import StyledDropdown from './StyledDropdown';
 import { DropdownTypeEnum } from '../../utils/Enums';
-import { sourceMenuItems } from '../../mockData/MockMenuItems';
+import { sourceMenuItems } from '../../utils/consts/ConstsMenuItems';
 
 const meta: Meta<typeof StyledDropdown> = {
     title: 'Components/StyledDropdown',

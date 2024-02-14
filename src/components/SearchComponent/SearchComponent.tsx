@@ -4,7 +4,7 @@ import SearchBar from '../SearchBar/SearchBar';
 import { RecentSearches } from '../RecentSearches/RecentSearches';
 import useOutsideClick from './useOutsideClick';
 import { DropdownItem } from '../StyledDropdown/types';
-import { searchMenuOptions } from './consts';
+import { searchMenuOptions } from '../../utils/consts/ConstsMenuItems';
 
 export interface SearchComponentProps {
     onRemove : (value : string) => void;
@@ -35,7 +35,7 @@ const SearchComponent = ({onRemove, onClear, onSearchAction, onDropdownChange, r
     };
     
     const dropDownProps = {dropDownType : DropdownTypeEnum.SearchBarDropdown,
-         dropdownItems : searchMenuOptions}
+         dropdownItems : searchMenuOptions}//TODO: export to another file
 
     return (
         <div ref={recentSearchesRef} style={{marginLeft: 'calc(12.5% - 78px)'}}>

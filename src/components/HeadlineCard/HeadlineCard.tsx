@@ -11,12 +11,14 @@ export interface HeadlineCardProps {
     source: string;
 }
 
-const styledButtonProps = {
-    onClick: () => console.log('Navigate Button clicked'),
-    variant: "contained" as "contained",
-  };
+
 
 const HeadlineCard = ({ urlToImage, urlToDispatch, publishedAt, title, content, source } : HeadlineCardProps) => {
+
+  const onButtonClicked = () => {
+    window.open(urlToDispatch, '_blank')?.focus();
+  }
+
   return (
     <StyledCard>
         <NewsImage src={urlToImage} fallbackImage={fallbackImg} alt="News" />
@@ -36,7 +38,7 @@ const HeadlineCard = ({ urlToImage, urlToDispatch, publishedAt, title, content, 
         </StyledTypography>
         
         <ButtonContainer>
-          <StyledButton {...styledButtonProps}>
+          <StyledButton onClick={onButtonClicked}>
             NAVIGATE TO DISPATCH
           </StyledButton>
         </ButtonContainer>

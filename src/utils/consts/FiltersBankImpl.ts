@@ -1,5 +1,5 @@
-import { DropdownTypeEnum, FiltersBank } from "../utils/Enums";
-import { categoryMenuItems, countryMenuItems, langMenuItems, sortByMenuItems, sourceMenuItems } from "./MockMenuItems";
+import { DropdownTypeEnum, FiltersBank } from "../Enums";
+import { categoryMenuItems, countryMenuItems, langMenuItems, sortByMenuItems, sourceMenuItems } from "./ConstsMenuItems";
 
 export const everythingFilters = [
     {
