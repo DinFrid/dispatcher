@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import StyledDropdown from './StyledDropdown';
 import { DropdownTypeEnum } from '../../utils/Enums';
-import { mockedFiltersMenuItems } from '../../mockData/MockMenuItems';
+import { sourceMenuItems } from '../../mockData/MockMenuItems';
 
 const meta: Meta<typeof StyledDropdown> = {
     title: 'Components/StyledDropdown',
@@ -13,7 +13,7 @@ const meta: Meta<typeof StyledDropdown> = {
 export const Primary: Story = {
   args: {
     dropDownType: DropdownTypeEnum.FiltersDropdown,
-    dropdownItems: mockedFiltersMenuItems
+    dropdownItems: sourceMenuItems
   }
 };
       

@@ -16,3 +16,12 @@ export enum DropdownTypeToMenuItemTypeConverter {
   SearchBarDropdown = 'FiltersMenuItemType',
   DateDropdown = 'FiltersMenuItemType'
 }
+
+export enum FiltersBank {
+  Sources = "Sources",
+  Dates = 'Dates',
+  SortBy = 'Sort by',
+  Language = 'Language',
+  Category = 'Category',
+  Country = 'Country'
+}

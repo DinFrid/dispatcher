@@ -1,4 +1,4 @@
 export const searchMenuOptions = [
-    {value: "Everything", label: "Everything"},
-    {value: "Top Headlines", label: "Top Headlines"} 
+    {label: "Everything", value: "Everything"},
+    {label: "Top Headlines", value: "Top Headlines"} 
   ];

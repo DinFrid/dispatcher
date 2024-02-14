@@ -3,7 +3,6 @@ import HeadlinesLayout from "../HeadlinesLayout/HeadlinesLayout";
 import GraphsLayout from "../GraphsContainer/GraphsLayout";
 import { mockedAreaGraphData, mockedPieGraphData } from "../../mockData/MockGraphs";
 import { BodyContainer, DataLayout, HeadlinesTitle } from "./styles";
-import { defaultHeadlinesTitle } from "./consts";
 import { apiKeys, keyIndex } from "../../utils/APIkeys";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import axios from 'axios';
@@ -18,7 +17,9 @@ interface BodyLayoutProps {
 
 
 const BodyLayout:React.FC<BodyLayoutProps> = ({filters, searchScope, searchInput}) => {
-    const [headlinesTitle,setHeadlinesTitle] = useState(defaultHeadlinesTitle);
+    const [headlinesTitle, setHeadlinesTitle] = useState('Top Headlines in Israel');
+    console.log(filters)
+
 
     const fetchHeadlines = async ({ pageParam = 1 }: { pageParam: number }) => {
         try {
@@ -27,6 +28,8 @@ const BodyLayout:React.FC<BodyLayoutProps> = ({filters, searchScope, searchInput
               'Authorization': `Bearer ${apiKeys[keyIndex]}`, 
             },
           });
+          console.log("Fetched Data! Page : ", pageParam);
+
           return response.data; 
         } catch (error) {
             if (axios.isAxiosError(error)) {
@@ -39,12 +42,18 @@ const BodyLayout:React.FC<BodyLayoutProps> = ({filters, searchScope, searchInput
         }
       };
 
-    const {data} = useInfiniteQuery({
+    const {data, status, hasNextPage} = useInfiniteQuery({
         queryKey: ["headlines", {filters,searchScope, searchInput}],
         queryFn: fetchHeadlines,
         initialPageParam : 1,
-        getNextPageParam: (lastPage) => {return lastPage;} 
+        getNextPageParam: (lastPage, allPages) => {
+             return lastPage.length === allPages.length ? undefined : lastPage.length;
+            } 
     });
+
+    if(status === 'error') {
+        return <p>No Results</p>
+    }
 
     const headlines = data?.pages.flatMap(page => 
         page.articles.map((article: Article) => ({
@@ -56,8 +65,8 @@ const BodyLayout:React.FC<BodyLayoutProps> = ({filters, searchScope, searchInput
           source: article.source.name
         }))
       ) as HeadlineCardProps[] ?? [];
+
             
-    console.log(headlines);
 
     return (
         <BodyContainer>

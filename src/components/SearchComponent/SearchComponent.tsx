@@ -18,6 +18,12 @@ const SearchComponent = ({onRemove, onClear, onSearchAction, onDropdownChange, r
     const [recentSearchesOpen, setRecentSearchesOpen] = useState(false);
     const recentSearchesRef = useRef(null);
 
+    const handleSearchAction = (value : string) => {
+        setRecentSearchesOpen(false);
+
+        onSearchAction(value);
+    }
+
     useOutsideClick(recentSearchesRef, () => {
         if (recentSearchesOpen) {
             setRecentSearchesOpen(false);
@@ -36,7 +42,7 @@ const SearchComponent = ({onRemove, onClear, onSearchAction, onDropdownChange, r
             <SearchBar
             dropDownProps={dropDownProps}
             onSearchInputFieldClick={handleSearchInputFieldClick} 
-            onSearchAction={onSearchAction}
+            onSearchAction={handleSearchAction}
             onDropdownChange={onDropdownChange}
             />
             {recentSearchesOpen && 
