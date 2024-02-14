@@ -8,6 +8,8 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 import axios from 'axios';
 import { HeadlineCardProps } from "../../components/HeadlineCard/HeadlineCard";
 import { Article } from "./types";
+import { useInView } from "react-intersection-observer";
+import { defaultHeadlinesTitle, defaultPageSize } from "./consts";
 
 export interface BodyLayoutProps {
     filters : string;
@@ -15,24 +17,25 @@ export interface BodyLayoutProps {
     searchInput : string;
 };
 
-export type parseURLProps = {
-    filters : Map<string, string>;
-    searchScope : string;
-    searchInput : string;
-    pageParam : number;
-}
-
 
 const BodyLayout:React.FC<BodyLayoutProps> = ({filters, searchScope, searchInput}) => {
-    const [headlinesTitle, setHeadlinesTitle] = useState('Top Headlines in Israel');
+    const [headlinesTitle, setHeadlinesTitle] = useState(defaultHeadlinesTitle);
     const [titleStyles, setTitleStyles] = useState(TopHeadlinesTitleStyles);
     const [totalResults, setTotalResults] = useState<number>(0);
+    const { ref, inView } = useInView();
 
     const fetchHeadlines = async ({ pageParam = 1 }: { pageParam: number }) => {
+        let pageSize;
+        if(pageParam === 1) {
+            pageSize = 10;
+        }
+        else {
+            pageSize = defaultPageSize;
+        }
 
         
         try {
-            const url = `https://newsapi.org/v2/${searchScope}?q=${encodeURIComponent(searchInput)}&page=${pageParam}${filters}`;
+            const url = `https://newsapi.org/v2/${searchScope}?q=${encodeURIComponent(searchInput)}&page=${pageParam}${filters}&pageSize=${pageSize}`;
 
           const response = await axios.get(url, {
             headers: {
@@ -54,14 +57,15 @@ const BodyLayout:React.FC<BodyLayoutProps> = ({filters, searchScope, searchInput
         }
       };
 
-      //const filterString = parseFilters(filters);
-
-      const {data, status, hasNextPage} = useInfiniteQuery({
+      const {data, status, hasNextPage, fetchNextPage} = useInfiniteQuery({
         queryKey: ["headlines", {filters,searchScope, searchInput}],
         queryFn: fetchHeadlines,
         initialPageParam : 1,
         getNextPageParam: (lastPage, allPages) => {
-             return lastPage.length === allPages.length ? undefined : lastPage.length;
+            if(headlinesTitle === defaultHeadlinesTitle)
+                return undefined;
+
+            return allPages.length + 1;
             } 
     });
 
@@ -70,8 +74,15 @@ const BodyLayout:React.FC<BodyLayoutProps> = ({filters, searchScope, searchInput
     }
 
     useEffect(() => {
+        if (inView && hasNextPage) {
+          fetchNextPage();
+        }
+      }, [inView, fetchNextPage, hasNextPage]);
+
+    useEffect(() => {
         if (data?.pages[0]?.totalResults !== undefined) {
             setTotalResults(data.pages[0].totalResults);
+
             if (searchInput !== 'israel' || searchScope !== 'Top-Headlines') {
                 setHeadlinesTitle(`${data.pages[0].totalResults} Total results`);
                 setTitleStyles(totalResultsHeadline);
@@ -94,10 +105,10 @@ const BodyLayout:React.FC<BodyLayoutProps> = ({filters, searchScope, searchInput
         <BodyContainer>
             <HeadlinesTitle titlestyles={titleStyles}>{headlinesTitle}</HeadlinesTitle>
             <DataLayout>
-                <HeadlinesLayout headlines={headlines}/>
-                <GraphsLayout 
-                    pieData={mockedPieGraphData} pieTitle='Sources' pieLabel='sum'
-                    areaData={mockedAreaGraphData} areaTitle='Dates'/>
+                <HeadlinesLayout headlines={headlines} ref={ref}/>
+                <GraphsLayout headlines={headlines}
+                     pieTitle='Sources' pieLabel={headlines.length}
+                     areaTitle='Dates'/>
             </DataLayout>
         </BodyContainer>
     );

@@ -9,7 +9,7 @@ import { PieData } from './types';
 export interface PieGraphProps {
   data: PieData[];
   title: string;
-  label?: string;
+  label?: number;
 }
 
 const renderLegend = (value: string, entry: any) => {
@@ -19,7 +19,7 @@ const renderLegend = (value: string, entry: any) => {
 const PieGraph: React.FC<PieGraphProps> = ({ data, title, label }) => {
 
   return (
-    <PieGraphContainer>
+    <PieGraphContainer className='PieGraphContainer'>
       <StyledTypography>{title}</StyledTypography>
         <HorizontalLine/>
       <PieChart width={372} height={275} margin={{ top: 0, right: 0, bottom: 0, left: 0 }}>

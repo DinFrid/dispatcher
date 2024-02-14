@@ -21,6 +21,9 @@ export const PieGraphContainer = styled(Card)`
         max-height: 120px;
         width: 100%;
     }
+    .recharts-legend-wrapper{
+      height: 100px !important;
+    }
   }
 `;
 

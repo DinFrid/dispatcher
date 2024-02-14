@@ -8,3 +8,10 @@ export interface Article {
       name: string;
     };
   }
+
+  export type parseURLProps = {
+    filters : Map<string, string>;
+    searchScope : string;
+    searchInput : string;
+    pageParam : number;
+}
