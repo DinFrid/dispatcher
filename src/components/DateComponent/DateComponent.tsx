@@ -41,7 +41,7 @@ const DateComponent: React.FC<DateComponentProps> = ({onDateChange}) => {
     <StyledDatePicker 
      showOneCalendar
      showHeader={false}
-     format="dd/MM/yy"
+     format="yy/MM/dd"
      caretAs={Calendar} 
      appearance="subtle" 
      character='-' 

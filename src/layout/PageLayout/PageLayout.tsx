@@ -87,6 +87,8 @@ const PageLayout:React.FC<PageLayoutProps> = () => {
 
     };
 
+    console.log(chosenFiltersMap);
+
     return (
         <PageContainer>
             <Navbar onSearchAction={onSearchAction} handleSearchDropdownChange={handleSearchDropdownChange}/>

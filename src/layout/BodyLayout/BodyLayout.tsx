@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import HeadlinesLayout from "../HeadlinesLayout/HeadlinesLayout";
 import GraphsLayout from "../GraphsContainer/GraphsLayout";
-import { mockedAreaGraphData, mockedPieGraphData } from "../../mockData/MockGraphs";
 import { BodyContainer, DataLayout, HeadlinesTitle, TopHeadlinesTitleStyles, totalResultsHeadline } from "./styles";
 import { apiKeys, keyIndex } from "../../utils/APIkeys";
 import { useInfiniteQuery } from "@tanstack/react-query";
