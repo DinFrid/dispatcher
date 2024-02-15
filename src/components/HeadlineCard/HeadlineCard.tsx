@@ -21,8 +21,9 @@ const HeadlineCard = forwardRef<HTMLDivElement, HeadlineCardProps>(({
   source,
 }, ref) => {
   const onButtonClicked = () => {
-    window.open(urlToDispatch, '_blank')?.focus();
+    window.open(urlToDispatch, urlToDispatch)?.focus();
   };
+
 
   return (
     <StyledCard ref={ref}>

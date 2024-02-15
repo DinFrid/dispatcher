@@ -1,5 +1,4 @@
-import React, { useState, useEffect, ForwardedRef } from "react";
-import InfiniteScroll from "react-infinite-scroll-component";
+import React, { ForwardedRef } from "react";
 import HeadlineCard, { HeadlineCardProps } from '../../components/HeadlineCard/HeadlineCard'
 import { HeadlinesBody, HeadlinesContainer } from './styles'
 

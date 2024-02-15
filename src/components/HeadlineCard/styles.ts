@@ -22,7 +22,7 @@ export const StyledCardContent = styled(CardContent)`
   flex-direction: column;
   justify-content: space-between;
   gap: 4%;
-
+  width: 75%;
 }
 `;
 
@@ -43,6 +43,7 @@ export const StyledTypography = styled(Typography)<{ styles: HeadlineTypographyS
   font-weight: ${({ styles }) => styles.fontWeight };
   color: ${({ styles }) => styles.color };
   height: ${({ styles }) => styles.height };
+  max-height: ${({ styles}) => styles.maxHeight};
   width: ${({ styles }) => styles.width };
   line-height: ${({ styles }) => styles.lineHeight || 'none' };
   letter-spacing: ${({ styles }) => styles.letterSpacing };

@@ -9,6 +9,8 @@ import { HeadlineCardProps } from "../../components/HeadlineCard/HeadlineCard";
 import { Article } from "./types";
 import { useInView } from "react-intersection-observer";
 import { defaultHeadlinesTitle, defaultPageSize } from "./consts";
+import { formatDate } from "./functions";
+import EmptyStateSVG from "../../images/emptyState";
 
 export interface BodyLayoutProps {
     filters : string;
@@ -17,35 +19,26 @@ export interface BodyLayoutProps {
 };
 
 
+
 const BodyLayout:React.FC<BodyLayoutProps> = ({filters, searchScope, searchInput}) => {
     const [headlinesTitle, setHeadlinesTitle] = useState(defaultHeadlinesTitle);
     const [titleStyles, setTitleStyles] = useState(TopHeadlinesTitleStyles);
     const [totalResults, setTotalResults] = useState<number>(0);
+    const [showEmptyState, setShowEmptyState] = useState(false);
+    const [emptyStateMessage, setEmptyStateMessage] = useState('');
     const { ref, inView } = useInView();
 
-    const fetchHeadlines = async ({ pageParam = 1 }: { pageParam: number }) => {
-        let pageSize;
-        if(pageParam === 1) {
-            pageSize = 10;
-        }
-        else {
-            pageSize = defaultPageSize;
-        }
-
-        
+    const fetchHeadlines = async ({ pageParam = 1 }) => {
+        let pageSize = pageParam === 1 ? 10 : defaultPageSize;
         try {
             const url = `https://newsapi.org/v2/${searchScope}?q=${encodeURIComponent(searchInput)}&page=${pageParam}${filters}&pageSize=${pageSize}`;
+            const response = await axios.get(url, {
+                headers: { 'Authorization': `Bearer ${apiKeys[keyIndex]}` },
+            });
 
-          const response = await axios.get(url, {
-            headers: {
-              'Authorization': `Bearer ${apiKeys[keyIndex]}`, 
-            },
-          });
-          console.log("Fetched Data! Page : ", pageParam);
-
-          return response.data; 
-
+            return response.data;
         } catch (error) {
+
             if (axios.isAxiosError(error)) {
                 console.error('Axios error:', error.response?.data);
                 throw new Error('Axios network response was not ok');
@@ -54,9 +47,19 @@ const BodyLayout:React.FC<BodyLayoutProps> = ({filters, searchScope, searchInput
                 throw new Error('An unexpected error occurred');
             }
         }
-      };
+    };
 
-      const {data, status, hasNextPage, fetchNextPage} = useInfiniteQuery({
+    useEffect(() => {
+        const trimmedInput = searchInput.trim();
+        if (!trimmedInput) {
+            setShowEmptyState(true);
+            setEmptyStateMessage('Please enter search words.');
+        } else {
+            setShowEmptyState(false);
+        }
+    }, [searchInput]);
+
+    const {data, status, hasNextPage, fetchNextPage} = useInfiniteQuery({
         queryKey: ["headlines", {filters,searchScope, searchInput}],
         queryFn: fetchHeadlines,
         initialPageParam : 1,
@@ -64,24 +67,19 @@ const BodyLayout:React.FC<BodyLayoutProps> = ({filters, searchScope, searchInput
             if(headlinesTitle === defaultHeadlinesTitle)
                 return undefined;
 
-            return allPages.length + 1;
+            return allPages.length + 1;//TODO: handle 
             } 
     });
 
-    if(status === 'error') {
-        return <p>No Results</p>
-    }
-
     useEffect(() => {
         if (inView && hasNextPage) {
-          fetchNextPage();
+            fetchNextPage();
         }
-      }, [inView, fetchNextPage, hasNextPage]);
+    }, [inView, fetchNextPage, hasNextPage]);
 
     useEffect(() => {
         if (data?.pages[0]?.totalResults !== undefined) {
             setTotalResults(data.pages[0].totalResults);
-
             if (searchInput !== 'israel' || searchScope !== 'Top-Headlines') {
                 setHeadlinesTitle(`${data.pages[0].totalResults} Total results`);
                 setTitleStyles(totalResultsHeadline);
@@ -89,26 +87,36 @@ const BodyLayout:React.FC<BodyLayoutProps> = ({filters, searchScope, searchInput
         }
     }, [data, searchInput, searchScope]);
 
-    const headlines = data?.pages.flatMap(page => 
+    const headlines = data?.pages.flatMap(page =>
         page.articles.map((article: Article) => ({
-          urlToImage: article.urlToImage,
-          urlToDispatch: article.url,
-          publishedAt: article.publishedAt,
-          title: article.title,
-          content: article.content,
-          source: article.source.name
+            ...article,
+            urlToDispatch: article.url,
+            publishedAt: formatDate(article.publishedAt),
+            source: article.source.name
         }))
-      ) as HeadlineCardProps[] ?? []; //TODO: useMemo
+    ) as HeadlineCardProps[] ?? [];
+
 
     return (
         <BodyContainer>
-            <HeadlinesTitle titlestyles={titleStyles}>{headlinesTitle}</HeadlinesTitle>
-            <DataLayout>
-                <HeadlinesLayout headlines={headlines} ref={ref}/>
-                <GraphsLayout headlines={headlines}
-                     pieTitle='Sources' pieLabel={headlines.length}
-                     areaTitle='Dates'/>
-            </DataLayout>
+            {showEmptyState ? (
+                <>
+                    <EmptyStateSVG />
+                    <p>{emptyStateMessage}</p>
+                </>
+            ) : (
+                <>
+                    <HeadlinesTitle titlestyles={titleStyles}>{headlinesTitle}</HeadlinesTitle>
+                    <DataLayout>
+                        <HeadlinesLayout headlines={headlines} ref={ref} />
+                        <GraphsLayout 
+                            headlines={headlines}
+                            pieTitle='Sources' 
+                            areaTitle='Dates'
+                            showEmptyGraphs={headlines.length === 0 || !searchInput.trim()} />
+                    </DataLayout>
+                </>
+            )}
         </BodyContainer>
     );
 };

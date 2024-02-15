@@ -9,11 +9,11 @@ import { AreaGraphData } from '../../components/Graphs/AreaGraph/types';
 export interface GraphsLayoutProps {
     areaTitle: string;
     pieTitle: string;
-    pieLabel?: number; 
     headlines: HeadlineCardProps[]; 
+    showEmptyGraphs : boolean;
 }
 
-const GraphsLayout = ({ areaTitle, pieTitle, pieLabel, headlines }: GraphsLayoutProps) => {
+const GraphsLayout = ({ areaTitle, pieTitle, headlines }: GraphsLayoutProps) => {
     const [pieData, setPieData] = useState<PieData[]>([]);
     const [areaData, setAreaData] = useState<AreaGraphData[]>([]);
 
@@ -64,7 +64,7 @@ const GraphsLayout = ({ areaTitle, pieTitle, pieLabel, headlines }: GraphsLayout
 
 return (
   <GraphsContainer>
-      <PieGraph data={pieData} title={pieTitle} label={pieLabel} />
+      <PieGraph data={pieData} title={pieTitle} label={headlines.length} />
       <AreaGraph data={areaData} title={areaTitle} />
   </GraphsContainer>
 );

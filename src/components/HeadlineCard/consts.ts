@@ -31,7 +31,8 @@ export const sourceStyles = {
 
 export const contentStyles = {
     width:'100%', 
-    height:'fit-content', 
+    maxHeight:'50px', 
+    height: '50px',
     fontFamily: 'Roboto', 
     fontWeight: '400', 
     fontSize: '14px', 
