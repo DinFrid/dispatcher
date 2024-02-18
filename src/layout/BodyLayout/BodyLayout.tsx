@@ -18,8 +18,6 @@ export interface BodyLayoutProps {
     searchInput : string;
 };
 
-
-
 const BodyLayout:React.FC<BodyLayoutProps> = ({filters, searchScope, searchInput}) => {
     const [headlinesTitle, setHeadlinesTitle] = useState(defaultHeadlinesTitle);
     const [titleStyles, setTitleStyles] = useState(TopHeadlinesTitleStyles);

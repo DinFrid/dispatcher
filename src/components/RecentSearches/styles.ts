@@ -49,3 +49,9 @@ export const StyledRemoveIcon = styled(RemoveIcon)`
     flex-shrink: 0;
     fill-rule: rgba(90, 90, 137, 0.50);
 `;
+
+
+export const ItemsContainer = styled.div`
+    overflow-y: auto;
+    height: 85px;
+`;

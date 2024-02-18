@@ -1,26 +1,48 @@
-import { useRef, useState } from 'react';
-import { DropdownTypeEnum } from '../../utils/Enums';
+import { useEffect, useRef, useState } from 'react';
 import SearchBar from '../SearchBar/SearchBar';
 import { RecentSearches } from '../RecentSearches/RecentSearches';
 import useOutsideClick from './useOutsideClick';
-import { DropdownItem } from '../StyledDropdown/types';
-import { searchMenuOptions } from '../../utils/consts/ConstsMenuItems';
+import { searchBarDropDownProps } from '../../utils/consts/FiltersGroups';
+import { LOCAL_STORAGE_RECENT_SEARCHES_KEY } from '../RecentSearches/consts';
+import { checkIfRecentSearchesExceeds, checkIfValueIsNotEmpty, clearRecentSearchesFromLocalStorage, fetchRecentSearchesFromLocalStorage, removeDuplicatedValues, removeValueFromRecentSearchesArrayAndReturnUpdated, truncateRecentSearches } from './functions';
 
 export interface SearchComponentProps {
-    onRemove : (value : string) => void;
-    onClear : () => void;
     onSearchAction : (value : string) => void;
     onDropdownChange : (value : string, label : string) => void;
-    recentSearches : DropdownItem[];
 }
 
-const SearchComponent = ({onRemove, onClear, onSearchAction, onDropdownChange, recentSearches} : SearchComponentProps) => {
+const SearchComponent = ({ onSearchAction, onDropdownChange} : SearchComponentProps) => {
     const [recentSearchesOpen, setRecentSearchesOpen] = useState(false);
     const recentSearchesRef = useRef(null);
+    const [recentSearchesHistory, setRecentSearchesHistory] = useState(new Array<string>);
+
+    useEffect(() => {
+        const currentRecentSearches = fetchRecentSearchesFromLocalStorage();
+        updateAndInsertRecentSearchesToLocalStorage(currentRecentSearches);
+    },[]);
+
+    const updateAndInsertRecentSearchesToLocalStorage = (updatedRecentSearches : Array<string>) => {
+        setRecentSearchesHistory(updatedRecentSearches);
+        localStorage.setItem(LOCAL_STORAGE_RECENT_SEARCHES_KEY, JSON.stringify(updatedRecentSearches));
+    }
 
     const handleSearchAction = (value : string) => {
-        setRecentSearchesOpen(false);
+        const currentRecentSearches = fetchRecentSearchesFromLocalStorage();
+        const updatedRecentSearches = removeDuplicatedValues(value, currentRecentSearches);
 
+        if(checkIfValueIsNotEmpty(value)) {
+            setRecentSearchesOpen(false);
+            onSearchAction(value);
+            return;
+        }
+
+        if (checkIfRecentSearchesExceeds(updatedRecentSearches)) {
+            truncateRecentSearches(updatedRecentSearches);
+        }
+
+        updateAndInsertRecentSearchesToLocalStorage(updatedRecentSearches);
+        
+        setRecentSearchesOpen(false);
         onSearchAction(value);
     }
 
@@ -33,23 +55,32 @@ const SearchComponent = ({onRemove, onClear, onSearchAction, onDropdownChange, r
     const handleSearchInputFieldClick = () => {
         setRecentSearchesOpen(true); 
     };
-    
-    const dropDownProps = {dropDownType : DropdownTypeEnum.SearchBarDropdown,
-         dropdownItems : searchMenuOptions}//TODO: export to another file
 
+    const handleRemoveButtonClicked = (value : string) => {
+        const currentRecentSearches = fetchRecentSearchesFromLocalStorage();
+        const updatedRecentSearches = removeValueFromRecentSearchesArrayAndReturnUpdated(value, currentRecentSearches);
+
+        updateAndInsertRecentSearchesToLocalStorage(updatedRecentSearches);
+    }
+
+    const handleClearButtonClicked = () => {
+        clearRecentSearchesFromLocalStorage();
+        updateAndInsertRecentSearchesToLocalStorage([]);
+    }
+    
     return (
         <div ref={recentSearchesRef} style={{marginLeft: 'calc(12.5% - 78px)'}}>
             <SearchBar
-            dropDownProps={dropDownProps}
+            dropDownProps={searchBarDropDownProps}
             onSearchInputFieldClick={handleSearchInputFieldClick} 
             onSearchAction={handleSearchAction}
             onDropdownChange={onDropdownChange}
             />
             {recentSearchesOpen && 
                 <RecentSearches 
-                    onRemove={onRemove} 
-                    onClear={onClear} 
-                    options={recentSearches}
+                    onRemove={handleRemoveButtonClicked} 
+                    onClear={handleClearButtonClicked} 
+                    options={recentSearchesHistory}
                 />
             }
         </div>

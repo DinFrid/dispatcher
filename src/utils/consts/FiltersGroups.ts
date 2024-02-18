@@ -1,5 +1,5 @@
 import { DropdownTypeEnum, FilterType } from "../Enums";
-import { categoryMenuItems, countryMenuItems, langMenuItems, sortByMenuItems, sourceMenuItems } from "./ConstsMenuItems";
+import { categoryMenuItems, countryMenuItems, langMenuItems, searchMenuOptions, sortByMenuItems, sourceMenuItems } from "./ConstsMenuItems";
 
 export const everythingScopeFilters = [
     {
@@ -40,3 +40,6 @@ export const topHeadlinesScopeFilters = [
         dropdownItems: sourceMenuItems
     }
 ];
+
+export const searchBarDropDownProps = {dropDownType : DropdownTypeEnum.SearchBarDropdown, label: 'Top Headlines',
+         dropdownItems : searchMenuOptions}

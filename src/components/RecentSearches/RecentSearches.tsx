@@ -1,11 +1,10 @@
 import { IconButton } from "@mui/material";
 import { StyledMenuItem } from "../StyledMenuItem/StyledMenuItem";
 import { MenuItemTypeEnum } from "../../utils/Enums";
-import { CustomRecentSearches, CustomTypography, StyledClearButton, StyledRemoveIcon } from "./styles";
-import { DropdownItem } from "../StyledDropdown/types";
+import { CustomRecentSearches, CustomTypography, ItemsContainer, StyledClearButton, StyledRemoveIcon } from "./styles";
 
 export interface RecentSearchesProps {
-  options: DropdownItem[];
+  options: string[];
   onRemove: (value: string) => void;
   onClear: () => void;
 }
@@ -22,20 +21,22 @@ export const RecentSearches: React.FC<RecentSearchesProps> = ({ options, onRemov
       <StyledClearButton onClick={onClear}>CLEAR</StyledClearButton>
 
       </div>
-      {options.map((option) => (
-        <div key={option.value} style={{ 
-          display: 'flex', 
-          alignItems: 'center', 
-          justifyContent: 'space-between', 
-          marginBottom: '4.31px'
-        }}>
-          <StyledMenuItem label={option.label} menuItemType={MenuItemTypeEnum.RecentSearchesMenuItemType} value={option.value}>
-          </StyledMenuItem>
-          <IconButton onClick={() => onRemove(option.value)}>
-            <StyledRemoveIcon width={9.222} height={9.222}/>
-          </IconButton>
-        </div>
-      ))}
+      <ItemsContainer>
+        {options.map((option) => (
+          <div key={option} style={{ 
+            display: 'flex', 
+            alignItems: 'center', 
+            justifyContent: 'space-between', 
+            marginBottom: '4.31px'
+          }}>
+            <StyledMenuItem label={option} menuItemType={MenuItemTypeEnum.RecentSearchesMenuItemType} value={option}>
+            </StyledMenuItem>
+            <IconButton onClick={() => onRemove(option)}>
+              <StyledRemoveIcon width={9.222} height={9.222}/>
+            </IconButton>
+          </div>
+        ))}
+      </ItemsContainer>
     </CustomRecentSearches>
   );
 };
