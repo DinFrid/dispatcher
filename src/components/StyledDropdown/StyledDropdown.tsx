@@ -5,10 +5,11 @@ import { useState } from 'react';
 import { DropdownItem, DropdownType } from './types';
 import { StyledMenuItem } from '../StyledMenuItem/StyledMenuItem';
 import { DropdownTypeToMenuItemTypeConverter } from '../../utils/Enums';
+import { getPlaceholders } from './functions';
 
 
 export interface StyledDropdownProps extends SelectProps {
-  label?: string;
+  label: string;
   dropDownType: keyof DropdownType;
   dropdownItems?: DropdownItem[];
   onDropdownChange ?: (value : string, label : string) => void;
@@ -25,15 +26,15 @@ export const StyledDropdown: React.FC<StyledDropdownProps> = ({
   const [open, setOpen] = useState(false);
   const styles = dropDownStyles[dropDownType];
   const menuItemType = DropdownTypeToMenuItemTypeConverter[dropDownType];
-  const placeholder = label ? label : styles.placeholder;
+  const placeholder = getPlaceholders(dropDownType,styles,label);
 
-  const handleValueChange = (event: SelectChangeEvent<unknown>, child: React.ReactNode) => {
+  const handleValueChange = (event: SelectChangeEvent<unknown>) => {
     const newValue = event.target.value as string; 
     setValue(newValue); 
     setOpen(false);
 
     if (onDropdownChange) {
-      onDropdownChange(newValue, placeholder as string); 
+      onDropdownChange(newValue, placeholder as string);
     }
   };
 

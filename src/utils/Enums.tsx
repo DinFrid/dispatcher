@@ -17,11 +17,16 @@ export enum DropdownTypeToMenuItemTypeConverter {
   DateDropdown = 'FiltersMenuItemType'
 }
 
-export enum FiltersBank {
+export enum FilterType {
   Sources = "Sources",
   Dates = 'Dates',
   SortBy = 'Sort by',
   Language = 'Language',
   Category = 'Category',
   Country = 'Country'
+}
+
+export enum DisabledFiltersMapAction {
+  Increment = "increment",
+  Decrement = 'decrement'
 }

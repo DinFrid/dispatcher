@@ -1,41 +1,41 @@
-import { DropdownTypeEnum, FiltersBank } from "../Enums";
+import { DropdownTypeEnum, FilterType } from "../Enums";
 import { categoryMenuItems, countryMenuItems, langMenuItems, sortByMenuItems, sourceMenuItems } from "./ConstsMenuItems";
 
-export const everythingFilters = [
+export const everythingScopeFilters = [
     {
-        label: FiltersBank.SortBy,
+        label: FilterType.SortBy,
         dropDownType: DropdownTypeEnum.FiltersDropdown,
         dropdownItems: sortByMenuItems
     },
     {
-        label: FiltersBank.Dates,
+        label: FilterType.Dates,
         dropDownType: DropdownTypeEnum.DateDropdown,
     },
     {
-        label: FiltersBank.Sources,
+        label: FilterType.Sources,
         dropDownType: DropdownTypeEnum.FiltersDropdown,
         dropdownItems: sourceMenuItems
     },
     {
-        label: FiltersBank.Language,
+        label: FilterType.Language,
         dropDownType: DropdownTypeEnum.FiltersDropdown,
         dropdownItems: langMenuItems
     },
 ];
 
-export const topHeadlinesFilters = [
+export const topHeadlinesScopeFilters = [
     {
-        label: FiltersBank.Country,
+        label: FilterType.Country,
         dropDownType: DropdownTypeEnum.FiltersDropdown,
         dropdownItems: countryMenuItems
     },
     {
-        label: FiltersBank.Category,
+        label: FilterType.Category,
         dropDownType: DropdownTypeEnum.FiltersDropdown,
         dropdownItems : categoryMenuItems
     },
     {
-        label: FiltersBank.Sources,
+        label: FilterType.Sources,
         dropDownType: DropdownTypeEnum.FiltersDropdown,
         dropdownItems: sourceMenuItems
     }

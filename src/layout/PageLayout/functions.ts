@@ -1,3 +1,4 @@
+
 export const replaceWhiteSpacesAndToLowerCase = (value : string) => {
     return value.replace(/\s/g, '-').toLowerCase();
 }
@@ -46,3 +47,7 @@ export const toCamelCase = (value : string) => {
 
     return filterString;
 };
+
+export const updateChosenFiltersMap = (value : string, label : string, valueIsNone : boolean, updatedChosenFiltersMap : Map<string,string>) => {
+  valueIsNone ? updatedChosenFiltersMap.delete(label) : updatedChosenFiltersMap.set(label, value);
+}
