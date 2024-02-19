@@ -43,7 +43,7 @@ export const StyledDropdown: React.FC<StyledDropdownProps> = ({
   };
 
   const DropdownIconButton = () => (
-    !props.disabled && <IconButton style={{padding: `${styles.iconPadding || '8px'}`}} onClick={handleOpen}>
+    <IconButton style={{padding: `${styles.iconPadding || '8px'}`}} onClick={handleOpen}>
       <img src={DropdownArrow} alt="Dropdown Arrow" />
     </IconButton>
   );
@@ -57,7 +57,7 @@ export const StyledDropdown: React.FC<StyledDropdownProps> = ({
         value={value}
         onChange={handleValueChange}
         displayEmpty
-        input={<CustomDropdown dropdownstyles={styles} />}
+        input={<CustomDropdown dropdownstyles={styles} disabled={props.disabled}/>}
         IconComponent={DropdownIconButton}
         renderValue={(selected) => <StyledParagraph>{getSelectedLabel(selected as string,placeholder,dropdownItems)}</StyledParagraph>}
         sx={{

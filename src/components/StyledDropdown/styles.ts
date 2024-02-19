@@ -64,7 +64,7 @@ export const dropDownStyles: DropdownType = {
   }
 };
 
-export const CustomDropdown = styled(Select)<{dropdownstyles : DropdownStyles}>`
+export const CustomDropdown = styled(Select)<{dropdownstyles : DropdownStyles; disabled?: boolean}>`
   &&& {
     height: ${({ dropdownstyles }) => dropdownstyles.height || '47px'};
     font-family: ${({ dropdownstyles }) => dropdownstyles.fontFamily || 'Roboto'};
@@ -84,7 +84,7 @@ export const CustomDropdown = styled(Select)<{dropdownstyles : DropdownStyles}>`
     max-width: ${({ dropdownstyles }) => dropdownstyles.maxWidth || '175px'};
     width: ${({ dropdownstyles }) => dropdownstyles.width || 'none'};
     border-left: ${({ dropdownstyles }) => dropdownstyles.borderLeft || 'none'};
-    cursor: pointer;
+    cursor: ${({ disabled }) => (disabled ? 'normal' : 'pointer')};
   };
 
     .MuiSelect-icon {

@@ -1,4 +1,4 @@
-import  { forwardRef } from 'react';
+import { forwardRef } from 'react';
 import { StyledButton } from '../StyledButton/StyledButton';
 import { ButtonContainer, NewsImage, StyledCard, StyledCardContent, StyledTypography, contentStyles, dateStyles, sourceStyles, titleStyles } from './styles';
 import { fallbackImg } from './consts';
@@ -24,10 +24,19 @@ const HeadlineCard = forwardRef<HTMLDivElement, HeadlineCardProps>(({
     window.open(urlToDispatch, urlToDispatch)?.focus();
   };
 
+  // const renderImg = async () => {
+  //   try {
+  //     // axios ....
+  //   } catch (err) {
 
+  //   }
+  // }
+
+  // console.log('urlToImage', urlToImage)
   return (
     <StyledCard ref={ref}>
       <NewsImage src={urlToImage} fallbackImage={fallbackImg} alt="News" />
+
       <StyledCardContent>
         <StyledTypography styles={dateStyles}>
           {publishedAt}
