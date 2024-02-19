@@ -6,6 +6,7 @@ export const CustomMenuItem = styled(MenuItem)<{ menuitemstyles: MenuItemStyles 
 &&& {
   font-family: ${({ menuitemstyles }) => menuitemstyles.fontFamily || 'Roboto'};
   font-size: ${({ menuitemstyles }) => menuitemstyles.fontSize || '12px'};
+  font-style: ${({ menuitemstyles }) => menuitemstyles.fontStyle || 'normal'};
   color: ${({ menuitemstyles }) => menuitemstyles.color || '#5A5A89'};
   height: ${({ menuitemstyles }) => menuitemstyles.height || '28px'};
   width: ${({ menuitemstyles }) => menuitemstyles.width || '175px'};
@@ -51,5 +52,8 @@ export const menuItemStyles: MenuItemType = {
       lineHeight: '16px', 
       letterSpacing: '0.1px',
       hoverBackgroundColor: 'rgba(223, 224, 235, 0.41)',
+  },
+  NoneItemType: {
+    fontStyle: 'italic'
   }
 };

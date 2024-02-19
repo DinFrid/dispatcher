@@ -1,6 +1,7 @@
 export enum MenuItemTypeEnum {
     FiltersMenuItemType = 'FiltersMenuItemType',
     RecentSearchesMenuItemType = 'RecentSearchesMenuItemType',
+    NoneItemType = 'NoneItemType'
   }
 
 export enum DropdownTypeEnum {
