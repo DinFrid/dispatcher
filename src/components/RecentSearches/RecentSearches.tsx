@@ -1,10 +1,10 @@
 import { IconButton } from "@mui/material";
-import { StyledMenuItem, StyledMenuItemProps } from "../StyledMenuItem/StyledMenuItem";
+import { StyledMenuItem } from "../StyledMenuItem/StyledMenuItem";
 import { MenuItemTypeEnum } from "../../utils/Enums";
-import { CustomRecentSearches, CustomTypography, StyledClearButton, StyledRemoveIcon } from "./styles";
+import { CustomRecentSearches, CustomTypography, ItemWrapper, ItemsContainer, StyledClearButton, StyledRemoveIcon } from "./styles";
 
 export interface RecentSearchesProps {
-  options: StyledMenuItemProps[];
+  options: string[];
   onRemove: (value: string) => void;
   onClear: () => void;
 }
@@ -21,21 +21,17 @@ export const RecentSearches: React.FC<RecentSearchesProps> = ({ options, onRemov
       <StyledClearButton onClick={onClear}>CLEAR</StyledClearButton>
 
       </div>
-      {options.map((option) => (
-        <div key={option.value} style={{ 
-          display: 'flex', 
-          alignItems: 'center', 
-          justifyContent: 'space-between', 
-          marginBottom: '4.31px'
-        }}>
-          <StyledMenuItem menuItemType={MenuItemTypeEnum.RecentSearchesMenuItem} value={option.value}>
-            {option.children}
-          </StyledMenuItem>
-          <IconButton onClick={() => onRemove(option.value)}>
-            <StyledRemoveIcon width={9.222} height={9.222}/>
-          </IconButton>
-        </div>
-      ))}
+      <ItemsContainer>
+        {options.map((option) => (
+          <ItemWrapper key={option}>
+            <StyledMenuItem label={option} menuItemType={MenuItemTypeEnum.RecentSearchesMenuItemType} value={option}>
+            </StyledMenuItem>
+            <IconButton onClick={() => onRemove(option)}>
+              <StyledRemoveIcon width={9.222} height={9.222}/>
+            </IconButton>
+          </ItemWrapper>
+        ))}
+      </ItemsContainer>
     </CustomRecentSearches>
   );
 };

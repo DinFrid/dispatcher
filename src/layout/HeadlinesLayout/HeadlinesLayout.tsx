@@ -1,24 +1,35 @@
+import React, { ForwardedRef } from "react";
 import HeadlineCard, { HeadlineCardProps } from '../../components/HeadlineCard/HeadlineCard'
-import { HeadlinesContainer } from './styles'
+import { HeadlinesBody, HeadlinesContainer } from './styles'
 
 export interface HeadLinesLayoutProps {
     headlines : HeadlineCardProps[];
 }
 
-const HeadlinesLayout = ({headlines} : HeadLinesLayoutProps) => {
+const HeadlinesLayout = React.forwardRef(({headlines} : HeadLinesLayoutProps, ref: ForwardedRef<HTMLDivElement>) => {
   return (
     <HeadlinesContainer>
-        {headlines.map((headline, index) => (
-            <HeadlineCard key={index} 
-                url={headline.url} 
-                date={headline.date}
-                title={headline.title}
-                content={headline.content}
-                source={headline.source}
-                />
-        ))}
+      <HeadlinesBody>
+        {headlines.map((headline, index) => {
+
+          const isLastHeadline = index === headlines.length - 1;
+          return (
+            <HeadlineCard
+              key={index}
+              urlToImage={headline.urlToImage}
+              urlToDispatch={headline.urlToDispatch}
+              publishedAt={headline.publishedAt}
+              title={headline.title}
+              content={headline.content}
+              source={headline.source}
+
+              {...(isLastHeadline ? { ref: ref } : {})}
+            />
+          );
+        })}
+      </HeadlinesBody>
     </HeadlinesContainer>
   )
-}
+});
 
 export default HeadlinesLayout

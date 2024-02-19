@@ -1,27 +1,20 @@
-import { MenuItemTypeEnum } from '../../utils/Enums';
 import SearchComponent from '../SearchComponent/SearchComponent';
 import NavbarLogo from './NavbarLogo.svg';
 import { StyledImage, StyledNavbar } from './styles';
 
-const onRemoveClick = (value : string) => {
-    console.log("Value removed: {}", value)
-  };
+export interface NavBarProps {
+  onSearchAction : (value : string) => void;
+  handleSearchDropdownChange : (value : string, label : string) => void;
+};
 
-  const onClearClick = () => {
-    console.log("Clear button clicked!")
-  };
-
-const recentSearchesProps = {onRemove: onRemoveClick, onClear: onClearClick, options: [//TODO: pass 3 seperated props
-    { menuItemType : MenuItemTypeEnum.RecentSearchesMenuItem, value: "crypto", children: "crypto" },
-    { menuItemType : MenuItemTypeEnum.RecentSearchesMenuItem, value: "football", children: "football" },
-    { menuItemType : MenuItemTypeEnum.RecentSearchesMenuItem, value: "soccer", children: "soccer" }
-  ]};
-
-const Navbar = () => {
+const Navbar = ({onSearchAction, handleSearchDropdownChange} : NavBarProps) => {
   return (
     <StyledNavbar>
         <StyledImage src={NavbarLogo} alt="Navbar Logo" />
-        <SearchComponent recentSearchesProps={recentSearchesProps}></SearchComponent>
+        <SearchComponent
+          onSearchAction={onSearchAction}
+          onDropdownChange={handleSearchDropdownChange}
+        />
     </StyledNavbar>
   )
 }

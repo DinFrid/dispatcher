@@ -1,22 +1,50 @@
-import { useRef, useState } from 'react';
-import { MenuItemTypeEnum, DropdownTypeEnum } from '../../utils/Enums';
-import { SelectChangeEvent } from '@mui/material';
+import { useEffect, useRef, useState } from 'react';
 import SearchBar from '../SearchBar/SearchBar';
-import { RecentSearches, RecentSearchesProps } from '../RecentSearches/RecentSearches';
+import { RecentSearches } from '../RecentSearches/RecentSearches';
 import useOutsideClick from './useOutsideClick';
+import { searchBarDropDownProps } from '../../utils/consts/FiltersGroups';
+import { LOCAL_STORAGE_RECENT_SEARCHES_KEY } from '../RecentSearches/consts';
+import { checkIfRecentSearchesExceeds, checkIfValueIsNotEmpty, clearRecentSearchesFromLocalStorage, fetchRecentSearchesFromLocalStorage, removeDuplicatedValues, removeValueFromRecentSearchesArrayAndReturnUpdated, truncateRecentSearches } from './functions';
 
 export interface SearchComponentProps {
-    recentSearchesProps: RecentSearchesProps;
+    onSearchAction : (value : string) => void;
+    onDropdownChange : (value : string, label : string) => void;
 }
 
-const searchMenuOptions = [ //TODO: change menuItem types
-  {value: "Everything", menuItemType: MenuItemTypeEnum.FiltersMenuItem, children: "Everything"},
-  {value: "Top Headlines", menuItemType: MenuItemTypeEnum.FiltersMenuItem, children: "Top Headlines"} 
-];
-
-const SearchComponent = ({recentSearchesProps} : SearchComponentProps) => {
+const SearchComponent = ({ onSearchAction, onDropdownChange} : SearchComponentProps) => {
     const [recentSearchesOpen, setRecentSearchesOpen] = useState(false);
     const recentSearchesRef = useRef(null);
+    const [recentSearchesHistory, setRecentSearchesHistory] = useState(new Array<string>);
+
+    useEffect(() => {
+        const currentRecentSearches = fetchRecentSearchesFromLocalStorage();
+        updateAndInsertRecentSearchesToLocalStorage(currentRecentSearches);
+    },[]);
+
+    const updateAndInsertRecentSearchesToLocalStorage = (updatedRecentSearches : Array<string>) => {
+        setRecentSearchesHistory(updatedRecentSearches);
+        localStorage.setItem(LOCAL_STORAGE_RECENT_SEARCHES_KEY, JSON.stringify(updatedRecentSearches));
+    }
+
+    const handleSearchAction = (value : string) => {
+        const currentRecentSearches = fetchRecentSearchesFromLocalStorage();
+        const updatedRecentSearches = removeDuplicatedValues(value, currentRecentSearches);
+
+        if(checkIfValueIsNotEmpty(value)) {
+            setRecentSearchesOpen(false);
+            onSearchAction(value);
+            return;
+        }
+
+        if (checkIfRecentSearchesExceeds(updatedRecentSearches)) {
+            truncateRecentSearches(updatedRecentSearches);
+        }
+
+        updateAndInsertRecentSearchesToLocalStorage(updatedRecentSearches);
+        
+        setRecentSearchesOpen(false);
+        onSearchAction(value);
+    }
 
     useOutsideClick(recentSearchesRef, () => {
         if (recentSearchesOpen) {
@@ -24,28 +52,37 @@ const SearchComponent = ({recentSearchesProps} : SearchComponentProps) => {
         }
     });
 
-    const handleDropdownChange = (event: SelectChangeEvent<unknown>) => {
-        console.log("Selected value:", event.target.value);
-        setRecentSearchesOpen(false);
-    };
-
-    const handleSearchInputClick = () => {
+    const handleSearchInputFieldClick = () => {
         setRecentSearchesOpen(true); 
-        console.log("Recent searches state opened");
     };
 
-    const dropDownProps = {dropDownType : DropdownTypeEnum.RecentSearchesDropdown,
-        onChange : handleDropdownChange}
+    const handleRemoveButtonClicked = (value : string) => {
+        const currentRecentSearches = fetchRecentSearchesFromLocalStorage();
+        const updatedRecentSearches = removeValueFromRecentSearchesArrayAndReturnUpdated(value, currentRecentSearches);
 
+        updateAndInsertRecentSearchesToLocalStorage(updatedRecentSearches);
+    }
+
+    const handleClearButtonClicked = () => {
+        clearRecentSearchesFromLocalStorage();
+        updateAndInsertRecentSearchesToLocalStorage([]);
+    }
+    
     return (
-        <div ref={recentSearchesRef}>
+        <div ref={recentSearchesRef} style={{marginLeft: 'calc(12.5% - 78px)'}}>
             <SearchBar
-
-            dropDownProps={dropDownProps}
-            dropDownOptions={searchMenuOptions}//TODO: change to menuItems
-            onSearchInputClick={handleSearchInputClick} 
+            dropDownProps={searchBarDropDownProps}
+            onSearchInputFieldClick={handleSearchInputFieldClick} 
+            onSearchAction={handleSearchAction}
+            onDropdownChange={onDropdownChange}
             />
-            {recentSearchesOpen && <RecentSearches {...recentSearchesProps}></RecentSearches>}
+            {recentSearchesOpen && 
+                <RecentSearches 
+                    onRemove={handleRemoveButtonClicked} 
+                    onClear={handleClearButtonClicked} 
+                    options={recentSearchesHistory}
+                />
+            }
         </div>
     );
 };

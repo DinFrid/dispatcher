@@ -1,11 +1,8 @@
 import { Area, AreaChart, XAxis, CartesianGrid, ResponsiveContainer } from 'recharts';
 import HorizontalLine from '../HorizontalLine';
 import { StyledCard, StyledTypography } from './styles';
+import { AreaGraphData } from './types';
 
-export interface AreaGraphData {
-  date: string;
-  sourcesNumber: number;
-}
 
 export interface AreaGraphProps {
   data: AreaGraphData[];

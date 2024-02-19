@@ -7,4 +7,5 @@ export type HeadlineTypographyStyles = {
     lineHeight: string;
     letterSpacing?: string;
     color: string;
+    maxHeight ?: string;
 };

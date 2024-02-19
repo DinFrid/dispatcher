@@ -1,50 +1,49 @@
 import { FormControl, IconButton, Select, SelectChangeEvent, SelectProps } from '@mui/material';
 import DropdownArrow from '../../images/dropdown.svg';
-import { CustomDropdown, StyledParagraph, dropDownStyles, menuScrollerStyles } from './styles';
+import { CustomDropdown, StyledParagraph, dropDownStyles, menuScrollerStyles, paperPropsStyles } from './styles';
 import { useState } from 'react';
-import { DropdownType } from './types';
+import { DropdownItem, DropdownType } from './types';
+import { StyledMenuItem } from '../StyledMenuItem/StyledMenuItem';
+import { DropdownTypeToMenuItemTypeConverter } from '../../utils/Enums';
+import { getPlaceholders } from './functions';
+
 
 export interface StyledDropdownProps extends SelectProps {
-  label?: string;
+  label: string;
   dropDownType: keyof DropdownType;
-}
-
-const paperPropsStyles = {
-  marginTop: '6px',
-  minWidth: '175px',
-  paddingLeft: '0px',
-  height: '120px',
-  boxShadow: '0px 4px 12px 0px #00000014'
+  dropdownItems?: DropdownItem[];
+  onDropdownChange ?: (value : string, label : string) => void;
 }
 
 export const StyledDropdown: React.FC<StyledDropdownProps> = ({
   dropDownType,
   label,
-  onChange,
-  children,
+  onDropdownChange,
+  dropdownItems = [], 
   ...props }) => {
 
   const [value, setValue] = useState<string>('');
   const [open, setOpen] = useState(false);
   const styles = dropDownStyles[dropDownType];
-  const placeholder = label ? label : styles.placeholder;
-  
-  const handleValueChange = (event: SelectChangeEvent<unknown>, child: React.ReactNode) => {
+  const menuItemType = DropdownTypeToMenuItemTypeConverter[dropDownType];
+  const placeholder = getPlaceholders(dropDownType,styles,label);
+
+  const handleValueChange = (event: SelectChangeEvent<unknown>) => {
     const newValue = event.target.value as string; 
     setValue(newValue); 
     setOpen(false);
-  
-    if (onChange) {
-      onChange(event,child); 
+
+    if (onDropdownChange) {
+      onDropdownChange(newValue, placeholder as string);
     }
   };
 
   const handleOpen = () => {
-    setOpen(true); 
+    !props.disabled && setOpen(true);
   };
-  
+
   const DropdownIconButton = () => (
-    <IconButton style={{padding: `${styles.iconPadding || '8px'}`}} onClick={handleOpen}  >
+    <IconButton style={{padding: `${styles.iconPadding || '8px'}`}} onClick={handleOpen}>
       <img src={DropdownArrow} alt="Dropdown Arrow" />
     </IconButton>
   );
@@ -60,15 +59,15 @@ export const StyledDropdown: React.FC<StyledDropdownProps> = ({
         displayEmpty
         input={<CustomDropdown dropdownstyles={styles} />}
         IconComponent={DropdownIconButton}
-        renderValue={(selected) => selected === '' ? <StyledParagraph>{placeholder}</StyledParagraph> 
-        : <StyledParagraph>{selected as string}</StyledParagraph>}
+        renderValue={(selected) => 
+          (selected === '' || selected === 'none') ? <StyledParagraph>{placeholder}</StyledParagraph> : <StyledParagraph>{selected as string}</StyledParagraph>
+        }
         sx={{
           "&:hover": {
             "&& fieldset": {
               border: `1px solid ${styles.hoverBackgroundColor || 'none'}`
             }
           },
-          
         }}
         MenuProps={{
           PaperProps: {
@@ -78,7 +77,14 @@ export const StyledDropdown: React.FC<StyledDropdownProps> = ({
         }}
         {...props}
       >
-        {children}
+
+        {dropDownType !== 'SearchBarDropdown' && (
+          <StyledMenuItem key="none" value="none" menuItemType={menuItemType} label="None">None</StyledMenuItem>
+        )}
+
+        {dropdownItems.map((dropdownItem) => (
+          <StyledMenuItem key={dropdownItem.value} value={dropdownItem.value} menuItemType={menuItemType} label={dropdownItem.label}></StyledMenuItem>
+        ))}
       </Select>
     </FormControl>
   );

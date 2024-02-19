@@ -3,7 +3,7 @@ import styled from "styled-components";
 import RemoveIcon from "../../images/RemoveIcon";
 
 export const CustomRecentSearches = styled(Card)`
-    width: 663px;
+    width: 424px;
     height: 132px;
     flex-shrink: 0;
     border-radius: 10px;
@@ -11,6 +11,7 @@ export const CustomRecentSearches = styled(Card)`
     box-shadow: 0px 4px 12px 0px #00000014;
     margin-top: 6px;
     position: absolute;
+    z-index: 1000;
 `;
 
 export const CustomTypography = styled(Typography)`
@@ -47,4 +48,17 @@ export const StyledClearButton = styled(Button)`
 export const StyledRemoveIcon = styled(RemoveIcon)`
     flex-shrink: 0;
     fill-rule: rgba(90, 90, 137, 0.50);
+`;
+
+
+export const ItemsContainer = styled.div`
+    overflow-y: auto;
+    height: 85px;
+`;
+
+export const ItemWrapper = styled.div `
+  display: 'flex';
+  align-items: 'center'; 
+  justify-content: 'space-between'; 
+  margin-bottom: '4.31px';
 `;

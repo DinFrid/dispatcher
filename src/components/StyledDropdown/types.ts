@@ -29,4 +29,11 @@ export type DropdownStyles = {
   export type DropdownType = {
     FiltersDropdown: DropdownStyles;
     RecentSearchesDropdown: DropdownStyles;
+    SearchBarDropdown: DropdownStyles;
+    DateDropdown: DropdownStyles;
+  };
+
+  export type DropdownItem = {
+    value: string;
+    label: string;
   };

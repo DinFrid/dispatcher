@@ -2,6 +2,7 @@ import { Card, Typography } from "@mui/material";
 import styled from "styled-components";
 
 export const PieGraphContainer = styled(Card)`
+&&{
     width: 412px;
     height: 378px;
     border-radius: 20px;
@@ -18,7 +19,12 @@ export const PieGraphContainer = styled(Card)`
         padding-left: 10px !important;
         overflow-y: auto;
         max-height: 120px;
+        width: 100%;
     }
+    .recharts-legend-wrapper{
+      height: 100px !important;
+    }
+  }
 `;
 
 export const StyledTypography = styled(Typography)`

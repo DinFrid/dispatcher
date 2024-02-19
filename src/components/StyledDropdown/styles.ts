@@ -37,8 +37,30 @@ export const dropDownStyles: DropdownType = {
     alignItems: 'center',
     height: '40px',
     borderLeft: '0.5px outset #D9DBE9',
-    placeholder: 'Everything',
+    placeholder: 'Top Headlines',
     iconPadding: '21.5px 21.5px 21.5px 16px'
+  },
+  SearchBarDropdown: {
+    padding: '1px',
+    borderRadius: '0px',
+    backgroundColor: '#FFF',
+    color: '#5A5A89',
+    fontFamily: 'Roboto',
+    fontSize: '14px',
+    fontWeight: '500',
+    lineHeight: '22px',
+    letterSpacing: '0.25px',
+    display: 'flex',
+    maxWidth: '160px',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    height: '40px',
+    borderLeft: '0.5px outset #D9DBE9',
+    placeholder: 'Top Headlines',
+    iconPadding: '21.5px 21.5px 21.5px 16px'
+  },
+  DateDropdown: {
+    
   }
 };
 
@@ -66,7 +88,7 @@ export const CustomDropdown = styled(Select)<{dropdownstyles : DropdownStyles}>`
   };
 
     .MuiSelect-icon {
-      color: #000;
+      
     }
 
     .css-78trlr-MuiButtonBase-root-MuiIconButton-root:hover{
@@ -103,4 +125,12 @@ export const CustomDropdown = styled(Select)<{dropdownstyles : DropdownStyles}>`
       borderRadius: '6px',
 
     },
+  }
+
+  export const paperPropsStyles = {
+    marginTop: '6px',
+    minWidth: '175px',
+    paddingLeft: '0px',
+    height: '120px',
+    boxShadow: '0px 4px 12px 0px #00000014'
   }

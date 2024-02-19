@@ -1,27 +1,36 @@
+import  { forwardRef } from 'react';
 import { StyledButton } from '../StyledButton/StyledButton';
-import { NewsImage, StyledCard, StyledCardContent, StyledTypography } from './styles';
-import { contentStyles, dateStyles, sourceStyles, titleStyles } from './consts';
+import { ButtonContainer, NewsImage, StyledCard, StyledCardContent, StyledTypography, contentStyles, dateStyles, sourceStyles, titleStyles } from './styles';
+import { fallbackImg } from './consts';
 
 export interface HeadlineCardProps {
-    url: string;
-    date: string;
-    title: string;
-    content: string;
-    source: string;
+  urlToImage: string;
+  urlToDispatch: string;
+  publishedAt: string;
+  title: string;
+  content: string;
+  source: string;
 }
 
-const styledButtonProps = {
-    onClick: () => console.log('Navigate Button clicked'),
-    variant: "contained" as "contained",
+const HeadlineCard = forwardRef<HTMLDivElement, HeadlineCardProps>(({
+  urlToImage,
+  urlToDispatch,
+  publishedAt,
+  title,
+  content,
+  source,
+}, ref) => {
+  const onButtonClicked = () => {
+    window.open(urlToDispatch, urlToDispatch)?.focus();
   };
 
-const HeadlineCard = ({ url, date, title, content, source } : HeadlineCardProps) => {
+
   return (
-    <StyledCard>
-      <NewsImage src={url} alt="News" />
+    <StyledCard ref={ref}>
+      <NewsImage src={urlToImage} fallbackImage={fallbackImg} alt="News" />
       <StyledCardContent>
         <StyledTypography styles={dateStyles}>
-          {date}
+          {publishedAt}
         </StyledTypography>
         <StyledTypography styles={titleStyles}>
           {title}
@@ -32,16 +41,14 @@ const HeadlineCard = ({ url, date, title, content, source } : HeadlineCardProps)
         <StyledTypography styles={contentStyles}>
           {content}
         </StyledTypography>
-        
-        <div style={{alignSelf:'flex-end'}}>
-          <StyledButton {...styledButtonProps}>
+        <ButtonContainer>
+          <StyledButton onClick={onButtonClicked}>
             NAVIGATE TO DISPATCH
           </StyledButton>
-        </div>
+        </ButtonContainer>
       </StyledCardContent>
-        
     </StyledCard>
   );
-};
+});
 
 export default HeadlineCard;

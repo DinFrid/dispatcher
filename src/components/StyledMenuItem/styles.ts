@@ -23,7 +23,7 @@ export const CustomMenuItem = styled(MenuItem)<{ menuitemstyles: MenuItemStyles 
 `;
 
 export const menuItemStyles: MenuItemType = {
-  FiltersMenuItem: {
+  FiltersMenuItemType: {
     fontFamily: 'Roboto',
     fontSize: '12px',
     color: '#5A5A89',
@@ -39,7 +39,7 @@ export const menuItemStyles: MenuItemType = {
     flexShrink: '0',
     letterSpacing: '0.1px'
   },
-  RecentSearchesMenuItem: {
+  RecentSearchesMenuItemType: {
       width: '638px',
       height: '13px',
       flexShrink: '0',
