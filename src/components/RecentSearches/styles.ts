@@ -55,3 +55,10 @@ export const ItemsContainer = styled.div`
     overflow-y: auto;
     height: 85px;
 `;
+
+export const ItemWrapper = styled.div `
+  display: 'flex';
+  align-items: 'center'; 
+  justify-content: 'space-between'; 
+  margin-bottom: '4.31px';
+`;

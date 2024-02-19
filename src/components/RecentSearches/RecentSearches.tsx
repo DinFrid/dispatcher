@@ -1,7 +1,7 @@
 import { IconButton } from "@mui/material";
 import { StyledMenuItem } from "../StyledMenuItem/StyledMenuItem";
 import { MenuItemTypeEnum } from "../../utils/Enums";
-import { CustomRecentSearches, CustomTypography, ItemsContainer, StyledClearButton, StyledRemoveIcon } from "./styles";
+import { CustomRecentSearches, CustomTypography, ItemWrapper, ItemsContainer, StyledClearButton, StyledRemoveIcon } from "./styles";
 
 export interface RecentSearchesProps {
   options: string[];
@@ -23,18 +23,13 @@ export const RecentSearches: React.FC<RecentSearchesProps> = ({ options, onRemov
       </div>
       <ItemsContainer>
         {options.map((option) => (
-          <div key={option} style={{ 
-            display: 'flex', 
-            alignItems: 'center', 
-            justifyContent: 'space-between', 
-            marginBottom: '4.31px'
-          }}>
+          <ItemWrapper key={option}>
             <StyledMenuItem label={option} menuItemType={MenuItemTypeEnum.RecentSearchesMenuItemType} value={option}>
             </StyledMenuItem>
             <IconButton onClick={() => onRemove(option)}>
               <StyledRemoveIcon width={9.222} height={9.222}/>
             </IconButton>
-          </div>
+          </ItemWrapper>
         ))}
       </ItemsContainer>
     </CustomRecentSearches>

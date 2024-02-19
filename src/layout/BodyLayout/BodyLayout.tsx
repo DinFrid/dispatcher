@@ -2,15 +2,14 @@ import React, { useEffect, useState } from "react";
 import HeadlinesLayout from "../HeadlinesLayout/HeadlinesLayout";
 import GraphsLayout from "../GraphsContainer/GraphsLayout";
 import { BodyContainer, DataLayout, HeadlinesTitle, TopHeadlinesTitleStyles, totalResultsHeadline } from "./styles";
-import { apiKeys, keyIndex } from "../../utils/APIkeys";
 import { useInfiniteQuery } from "@tanstack/react-query";
-import axios from 'axios';
 import { HeadlineCardProps } from "../../components/HeadlineCard/HeadlineCard";
 import { Article } from "./types";
 import { useInView } from "react-intersection-observer";
-import { defaultHeadlinesTitle, defaultPageSize } from "./consts";
+import { defaultHeadlinesTitle } from "./consts";
 import { formatDate } from "./functions";
 import EmptyStateSVG from "../../images/emptyState";
+import { fetchHeadlines } from "../../API/api";
 
 export interface BodyLayoutProps {
     filters : string;
@@ -26,27 +25,6 @@ const BodyLayout:React.FC<BodyLayoutProps> = ({filters, searchScope, searchInput
     const [emptyStateMessage, setEmptyStateMessage] = useState('');
     const { ref, inView } = useInView();
 
-    const fetchHeadlines = async ({ pageParam = 1 }) => {
-        let pageSize = pageParam === 1 ? 10 : defaultPageSize;
-        try {
-            const url = `https://newsapi.org/v2/${searchScope}?q=${encodeURIComponent(searchInput)}&page=${pageParam}${filters}&pageSize=${pageSize}`;
-            const response = await axios.get(url, {
-                headers: { 'Authorization': `Bearer ${apiKeys[keyIndex]}` },
-            });
-
-            return response.data;
-        } catch (error) {
-
-            if (axios.isAxiosError(error)) {
-                console.error('Axios error:', error.response?.data);
-                throw new Error('Axios network response was not ok');
-            } else {
-                console.error('Unexpected error:', error);
-                throw new Error('An unexpected error occurred');
-            }
-        }
-    };
-
     useEffect(() => {
         const trimmedInput = searchInput.trim();
         if (!trimmedInput) {
@@ -59,7 +37,7 @@ const BodyLayout:React.FC<BodyLayoutProps> = ({filters, searchScope, searchInput
 
     const {data, status, hasNextPage, fetchNextPage} = useInfiniteQuery({
         queryKey: ["headlines", {filters,searchScope, searchInput}],
-        queryFn: fetchHeadlines,
+        queryFn: ({ pageParam = 1 }) => fetchHeadlines({ pageParam, searchScope, searchInput, filters }),
         initialPageParam : 1,
         getNextPageParam: (lastPage, allPages) => {
             if(headlinesTitle === defaultHeadlinesTitle)

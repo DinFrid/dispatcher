@@ -1,7 +1,7 @@
 import  { forwardRef } from 'react';
 import { StyledButton } from '../StyledButton/StyledButton';
-import { ButtonContainer, NewsImage, StyledCard, StyledCardContent, StyledTypography } from './styles';
-import { contentStyles, dateStyles, fallbackImg, sourceStyles, titleStyles } from './consts';
+import { ButtonContainer, NewsImage, StyledCard, StyledCardContent, StyledTypography, contentStyles, dateStyles, sourceStyles, titleStyles } from './styles';
+import { fallbackImg } from './consts';
 
 export interface HeadlineCardProps {
   urlToImage: string;

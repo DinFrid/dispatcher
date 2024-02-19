@@ -39,10 +39,7 @@ export const StyledDropdown: React.FC<StyledDropdownProps> = ({
   };
 
   const handleOpen = () => {
-    if(props.disabled)
-      return;
-    
-    setOpen(true); 
+    !props.disabled && setOpen(true);
   };
 
   const DropdownIconButton = () => (
