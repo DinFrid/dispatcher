@@ -1,13 +1,5 @@
-import { DisabledFiltersMapAction, FilterType } from "../../utils/Enums";
-
 export const checkIfDropdownIsDisabled = (label : string, disabledFilters : Set<string>) => {
-    return disabledFilters.has(label);
-}
-
-
-export const addFilterToDisabledFilters = (filterLabel : string, disabledFilters : Set<string>) => {
-  const updatedDisabledFilters = new Set(disabledFilters);
-
+  return disabledFilters.has(label);
 }
 
   export const toCamelCase = (value : string) => {

@@ -77,7 +77,7 @@ const SearchComponent = ({ onSearchAction, onDropdownChange} : SearchComponentPr
             onDropdownChange={onDropdownChange}
             />
             {recentSearchesOpen && 
-                <RecentSearches 
+                <RecentSearches onClick={handleSearchAction}
                     onRemove={handleRemoveButtonClicked} 
                     onClear={handleClearButtonClicked} 
                     options={recentSearchesHistory}

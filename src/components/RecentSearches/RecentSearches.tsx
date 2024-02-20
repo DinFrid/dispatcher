@@ -7,9 +7,15 @@ export interface RecentSearchesProps {
   options: string[];
   onRemove: (value: string) => void;
   onClear: () => void;
+  onClick: (value : string) => void
 }
 
-export const RecentSearches: React.FC<RecentSearchesProps> = ({ options, onRemove,onClear, ...props }) => {
+export const RecentSearches: React.FC<RecentSearchesProps> = ({ options, onRemove,onClear,onClick, ...props }) => {
+  const handleItemClick = (option: string) => () => {
+    onClick(option);
+  };
+  
+  
   return (
     <CustomRecentSearches {...props}>
       <div style={{justifyContent: 'space-between',
@@ -24,7 +30,7 @@ export const RecentSearches: React.FC<RecentSearchesProps> = ({ options, onRemov
       <ItemsContainer>
         {options.map((option) => (
           <ItemWrapper key={option}>
-            <StyledMenuItem label={option} menuItemType={MenuItemTypeEnum.RecentSearchesMenuItemType} value={option}>
+            <StyledMenuItem onClick={handleItemClick(option)} label={option} menuItemType={MenuItemTypeEnum.RecentSearchesMenuItemType} value={option}>
             </StyledMenuItem>
             <IconButton onClick={() => onRemove(option)}>
               <StyledRemoveIcon width={9.222} height={9.222}/>

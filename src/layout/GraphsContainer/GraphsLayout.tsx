@@ -5,15 +5,16 @@ import { HeadlineCardProps } from '../../components/HeadlineCard/HeadlineCard';
 import { GraphsContainer } from './styles';
 import { PieData } from '../../components/Graphs/PieGraph/types';
 import { AreaGraphData } from '../../components/Graphs/AreaGraph/types';
+import { GRAPHS_EMPTY_STATE_MESSAGE } from './consts';
 
 export interface GraphsLayoutProps {
     areaTitle: string;
     pieTitle: string;
     headlines: HeadlineCardProps[]; 
-    showEmptyGraphs : boolean;
+    isEmptyState : boolean;
 }
 
-const GraphsLayout = ({ areaTitle, pieTitle, headlines }: GraphsLayoutProps) => {
+const GraphsLayout = ({ areaTitle, pieTitle, headlines, isEmptyState }: GraphsLayoutProps) => {
     const [pieData, setPieData] = useState<PieData[]>([]);
     const [areaData, setAreaData] = useState<AreaGraphData[]>([]);
 
@@ -63,10 +64,10 @@ const GraphsLayout = ({ areaTitle, pieTitle, headlines }: GraphsLayoutProps) => 
 }, [headlines]);
 
 return (
-  <GraphsContainer>
-      <PieGraph data={pieData} title={pieTitle} label={headlines.length} />
-      <AreaGraph data={areaData} title={areaTitle} />
-  </GraphsContainer>
+    <GraphsContainer>
+        <PieGraph data={pieData} title={pieTitle} label={headlines.length} isEmptyState={isEmptyState} emptyStateMessage={GRAPHS_EMPTY_STATE_MESSAGE} />
+        <AreaGraph data={areaData} title={areaTitle} isEmptyState={isEmptyState} emptyStateMessage={GRAPHS_EMPTY_STATE_MESSAGE}/>
+    </GraphsContainer>
 );
 };
 

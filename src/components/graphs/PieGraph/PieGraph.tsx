@@ -5,24 +5,27 @@ import HorizontalLine from '../HorizontalLine';
 import { PieGraphContainer, StyledTypography } from './styles';
 import { COLORS } from './consts';
 import { PieData } from './types';
+import GraphEmptyState from '../../../layout/EmptyState/GraphEmptyState';
 
 export interface PieGraphProps {
   data: PieData[];
   title: string;
   label?: number;
+  isEmptyState : boolean;
+  emptyStateMessage : string;
 }
 
 const renderLegend = (value: string, entry: any) => {
     return <StyledLegend entry={entry}></StyledLegend>
   };
 
-const PieGraph: React.FC<PieGraphProps> = ({ data, title, label }) => {
+const PieGraph: React.FC<PieGraphProps> = ({ data, title, label, isEmptyState, emptyStateMessage }) => {
 
   return (
     <PieGraphContainer className='PieGraphContainer'>
       <StyledTypography>{title}</StyledTypography>
         <HorizontalLine/>
-      <PieChart width={372} height={275} margin={{ top: 0, right: 0, bottom: 0, left: 0 }}>
+      {!isEmptyState ? <PieChart width={372} height={275} margin={{ top: 0, right: 0, bottom: 0, left: 0 }}>
         <Pie
           data={data}
           cx="50%"
@@ -44,7 +47,11 @@ const PieGraph: React.FC<PieGraphProps> = ({ data, title, label }) => {
                 {label}
             </text>
         <Legend formatter={renderLegend} align='left' iconType='circle' iconSize={5} />
-      </PieChart>
+      </PieChart> : (
+        <>
+          <GraphEmptyState message={emptyStateMessage}/>
+        </>
+      )}
     </PieGraphContainer>
   );
 };
