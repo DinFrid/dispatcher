@@ -22,6 +22,10 @@ export const HeadlinesTitle = styled(Typography)<{titlestyles : TypographyStyle}
     text-align: left;
     color: ${({ titlestyles }) => titlestyles.color || '#262146'};
     margin: ${({ titlestyles }) => titlestyles.margin || '20px 0 20px 0'};
+
+    ${({ theme }) => theme.breakpoints.down('md')} {
+        width: 95%;
+    }
 }
 `;
 
@@ -48,9 +52,15 @@ export const totalResultsHeadline = {
 }
 
 export const DataLayout = styled.div `
-    width: 75%;
-    height: 1231px;
+    width: 95%;
     display: flex;
     flex-direction: row;
+    height: 1231px;
+    
+
+    ${({ theme }) => theme.breakpoints.up('md')} {
+        width: 75%;
+        
+    }
 `;
 

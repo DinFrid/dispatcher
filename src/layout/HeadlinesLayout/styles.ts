@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const HeadlinesContainer = styled.div `
-    width: 71%;
+    flex: 1;
     gap: 24px;
     overflow-y: auto;
     margin-bottom: 24px;
