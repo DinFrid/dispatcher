@@ -12,17 +12,29 @@ export const StyledCard = styled(Card)`
   margin-bottom: 2%;
   background-color: #FFFFFF;
   height: 250px; //Should be 20%
+
+  ${({ theme }) => theme.breakpoints.down('md')} {
+        height: 450px;
+        flex-direction: column;
+    }
 }
 `;
 
 export const StyledCardContent = styled(CardContent)`
 &&{
-  padding: 1.5% 1.5% 2.3% 2% !important;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: 4%;
-  width: 75%;
+    display: flex;
+    width: 100%;
+    height: calc(100% - 45px);
+    gap: 10px;
+    padding : 10px 16px;
+
+  ${({ theme }) => theme.breakpoints.up('sm')} {
+    padding: 1.5% 1.5% 2.3% 2% !important;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 4%;
+    width: 75%;
+    }
 }
 `;
 
@@ -30,6 +42,10 @@ export const NewsImage = styled(ReactImageFallback)`
     width: 188px;
     height: 250px;
     object-fit: cover;
+    ${({ theme }) => theme.breakpoints.down('md')} {
+        width: 100%;
+        height:145px;
+    }
 `;
 
 export const ButtonContainer = styled.div `
@@ -49,6 +65,10 @@ export const StyledTypography = styled(Typography)<{ styles: HeadlineTypographyS
   line-height: ${({ styles }) => styles.lineHeight || 'none' };
   letter-spacing: ${({ styles }) => styles.letterSpacing };
 
+  ${({ theme }) => theme.breakpoints.down('md')} {
+        width: calc(100% - 32px);
+    }
+
 }
 `;
 
@@ -61,6 +81,7 @@ export const dateStyles = {
   lineHeight: '22px', 
   letterSpacing: '0.25px', 
   color: '#5A5A8980'
+  
 };
 
 export const titleStyles = {

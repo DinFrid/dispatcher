@@ -6,6 +6,7 @@ import { GraphsContainer } from './styles';
 import { PieData } from '../../components/Graphs/PieGraph/types';
 import { AreaGraphData } from '../../components/Graphs/AreaGraph/types';
 import { GRAPHS_EMPTY_STATE_MESSAGE } from './consts';
+import { useMediaQuery, useTheme } from '@mui/material';
 
 export interface GraphsLayoutProps {
     areaTitle: string;
@@ -17,6 +18,8 @@ export interface GraphsLayoutProps {
 const GraphsLayout = ({ areaTitle, pieTitle, headlines, isEmptyState }: GraphsLayoutProps) => {
     const [pieData, setPieData] = useState<PieData[]>([]);
     const [areaData, setAreaData] = useState<AreaGraphData[]>([]);
+    const theme = useTheme();
+    const isDesktop = useMediaQuery(theme.breakpoints.up('md'));
 
     const getMonthName = (dateString: string): string => {
       const date = new Date(dateString);
@@ -63,12 +66,12 @@ const GraphsLayout = ({ areaTitle, pieTitle, headlines, isEmptyState }: GraphsLa
     setAreaData(calculatedAreaData);
 }, [headlines]);
 
-return (
+return isDesktop ? (
     <GraphsContainer>
         <PieGraph data={pieData} title={pieTitle} label={headlines.length} isEmptyState={isEmptyState} emptyStateMessage={GRAPHS_EMPTY_STATE_MESSAGE} />
-        <AreaGraph data={areaData} title={areaTitle} isEmptyState={isEmptyState} emptyStateMessage={GRAPHS_EMPTY_STATE_MESSAGE}/>
+        <AreaGraph data={areaData} title={areaTitle} isEmptyState={isEmptyState} emptyStateMessage={GRAPHS_EMPTY_STATE_MESSAGE} />
     </GraphsContainer>
-);
+) : null;
 };
 
 export default GraphsLayout;

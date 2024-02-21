@@ -5,6 +5,8 @@ import useOutsideClick from './useOutsideClick';
 import { searchBarDropDownProps } from '../../utils/consts/FiltersGroups';
 import { LOCAL_STORAGE_RECENT_SEARCHES_KEY } from '../RecentSearches/consts';
 import { checkIfRecentSearchesExceeds, checkIfValueIsNotEmpty, clearRecentSearchesFromLocalStorage, fetchRecentSearchesFromLocalStorage, removeDuplicatedValues, removeValueFromRecentSearchesArrayAndReturnUpdated, truncateRecentSearches } from './functions';
+import { useTheme } from '@mui/material';
+import { StyledBox } from './styles';
 
 export interface SearchComponentProps {
     onSearchAction : (value : string) => void;
@@ -15,6 +17,7 @@ const SearchComponent = ({ onSearchAction, onDropdownChange} : SearchComponentPr
     const [recentSearchesOpen, setRecentSearchesOpen] = useState(false);
     const recentSearchesRef = useRef(null);
     const [recentSearchesHistory, setRecentSearchesHistory] = useState(new Array<string>);
+    const theme = useTheme();
 
     useEffect(() => {
         const currentRecentSearches = fetchRecentSearchesFromLocalStorage();
@@ -69,7 +72,7 @@ const SearchComponent = ({ onSearchAction, onDropdownChange} : SearchComponentPr
     }
     
     return (
-        <div ref={recentSearchesRef} style={{marginLeft: 'calc(12.5% - 78px)'}}>
+        <StyledBox theme={theme} ref={recentSearchesRef}>
             <SearchBar
             dropDownProps={searchBarDropDownProps}
             onSearchInputFieldClick={handleSearchInputFieldClick} 
@@ -83,7 +86,7 @@ const SearchComponent = ({ onSearchAction, onDropdownChange} : SearchComponentPr
                     options={recentSearchesHistory}
                 />
             }
-        </div>
+        </StyledBox>
     );
 };
 
