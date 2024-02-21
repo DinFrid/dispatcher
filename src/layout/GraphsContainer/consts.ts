@@ -1,0 +1,1 @@
+export const GRAPHS_EMPTY_STATE_MESSAGE = 'No data to display';

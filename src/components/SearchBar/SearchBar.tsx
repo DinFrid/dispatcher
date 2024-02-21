@@ -32,6 +32,7 @@ const SearchBar = ({dropDownProps, onSearchAction, onSearchInputFieldClick, onDr
         onKeyUp={handleKeyPress}
       />
       <StyledDropdown 
+      label={'Search Dropdown'}
       MenuProps={recentSearchesMenuProps} 
       dropDownType={dropDownProps.dropDownType} 
       dropdownItems={dropDownProps.dropdownItems}

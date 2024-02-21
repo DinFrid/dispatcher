@@ -19,4 +19,5 @@ export type MenuItemStyles = {
 export type MenuItemType = {
     FiltersMenuItemType: MenuItemStyles;
     RecentSearchesMenuItemType: MenuItemStyles;
+    NoneItemType: MenuItemStyles;
 };

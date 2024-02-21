@@ -27,7 +27,8 @@ export const StyledCardContent = styled(CardContent)`
 `;
 
 export const NewsImage = styled(ReactImageFallback)`
-    width: 25%;
+    width: 188px;
+    height: 250px;
     object-fit: cover;
 `;
 

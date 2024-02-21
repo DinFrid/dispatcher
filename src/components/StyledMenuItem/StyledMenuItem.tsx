@@ -13,7 +13,7 @@ export const StyledMenuItem: React.FC<StyledMenuItemProps> = ({ menuItemType,lab
     const styles = menuItemStyles[menuItemType]; 
     return (
         <CustomMenuItem menuitemstyles={styles} value={value} {...props}>
-            {label || props.children}
+            {props.children || label}
         </CustomMenuItem>
     );
 };

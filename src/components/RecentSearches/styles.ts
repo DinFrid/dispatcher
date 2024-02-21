@@ -57,8 +57,8 @@ export const ItemsContainer = styled.div`
 `;
 
 export const ItemWrapper = styled.div `
-  display: 'flex';
-  align-items: 'center'; 
-  justify-content: 'space-between'; 
-  margin-bottom: '4.31px';
+  display: flex;
+  align-items: center; 
+  justify-content: space-between; 
+  margin-bottom: 4.31px;
 `;

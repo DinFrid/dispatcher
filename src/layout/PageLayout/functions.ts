@@ -3,18 +3,7 @@ export const replaceWhiteSpacesAndToLowerCase = (value : string) => {
     return value.replace(/\s/g, '-').toLowerCase();
 }
 
-export const toCamelCase = (value : string) => {
-    return value
-      .split(/[\s-_]+/)
-      .map((word, index) => {
-        if (index === 0) {
-          return word.toLowerCase();
-        } else {
-          return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
-        }
-      })
-      .join('');
-  }
+
 
   export const parseFilters = (filters: Map<string, string>) => {
     let filterString = '';
@@ -47,7 +36,3 @@ export const toCamelCase = (value : string) => {
 
     return filterString;
 };
-
-export const updateChosenFiltersMap = (value : string, label : string, valueIsNone : boolean, updatedChosenFiltersMap : Map<string,string>) => {
-  valueIsNone ? updatedChosenFiltersMap.delete(label) : updatedChosenFiltersMap.set(label, value);
-}

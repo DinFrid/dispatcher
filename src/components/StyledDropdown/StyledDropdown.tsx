@@ -4,8 +4,8 @@ import { CustomDropdown, StyledParagraph, dropDownStyles, menuScrollerStyles, pa
 import { useState } from 'react';
 import { DropdownItem, DropdownType } from './types';
 import { StyledMenuItem } from '../StyledMenuItem/StyledMenuItem';
-import { DropdownTypeToMenuItemTypeConverter } from '../../utils/Enums';
-import { getPlaceholders } from './functions';
+import { DropdownTypeToMenuItemTypeConverter, MenuItemTypeEnum } from '../../utils/Enums';
+import { getPlaceholders, getSelectedLabel } from './functions';
 
 
 export interface StyledDropdownProps extends SelectProps {
@@ -57,15 +57,13 @@ export const StyledDropdown: React.FC<StyledDropdownProps> = ({
         value={value}
         onChange={handleValueChange}
         displayEmpty
-        input={<CustomDropdown dropdownstyles={styles} />}
+        input={<CustomDropdown dropdownstyles={styles} disabled={props.disabled}/>}
         IconComponent={DropdownIconButton}
-        renderValue={(selected) => 
-          (selected === '' || selected === 'none') ? <StyledParagraph>{placeholder}</StyledParagraph> : <StyledParagraph>{selected as string}</StyledParagraph>
-        }
+        renderValue={(selected) => <StyledParagraph>{getSelectedLabel(selected as string,placeholder,dropdownItems)}</StyledParagraph>}
         sx={{
           "&:hover": {
             "&& fieldset": {
-              border: `1px solid ${styles.hoverBackgroundColor || 'none'}`
+              border: `1px solid ${!props.disabled && styles.hoverBackgroundColor || 'none'}`
             }
           },
         }}
@@ -79,7 +77,7 @@ export const StyledDropdown: React.FC<StyledDropdownProps> = ({
       >
 
         {dropDownType !== 'SearchBarDropdown' && (
-          <StyledMenuItem key="none" value="none" menuItemType={menuItemType} label="None">None</StyledMenuItem>
+          <StyledMenuItem key="none" value="none" menuItemType={MenuItemTypeEnum.NoneItemType} label="None">(None)</StyledMenuItem>
         )}
 
         {dropdownItems.map((dropdownItem) => (
