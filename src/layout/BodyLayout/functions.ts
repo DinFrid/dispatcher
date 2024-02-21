@@ -23,9 +23,9 @@ export const disableDependenciesFilters = (selectedFilter : string, disabledFilt
     const filtersToDisable = FILTER_DEPENDENCIES[selectedFilter];
   
     if(filtersToDisable) {
-      for (const filter of filtersToDisable) {
+      filtersToDisable.forEach(filter => {
         updatedDisabledFilters.add(filter);
-      }
+        });
     }
     
     return updatedDisabledFilters;

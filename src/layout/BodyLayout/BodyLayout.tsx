@@ -8,7 +8,6 @@ import { Article } from "./types";
 import { useInView } from "react-intersection-observer";
 import { defaultHeadlinesTitle } from "./consts";
 import { formatDate } from "./functions";
-import EmptyStateSVG from "../EmptyState/BodyEmptyStateSVG";
 import { fetchHeadlines } from "../../API/api";
 
 export interface BodyLayoutProps {
@@ -30,21 +29,7 @@ const BodyLayout:React.FC<BodyLayoutProps> = ({filters, searchScope, searchInput
     useEffect(() => {
         setInitState(isInitState);
     },[isInitState])
-
-
-    //console.log('filters: ',filters)
-
-    // useEffect(() => {
-    //     const trimmedInput = searchInput.trim();
-    //     if (!trimmedInput) {
-    //         setShowEmptyState(true);
-    //         setEmptyStateMessage('Please enter search words.');
-    //     } else {
-    //         setShowEmptyState(false);
-    //     }
-    // }, [searchInput]);
     
-
     const {data, status, hasNextPage, fetchNextPage} = useInfiniteQuery({
         queryKey: ["headlines", {filters,searchScope, searchInput}],
         queryFn: ({ pageParam = 1 }) => fetchHeadlines({ pageParam, searchScope, searchInput, filters }),

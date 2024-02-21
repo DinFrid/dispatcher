@@ -10,13 +10,9 @@ export const getPlaceholders = (dropDownType : string, styles : DropdownStyles, 
 }
 
 export const getSelectedLabel = (selected : string, placeholder : string, dropdownItems : DropdownItem[]) => {
-
-    if (selected === '' || selected === 'none') {
-      return placeholder;
-    } else {
-
-      const selectedItem = dropdownItems.find(item => item.value === selected);
-
-      return selectedItem ? selectedItem.label : selected;
-    }
+  {
+    return selected === '' || selected === 'none'
+      ? placeholder
+      : dropdownItems.find(item => item.value === selected)?.label ?? selected;
+  };
 }
