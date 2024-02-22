@@ -1,4 +1,4 @@
-import { Avatar, Box, useTheme } from "@mui/material";
+import { Avatar, Box, IconButton, useTheme } from "@mui/material";
 import { FC } from "react";
 import SettingsIcon from "./SettingsIcon";
 import NotificationsIcon from "./NotificationsIcon";
@@ -9,8 +9,12 @@ const IconsContainer :FC = () => {
 
     return (
         <IconsWrapper theme={theme}>
-            <SettingsIcon/>
-            <NotificationsIcon/>
+            <IconButton>
+                <SettingsIcon/>
+            </IconButton>
+            <IconButton>
+                <NotificationsIcon/>
+            </IconButton>
             <StyledAvatar theme={theme} >AG</StyledAvatar>
         </IconsWrapper>
 
