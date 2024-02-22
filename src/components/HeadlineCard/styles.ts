@@ -1,7 +1,6 @@
 import { Card, CardContent, Typography } from "@mui/material";
 import styled from "styled-components";
 import { HeadlineTypographyStyles } from "./types";
-import ReactImageFallback from "react-image-fallback";
 
 export const StyledCard = styled(Card)`
 &&{
@@ -12,7 +11,6 @@ export const StyledCard = styled(Card)`
     flex: 1;
     border-radius: 20px !important; 
     box-shadow: 0px 32px 64px 0px #0000000D;
-    margin-bottom: 2%;
     background-color: #FFFFFF;
     height: 250px; 
     }
@@ -30,15 +28,15 @@ export const StyledCardContent = styled(CardContent)`
 }
 `;
 
-export const NewsImage = styled(ReactImageFallback)`
-    width: 188px;
-    height: 250px;
+export const NewsImage = styled.img`
+    width: 245px;
+    height: 245px;
     object-fit: cover;
+    flex: 1;
     
-    ${({ theme }) => theme.breakpoints.up('sm')} {
+    ${({ theme }) => theme.breakpoints.up('md')} {
       width: 188px;
       height: 250px;
-      object-fit: cover;
     }
 `;
 
@@ -53,11 +51,15 @@ export const StyledTypography = styled(Typography)<{ styles: HeadlineTypographyS
   font-size: ${({ styles }) => styles.fontSize };
   font-weight: ${({ styles }) => styles.fontWeight };
   color: ${({ styles }) => styles.color };
-  height: ${({ styles }) => styles.height };
   max-height: ${({ styles}) => styles.maxHeight};
   width: ${({ styles }) => styles.width };
   line-height: ${({ styles }) => styles.lineHeight || 'none' };
   letter-spacing: ${({ styles }) => styles.letterSpacing };
+
+  overflow: hidden;
+  display: '-webkit-box';
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 
   ${({ theme }) => theme.breakpoints.up('sm')} {
         width: calc(100% - 32px);
@@ -68,7 +70,7 @@ export const StyledTypography = styled(Typography)<{ styles: HeadlineTypographyS
 
 export const dateStyles = {
   width:'50%',
-  height:'10%', 
+  maxHeight:'25px', 
   fontFamily: 'Roboto', 
   fontWeight: '400', 
   fontSize: '14px', 
@@ -80,17 +82,17 @@ export const dateStyles = {
 
 export const titleStyles = {
   width:'65%', 
-  height:'fit-content', 
+  maxHeight:'60px', 
   fontFamily: 'Roboto', 
   fontWeight: '700', 
   fontSize: '18px', 
-  lineHeight: '21.09px', 
+  lineHeight: '16.41px', 
   color: '#14142B'
 };
 
 export const sourceStyles = {
   width:'30%', 
-  height:'10%', 
+  maxHeight:'25px', 
   fontFamily: 'Roboto', 
   fontWeight: '400', 
   fontSize: '14px', 
@@ -100,8 +102,7 @@ export const sourceStyles = {
 
 export const contentStyles = {
   width:'100%', 
-  maxHeight:'50px', 
-  height: '50px',
+  maxHeight:'50px',      
   fontFamily: 'Roboto', 
   fontWeight: '400', 
   fontSize: '14px', 

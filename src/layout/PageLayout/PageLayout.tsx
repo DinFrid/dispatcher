@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
 import {PageContainer } from "./styles";
 import Navbar from "../../components/Navbar/Navbar";
-import { parseFilters, replaceWhiteSpacesAndToLowerCase } from "./functions";
+import { disableDependenciesFilters, handleClearFilterSelected, parseFilters, replaceWhiteSpacesAndToLowerCase } from "./functions";
 import { everythingScopeFilters, topHeadlinesScopeFilters } from "../../utils/consts/FiltersGroups";
 import { StyledDropdownProps } from "../../components/StyledDropdown/StyledDropdown";
 import { toCamelCase, updateChosenFiltersMap } from "../FiltersBar/functions";
 import { FiltersBar } from "../FiltersBar/FiltersBar";
 import BodyLayout from "../BodyLayout/BodyLayout";
-import { disableDependenciesFilters, handleClearFilterSelected } from "../BodyLayout/functions";
 import { INITIAL_CHOSEN_FILTERS_MAP } from "../BodyLayout/consts";
 
 interface PageLayoutProps {};
@@ -47,7 +46,8 @@ const PageLayout:React.FC<PageLayoutProps> = () => {
 
         if(valueIsNone) {
             updatedDisabledFilters = handleClearFilterSelected(label,disabledFilters,chosenFiltersMap)
-        }
+            console.log("entered updatedDisabledFilter");
+          }
         else {
             updatedDisabledFilters = disableDependenciesFilters(label,disabledFilters);
         }
@@ -60,7 +60,7 @@ const PageLayout:React.FC<PageLayoutProps> = () => {
         setIsInitState(false);
     }
     
-    const handleSearchDropdownChange = (value : string, label : string) => {
+    const handleSearchDropdownChange = (value : string) => {
         const filtersGroupToSet = value === 'Everything' ? everythingScopeFilters : topHeadlinesScopeFilters;
         
         setFilters(filtersGroupToSet);
@@ -74,9 +74,20 @@ const PageLayout:React.FC<PageLayoutProps> = () => {
 
     return (
         <PageContainer>
-            <Navbar onSearchAction={onSearchAction} handleSearchDropdownChange={handleSearchDropdownChange}/>
-            <FiltersBar dropdowns={filters} searchScope={searchScope} disabledFilters={disabledFilters} onFilterDropdownChange={handleFilterDropdownChange}/>
-            <BodyLayout filters={parseFilters(chosenFiltersMap)} searchScope={searchScope} searchInput={searchInput} isInitState={isInitState}/>
+            <Navbar 
+              onSearchAction={onSearchAction} 
+              handleSearchDropdownChange={handleSearchDropdownChange}/>
+            <FiltersBar 
+              dropdowns={filters} 
+              searchScope={searchScope} 
+              disabledFilters={disabledFilters} 
+              onFilterDropdownChange={handleFilterDropdownChange}
+              onSearchDropdownChange={handleSearchDropdownChange}/>
+            <BodyLayout 
+              filters={parseFilters(chosenFiltersMap)} 
+              searchScope={searchScope} 
+              searchInput={searchInput} 
+              isInitState={isInitState}/>
         </PageContainer>
     );
 };
