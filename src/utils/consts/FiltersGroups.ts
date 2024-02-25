@@ -41,5 +41,40 @@ export const topHeadlinesScopeFilters = [
     }
 ];
 
+export const topHeadlinesScopeMobileFilters = [
+    {
+        label: FilterType.Country,
+        items: countryMenuItems
+    },
+    {
+        label: FilterType.Category,
+        items : categoryMenuItems
+    },
+    {
+        label: FilterType.Sources,
+        items: sourceMenuItems
+    }
+];
+
+export const everythingScopeMobileFilters = [
+    {
+        label: FilterType.SortBy,
+        items: sortByMenuItems
+    },
+    {
+        label: FilterType.Dates,
+    },
+    {
+        label: FilterType.Sources,
+        items: sourceMenuItems
+    },
+    {
+        label: FilterType.Language,
+        items: DropdownTypeEnum.FiltersDropdown,
+    },
+];
+
+
+
 export const searchBarDropDownProps = {dropDownType : DropdownTypeEnum.SearchBarDropdown, label: 'Top Headlines',
          dropdownItems : searchMenuOptions}

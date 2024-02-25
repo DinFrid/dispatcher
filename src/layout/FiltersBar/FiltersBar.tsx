@@ -5,7 +5,8 @@ import { DropdownTypeEnum } from "../../utils/Enums";
 import DateComponent from "../../components/DateComponent/DateComponent";
 import { checkIfDropdownIsDisabled } from "./functions";
 import { useMediaQuery, useTheme } from "@mui/material";
-import SearchScopeButton from "../tablet/FilterIcon/SearchScopeButton";
+import MobileFiltersButton from "../mobile/FilterIcon/MobileFiltersButton";
+import { topHeadlinesScopeMobileFilters } from "../../utils/consts/FiltersGroups";
 
 interface FiltersBarProps {
     dropdowns : StyledDropdownProps[];
@@ -17,12 +18,12 @@ interface FiltersBarProps {
 
 export const FiltersBar:React.FC<FiltersBarProps> = ({dropdowns, searchScope, disabledFilters, onFilterDropdownChange, onSearchDropdownChange }) => {
     const theme = useTheme();
-    const isDesktop = useMediaQuery(theme.breakpoints.up('md'));
+    const isMobile = useMediaQuery(theme.breakpoints.between('xs','sm'));
     
     return(
         <FiltersContainer theme={theme}>
             <FiltersWrapper theme={theme}>
-                {dropdowns.map((dropdown) => {
+                {!isMobile && dropdowns.map((dropdown) => {
                     const isDisabled = checkIfDropdownIsDisabled(dropdown.label, disabledFilters);
 
                     if(dropdown.dropDownType === DropdownTypeEnum.DateDropdown)
@@ -39,8 +40,15 @@ export const FiltersBar:React.FC<FiltersBarProps> = ({dropdowns, searchScope, di
                         );
                     }
                 })}
+                {isMobile && 
+                    <MobileFiltersButton 
+                    onFilterChange={onFilterDropdownChange}
+                    disabledFilters={disabledFilters}
+                    filters={topHeadlinesScopeMobileFilters}
+                    />
+                }
             </FiltersWrapper>
-            {!isDesktop && <SearchScopeButton onSelect={onSearchDropdownChange}/>}
+
         </FiltersContainer>
     );
 };

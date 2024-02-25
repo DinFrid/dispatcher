@@ -5,44 +5,76 @@ import { HeadlineTypographyStyles } from "./types";
 export const StyledCard = styled(Card)`
 &&{
   height: 450px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  border-radius: 20px !important; 
+  box-shadow: 0px 32px 64px 0px #0000000D;
+  background-color: #FFFFFF;
+  margin-left: 16px;
+
+  .css-46bh2p-MuiCardContent-root:last-child {
+    padding: 0px;
+  }
 
   ${({ theme }) => theme.breakpoints.up('sm')} {
-    display: flex;
-    flex: 1;
-    border-radius: 20px !important; 
-    box-shadow: 0px 32px 64px 0px #0000000D;
-    background-color: #FFFFFF;
+    flex-direction: row;
     height: 250px; 
-    }
+    margin-left: 0px
+  }
 }
 `;
 
 export const StyledCardContent = styled(CardContent)`
 &&{
-  padding: 1.5% 1.5% 2.3% 2% !important;
+  gap:10px;
+  
+  margin-top: 8px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 4%;
-  width: 75%;
+  padding: 8px 16px 12px 16px !important; 
+  
+  ${({ theme }) => theme.breakpoints.down('sm')} {
+   height: 250px;
+  }
+
+  ${({ theme }) => theme.breakpoints.up('sm')} {
+   width: 100%;
+  }
+
+  ${({ theme }) => theme.breakpoints.up('md')} {
+    gap: 4%;
+    padding: 1.5% 1.5% 2.3% 2% !important;
+    margin-top: 0px;
+  }
+
 }
 `;
 
 export const NewsImage = styled.img`
+  object-fit: cover;
+  height: 150px;
+
+
+  ${({ theme }) => theme.breakpoints.up('sm')} {
     width: 245px;
     height: 245px;
-    object-fit: cover;
-    flex: 1;
+  }
     
-    ${({ theme }) => theme.breakpoints.up('md')} {
-      width: 188px;
-      height: 250px;
-    }
+  ${({ theme }) => theme.breakpoints.up('md')} {
+    width: 188px;
+    height: 250px;
+  }
 `;
 
 export const ButtonContainer = styled.div `
     align-self: flex-end;
     
+
+    ${({ theme }) => theme.breakpoints.down('sm')} {
+      width: 311px;
+  }
 `;
 
 export const StyledTypography = styled(Typography)<{ styles: HeadlineTypographyStyles }>`
@@ -57,8 +89,8 @@ export const StyledTypography = styled(Typography)<{ styles: HeadlineTypographyS
   letter-spacing: ${({ styles }) => styles.letterSpacing };
 
   overflow: hidden;
-  display: '-webkit-box';
-  -webkit-line-clamp: 2;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
 
   ${({ theme }) => theme.breakpoints.up('sm')} {
@@ -69,7 +101,6 @@ export const StyledTypography = styled(Typography)<{ styles: HeadlineTypographyS
 `;
 
 export const dateStyles = {
-  width:'50%',
   maxHeight:'25px', 
   fontFamily: 'Roboto', 
   fontWeight: '400', 
@@ -81,7 +112,6 @@ export const dateStyles = {
 };
 
 export const titleStyles = {
-  width:'65%', 
   maxHeight:'60px', 
   fontFamily: 'Roboto', 
   fontWeight: '700', 
@@ -91,7 +121,6 @@ export const titleStyles = {
 };
 
 export const sourceStyles = {
-  width:'30%', 
   maxHeight:'25px', 
   fontFamily: 'Roboto', 
   fontWeight: '400', 
@@ -101,7 +130,6 @@ export const sourceStyles = {
 };
 
 export const contentStyles = {
-  width:'100%', 
   maxHeight:'50px',      
   fontFamily: 'Roboto', 
   fontWeight: '400', 

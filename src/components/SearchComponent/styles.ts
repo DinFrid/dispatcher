@@ -5,10 +5,12 @@ export const StyledBox = styled(Box) (({theme}) => ({
 
 
     [theme.breakpoints.up('md')] : {
-        marginLeft: 'calc(12.5% - 25px)'
+      display: 'flex',
+      width: '100%',
+      justifyContent: 'flex-start'
     },
   
-    [theme.breakpoints.up('sm')] : {
-        
+    [theme.breakpoints.between('sm','md')] : {
+        marginLeft : '50px'
     }
   }));

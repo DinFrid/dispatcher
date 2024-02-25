@@ -52,7 +52,7 @@ const HeadlineCard = forwardRef<HTMLDivElement, HeadlineCardProps>(({
         <StyledTypography theme={theme} styles={contentStyles}>
           {content}
         </StyledTypography>
-        <ButtonContainer>
+        <ButtonContainer theme={theme}>
           <StyledButton onClick={onButtonClicked} >
             NAVIGATE TO DISPATCH
           </StyledButton>

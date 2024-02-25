@@ -38,7 +38,7 @@ const PageLayout:React.FC<PageLayoutProps> = () => {
         //console.log("Searched : " + value);
       };
 
-      const handleFilterDropdownChange = (value: string, label: string) => {
+      const handleFilterDropdownChange = (label: string, value: string) => {
         const valueIsNone = value.toLowerCase() === 'none';
         const labelCamelCase = toCamelCase(label);
         const updatedChosenFiltersMap = isFirstFilterChange ? new Map() : new Map(chosenFiltersMap);

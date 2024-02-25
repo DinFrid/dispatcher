@@ -1,21 +1,30 @@
-import { Avatar, Box, IconButton, useTheme } from "@mui/material";
+import { useMediaQuery, useTheme } from "@mui/material";
 import { FC } from "react";
 import SettingsIcon from "./SettingsIcon";
 import NotificationsIcon from "./NotificationsIcon";
-import { IconsWrapper, StyledAvatar } from "./styles";
+import { IconsWrapper, StyledAvatar, StyledIconButton } from "./styles";
+import MobileSearchIcon from "../../mobile/Icons/MobileSearchIcon";
 
 const IconsContainer :FC = () => {
     const theme = useTheme();
+    const isMobile = useMediaQuery(theme.breakpoints.between('xs','sm'));
 
     return (
         <IconsWrapper theme={theme}>
-            <IconButton>
+            
+            {isMobile && 
+            <StyledIconButton>
+                <MobileSearchIcon/>
+            </StyledIconButton>}
+
+            <StyledIconButton>
                 <SettingsIcon/>
-            </IconButton>
-            <IconButton>
+            </StyledIconButton>
+            <StyledIconButton>
                 <NotificationsIcon/>
-            </IconButton>
+            </StyledIconButton>
             <StyledAvatar theme={theme} >AG</StyledAvatar>
+
         </IconsWrapper>
 
     );

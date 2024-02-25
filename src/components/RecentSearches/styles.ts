@@ -3,6 +3,8 @@ import styled from "styled-components";
 import RemoveIcon from "../../images/RemoveIcon";
 
 export const CustomRecentSearches = styled(Card)`
+    display: flex;
+    flex-direction: column;
     width: 424px;
     height: 132px;
     flex-shrink: 0;
@@ -12,6 +14,13 @@ export const CustomRecentSearches = styled(Card)`
     margin-top: 6px;
     position: absolute;
     z-index: 1000;
+
+    ${({ theme }) => theme.breakpoints.up('md')} {
+
+    margin-top: 55px;
+  }
+
+    
 `;
 
 export const CustomTypography = styled(Typography)`

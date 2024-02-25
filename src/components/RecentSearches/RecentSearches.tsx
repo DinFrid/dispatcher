@@ -1,4 +1,4 @@
-import { IconButton } from "@mui/material";
+import { IconButton, useTheme } from "@mui/material";
 import { StyledMenuItem } from "../StyledMenuItem/StyledMenuItem";
 import { MenuItemTypeEnum } from "../../utils/Enums";
 import { CustomRecentSearches, CustomTypography, ItemWrapper, ItemsContainer, StyledClearButton, StyledRemoveIcon } from "./styles";
@@ -11,13 +11,15 @@ export interface RecentSearchesProps {
 }
 
 export const RecentSearches: React.FC<RecentSearchesProps> = ({ options, onRemove,onClear,onClick, ...props }) => {
+  const theme = useTheme();
+  
   const handleItemClick = (option: string) => () => {
     onClick(option);
   };
   
   
   return (
-    <CustomRecentSearches {...props}>
+    <CustomRecentSearches {...props} theme={theme}>
       <div style={{justifyContent: 'space-between',
           alignItems: 'center',
           display: 'flex',

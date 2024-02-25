@@ -4,6 +4,7 @@ export const HeadlinesContainer = styled.div `
     flex: 1;
     overflow-y: auto;
     margin-bottom: 24px;
+    margin-right: 1%;
     
     ${({ theme }) => theme.breakpoints.up('md')} {
         margin-right: 15px;

@@ -25,7 +25,7 @@ export const HeadlinesTitle = styled(Typography)<{titlestyles : TypographyStyle}
 
     ${({ theme }) => theme.breakpoints.down('md')} {
         width: 95%;
-        margin: 12px 0;
+        margin: 12px 0px 12px 18px;
     }
 }
 `;

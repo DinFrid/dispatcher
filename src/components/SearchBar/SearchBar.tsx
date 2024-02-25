@@ -34,7 +34,7 @@ const SearchBar = ({dropDownProps, onSearchAction, onSearchInputFieldClick, onDr
         onClick={onSearchInputFieldClick}
         onKeyUp={handleKeyPress}
       />
-      {isDesktop && 
+
         <StyledDropdown 
         label={'Search Dropdown'}
         MenuProps={recentSearchesMenuProps} 
@@ -42,7 +42,7 @@ const SearchBar = ({dropDownProps, onSearchAction, onSearchInputFieldClick, onDr
         dropdownItems={dropDownProps.dropdownItems}
         onDropdownChange={onDropdownChange}
         /> 
-      }
+
     </SearchBarCard>
   );
 }

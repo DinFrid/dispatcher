@@ -86,8 +86,10 @@ export const CustomDropdown = styled(Select)<{dropdownstyles : DropdownStyles; d
     border-left: ${({ dropdownstyles }) => dropdownstyles.borderLeft || 'none'};
     cursor: ${({ disabled }) => (disabled ? 'normal' : 'pointer')};
 
-    ${({ theme }) => theme.breakpoints.down('md')} {
+    ${({ theme }) => theme.breakpoints.between('xs','md')} {
         height: 44px;
+        font-size: 16px;
+        max-width: none;
     }
   };
 
