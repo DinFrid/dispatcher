@@ -42,10 +42,17 @@ const PieGraph: React.FC<PieGraphProps> = ({ data, title, label, isEmptyState, e
             <Cell style={{outline: 'none'}} key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
           ))}
         </Pie>
-       <text style={{width: '26px', height: '16px', fontFamily: 'Roboto', fontWeight: '400', fontSize: '12px', lineHeight: '16px'}}
+      
+       <text style={{width: '26px', height: '16px', fontFamily: 'Roboto', fontWeight: '500', fontSize: '12px', lineHeight: '16px'}}
             x="50%" y="24%" color='black' textAnchor="middle" dominantBaseline="middle">
                 {label}
             </text>
+
+        <text style={{width: '26px', height: '16px', fontFamily: 'Roboto', fontWeight: '500', fontSize: '12px', lineHeight: '16px'}}
+            x="50%" y="29%" color='black' textAnchor="middle" dominantBaseline="middle">
+                Results
+        </text>
+
         <Legend formatter={renderLegend} align='left' iconType='circle' iconSize={5} />
       </PieChart> : (
         <>

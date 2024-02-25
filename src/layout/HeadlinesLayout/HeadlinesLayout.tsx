@@ -1,8 +1,8 @@
 import React, { ForwardedRef } from "react";
 import HeadlineCard, { HeadlineCardProps } from '../../components/HeadlineCard/HeadlineCard'
 import { HeadlinesBody, HeadlinesContainer } from './styles'
-import EmptyStateSVG from "../EmptyState/BodyEmptyStateSVG";
 import BodyEmptyState from "../EmptyState/BodyEmptyState";
+import { useTheme } from "@mui/material";
 
 export interface HeadLinesLayoutProps {
     headlines : HeadlineCardProps[];
@@ -11,9 +11,11 @@ export interface HeadLinesLayoutProps {
 }
 
 const HeadlinesLayout = React.forwardRef(({headlines, isEmptyState, emptyStateMessage} : HeadLinesLayoutProps, ref: ForwardedRef<HTMLDivElement>) => {
+  const theme = useTheme();
+  
   return (
-    <HeadlinesContainer>
-      <HeadlinesBody>
+    <HeadlinesContainer theme={theme}>
+      <HeadlinesBody >
         {!isEmptyState ? headlines.map((headline, index) => {
 
           const isLastHeadline = index === headlines.length - 1;

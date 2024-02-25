@@ -1,14 +1,20 @@
 import styled from "styled-components";
 
 export const HeadlinesContainer = styled.div `
-    width: 71%;
-    gap: 24px;
+    flex: 1;
     overflow-y: auto;
     margin-bottom: 24px;
+    margin-right: 1%;
+    
+    ${({ theme }) => theme.breakpoints.up('md')} {
+        margin-right: 15px;
+    }
 `;
 
 export const HeadlinesBody = styled.div `
-    width: 99%;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
     gap: 24px;
-    margin-bottom: 24px;
+    margin-right: 15px;
 `;

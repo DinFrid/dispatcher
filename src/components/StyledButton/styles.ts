@@ -21,5 +21,16 @@ export const CustomStyledButton = styled(Button)`
     &:active {
       box-shadow: none; 
     }
+
+    ${({ theme }) => theme.breakpoints.down('sm')} {
+      padding: 5px 0px 5px 20px;
   }
+  }
+`;
+
+export const StyledImg = styled.img `
+  ${({ theme }) => theme.breakpoints.down('sm')} {
+    margin-left: 15px;
+  }
+   
 `;

@@ -29,89 +29,86 @@ export const mockedRecentSearchesOptions =  [
   export const langMenuItems = [
     {
       value: 'ar',
-      label: 'ar'
+      label: 'Arabic'
     },
     {
       value: 'de',
-      label: 'de'
+      label: 'German'
     },
     {
       value: 'en',
-      label: 'en'
+      label: 'English'
     },
     {
       value: 'es',
-      label: 'es'
+      label: 'Spanish'
     },
     {
       value: 'fr',
-      label: 'fr'
+      label: 'French'
     },
     {
       value: 'he',
-      label: 'he'
+      label: 'Hebrew'
     },
     {
       value: 'it',
-      label: 'it'
-      },
+      label: 'Italian'
+    },
     {
       value: 'nl',
-      label: 'nl'
+      label: 'Dutch'
     },
     {
       value: 'no',
-      label: 'no'
+      label: 'Norwegian'
     },
     {
       value: 'pt',
-      label: 'pt'
+      label: 'Portuguese'
     },
     {
       value: 'ru',
-      label: 'ru'
+      label: 'Russian'
     },
     {
       value: 'sv',
-      label: 'sv'
-    },
-    {
-      value: 'ud',
-      label: 'ud'
+      label: 'Swedish'
     },
     {
       value: 'zh',
-      label: 'zh'
+      label: 'Chinese'
     },
-  ];
+];
+
 
   export const categoryMenuItems = [
     {
-        label: 'business',
+        label: 'Business',
         value: 'Business'
     },
     {
-        label: 'entertainment',
+        label: 'Entertainment',
         value: 'Entertainment'
     },
     {
-        label: 'general',
+        label: 'General',
         value: 'General'
     },
     {
-        label: 'health',
+        label: 'Health',
         value: 'Health'
     },
     {
-        label: 'science',
+        label: 'Science',
         value: 'Science'
     },
     {
-        label: 'sports',
+        label: 'Sports',
         value: 'Sports'
     },
     {
-        label: 'technology',
+        label: 'Technology',
         value: 'Technology'
     }
   ];
@@ -1324,5 +1321,5 @@ export const mockedRecentSearchesOptions =  [
 
 export const sourceMenuItems = sources.map(source => ({
     value: source.name.replace(/\s/g, '-').replace(/\(/g, '').replace(/\)/g, '').toLowerCase(),
-    label: source.name.replace(/\s/g, '-').toLowerCase(),
+    label: source.name.replace(/\s/g, '-'),
 }));

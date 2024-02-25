@@ -1,40 +1,80 @@
 import { Card, CardContent, Typography } from "@mui/material";
 import styled from "styled-components";
 import { HeadlineTypographyStyles } from "./types";
-import ReactImageFallback from "react-image-fallback";
 
 export const StyledCard = styled(Card)`
 &&{
+  height: 450px;
   display: flex;
-  width: 99%;
+  flex-direction: column;
+  flex: 1;
   border-radius: 20px !important; 
   box-shadow: 0px 32px 64px 0px #0000000D;
-  margin-bottom: 2%;
   background-color: #FFFFFF;
-  height: 250px; //Should be 20%
+  margin-left: 16px;
+
+  .css-46bh2p-MuiCardContent-root:last-child {
+    padding: 0px;
+  }
+
+  ${({ theme }) => theme.breakpoints.up('sm')} {
+    flex-direction: row;
+    height: 250px; 
+    margin-left: 0px
+  }
 }
 `;
 
 export const StyledCardContent = styled(CardContent)`
 &&{
-  padding: 1.5% 1.5% 2.3% 2% !important;
+  gap:10px;
+  
+  margin-top: 8px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 4%;
-  width: 75%;
+  padding: 8px 16px 12px 16px !important; 
+  
+  ${({ theme }) => theme.breakpoints.down('sm')} {
+   height: 250px;
+  }
+
+  ${({ theme }) => theme.breakpoints.up('sm')} {
+   width: 100%;
+  }
+
+  ${({ theme }) => theme.breakpoints.up('md')} {
+    gap: 4%;
+    padding: 1.5% 1.5% 2.3% 2% !important;
+    margin-top: 0px;
+  }
+
 }
 `;
 
-export const NewsImage = styled(ReactImageFallback)`
+export const NewsImage = styled.img`
+  object-fit: cover;
+  height: 150px;
+
+
+  ${({ theme }) => theme.breakpoints.up('sm')} {
+    width: 245px;
+    height: 245px;
+  }
+    
+  ${({ theme }) => theme.breakpoints.up('md')} {
     width: 188px;
     height: 250px;
-    object-fit: cover;
+  }
 `;
 
 export const ButtonContainer = styled.div `
     align-self: flex-end;
     
+
+    ${({ theme }) => theme.breakpoints.down('sm')} {
+      width: 311px;
+  }
 `;
 
 export const StyledTypography = styled(Typography)<{ styles: HeadlineTypographyStyles }>`
@@ -43,39 +83,45 @@ export const StyledTypography = styled(Typography)<{ styles: HeadlineTypographyS
   font-size: ${({ styles }) => styles.fontSize };
   font-weight: ${({ styles }) => styles.fontWeight };
   color: ${({ styles }) => styles.color };
-  height: ${({ styles }) => styles.height };
   max-height: ${({ styles}) => styles.maxHeight};
   width: ${({ styles }) => styles.width };
   line-height: ${({ styles }) => styles.lineHeight || 'none' };
   letter-spacing: ${({ styles }) => styles.letterSpacing };
 
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+
+  ${({ theme }) => theme.breakpoints.up('sm')} {
+        width: calc(100% - 32px);
+    }
+
 }
 `;
 
 export const dateStyles = {
-  width:'50%',
-  height:'10%', 
+  maxHeight:'25px', 
   fontFamily: 'Roboto', 
   fontWeight: '400', 
   fontSize: '14px', 
   lineHeight: '22px', 
   letterSpacing: '0.25px', 
   color: '#5A5A8980'
+  
 };
 
 export const titleStyles = {
-  width:'65%', 
-  height:'fit-content', 
+  maxHeight:'60px', 
   fontFamily: 'Roboto', 
   fontWeight: '700', 
   fontSize: '18px', 
-  lineHeight: '21.09px', 
+  lineHeight: '16.41px', 
   color: '#14142B'
 };
 
 export const sourceStyles = {
-  width:'30%', 
-  height:'10%', 
+  maxHeight:'25px', 
   fontFamily: 'Roboto', 
   fontWeight: '400', 
   fontSize: '14px', 
@@ -84,9 +130,7 @@ export const sourceStyles = {
 };
 
 export const contentStyles = {
-  width:'100%', 
-  maxHeight:'50px', 
-  height: '50px',
+  maxHeight:'50px',      
   fontFamily: 'Roboto', 
   fontWeight: '400', 
   fontSize: '14px', 

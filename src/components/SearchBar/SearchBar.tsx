@@ -1,3 +1,4 @@
+import { useMediaQuery, useTheme } from '@mui/material';
 import SearchImg from '../../images/SearchIcon.svg';
 import StyledDropdown, { StyledDropdownProps } from '../StyledDropdown/StyledDropdown';
 import { SearchBarCard, SearchIconWrapper, StyledInputBase, recentSearchesMenuProps } from './styles';
@@ -10,6 +11,8 @@ export interface SearchBarProps{
 }
 
 const SearchBar = ({dropDownProps, onSearchAction, onSearchInputFieldClick, onDropdownChange} : SearchBarProps) => {
+  const theme = useTheme();
+  const isDesktop = useMediaQuery(theme.breakpoints.up('md'));
 
   const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
 
@@ -31,13 +34,15 @@ const SearchBar = ({dropDownProps, onSearchAction, onSearchInputFieldClick, onDr
         onClick={onSearchInputFieldClick}
         onKeyUp={handleKeyPress}
       />
-      <StyledDropdown 
-      label={'Search Dropdown'}
-      MenuProps={recentSearchesMenuProps} 
-      dropDownType={dropDownProps.dropDownType} 
-      dropdownItems={dropDownProps.dropdownItems}
-      onDropdownChange={onDropdownChange}
-      />
+
+        <StyledDropdown 
+        label={'Search Dropdown'}
+        MenuProps={recentSearchesMenuProps} 
+        dropDownType={dropDownProps.dropDownType} 
+        dropdownItems={dropDownProps.dropdownItems}
+        onDropdownChange={onDropdownChange}
+        /> 
+
     </SearchBarCard>
   );
 }

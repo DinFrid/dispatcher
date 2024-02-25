@@ -1,6 +1,6 @@
 export type HeadlineTypographyStyles = {
-    width: string;
-    height: string;
+    width?: string;
+    height?: string;
     fontFamily: string;
     fontWeight: string;
     fontSize: string;

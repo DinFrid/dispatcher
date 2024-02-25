@@ -5,12 +5,14 @@ import { StyledDatePicker } from './styles';
 import { DatePickerProps } from 'rsuite';
 import { DateRange } from 'rsuite/esm/DateRangePicker';
 import { datesLabel, formatDate } from './consts';
+import { useTheme } from '@mui/material';
 
 export interface DateComponentProps extends DatePickerProps {
   onDateChange : (value : string, label : string) => void;
 };
 
 const DateComponent: React.FC<DateComponentProps> = ({onDateChange}) => {
+  const theme = useTheme();
 
   const handleDateChange = (value: DateRange | null) => {
     
@@ -28,7 +30,7 @@ const DateComponent: React.FC<DateComponentProps> = ({onDateChange}) => {
   };
 
   return (
-    <StyledDatePicker 
+    <StyledDatePicker theme={theme} 
      showOneCalendar
      showHeader={false}
      format="yy/MM/dd"

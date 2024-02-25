@@ -5,6 +5,9 @@ import useOutsideClick from './useOutsideClick';
 import { searchBarDropDownProps } from '../../utils/consts/FiltersGroups';
 import { LOCAL_STORAGE_RECENT_SEARCHES_KEY } from '../RecentSearches/consts';
 import { checkIfRecentSearchesExceeds, checkIfValueIsNotEmpty, clearRecentSearchesFromLocalStorage, fetchRecentSearchesFromLocalStorage, removeDuplicatedValues, removeValueFromRecentSearchesArrayAndReturnUpdated, truncateRecentSearches } from './functions';
+import { useMediaQuery, useTheme } from '@mui/material';
+import { StyledBox } from './styles';
+import { EMPTY_ARRAY } from './consts';
 
 export interface SearchComponentProps {
     onSearchAction : (value : string) => void;
@@ -15,6 +18,8 @@ const SearchComponent = ({ onSearchAction, onDropdownChange} : SearchComponentPr
     const [recentSearchesOpen, setRecentSearchesOpen] = useState(false);
     const recentSearchesRef = useRef(null);
     const [recentSearchesHistory, setRecentSearchesHistory] = useState(new Array<string>);
+    const theme = useTheme();
+    const isMobile = useMediaQuery(theme.breakpoints.between('xs','sm'));
 
     useEffect(() => {
         const currentRecentSearches = fetchRecentSearchesFromLocalStorage();
@@ -65,17 +70,20 @@ const SearchComponent = ({ onSearchAction, onDropdownChange} : SearchComponentPr
 
     const handleClearButtonClicked = () => {
         clearRecentSearchesFromLocalStorage();
-        updateAndInsertRecentSearchesToLocalStorage([]);
+        updateAndInsertRecentSearchesToLocalStorage(EMPTY_ARRAY);
     }
     
     return (
-        <div ref={recentSearchesRef} style={{marginLeft: 'calc(12.5% - 78px)'}}>
+        <StyledBox theme={theme} ref={recentSearchesRef}>
+            {!isMobile && 
             <SearchBar
-            dropDownProps={searchBarDropDownProps}
-            onSearchInputFieldClick={handleSearchInputFieldClick} 
-            onSearchAction={handleSearchAction}
-            onDropdownChange={onDropdownChange}
+                dropDownProps={searchBarDropDownProps}
+                onSearchInputFieldClick={handleSearchInputFieldClick} 
+                onSearchAction={handleSearchAction}
+                onDropdownChange={onDropdownChange}
             />
+            }
+            
             {recentSearchesOpen && 
                 <RecentSearches onClick={handleSearchAction}
                     onRemove={handleRemoveButtonClicked} 
@@ -83,7 +91,7 @@ const SearchComponent = ({ onSearchAction, onDropdownChange} : SearchComponentPr
                     options={recentSearchesHistory}
                 />
             }
-        </div>
+        </StyledBox>
     );
 };
 

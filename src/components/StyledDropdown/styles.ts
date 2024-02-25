@@ -1,4 +1,4 @@
-import { Select } from "@mui/material";
+import { IconButton, Select } from "@mui/material";
 import styled from "styled-components";
 import { DropdownStyles, DropdownType } from "./types";
 
@@ -72,8 +72,8 @@ export const CustomDropdown = styled(Select)<{dropdownstyles : DropdownStyles; d
     font-style: normal;
     padding: ${({ dropdownstyles }) => dropdownstyles.padding || '11.5px 5px'};
     border-radius: ${({ dropdownstyles }) => dropdownstyles.borderRadius || '10px'};
-    background-color: ${({ dropdownstyles }) => dropdownstyles.backgroundColor || '#FFF'};
-    color: ${({ dropdownstyles }) => dropdownstyles.color || '#5A5A89'};
+    background-color: ${({ dropdownstyles, disabled }) => disabled ? '#E3E3E3' : dropdownstyles.backgroundColor || '#FFF'};
+    color: ${({ dropdownstyles, disabled }) => disabled ? '#808080' : dropdownstyles.color || '#5A5A89'};
     font-size: ${({ dropdownstyles }) => dropdownstyles.fontSize || '14px'};
     font-style: ${({ dropdownstyles }) => dropdownstyles.fontStyle || 'normal'};
     line-height: ${({ dropdownstyles }) => dropdownstyles.lineHeight || '22px'};
@@ -85,6 +85,12 @@ export const CustomDropdown = styled(Select)<{dropdownstyles : DropdownStyles; d
     width: ${({ dropdownstyles }) => dropdownstyles.width || 'none'};
     border-left: ${({ dropdownstyles }) => dropdownstyles.borderLeft || 'none'};
     cursor: ${({ disabled }) => (disabled ? 'normal' : 'pointer')};
+
+    ${({ theme }) => theme.breakpoints.between('xs','md')} {
+        height: 44px;
+        font-size: 16px;
+        max-width: none;
+    }
   };
 
     .MuiSelect-icon {
@@ -92,12 +98,19 @@ export const CustomDropdown = styled(Select)<{dropdownstyles : DropdownStyles; d
     }
 
     .css-78trlr-MuiButtonBase-root-MuiIconButton-root:hover{
-        background-color: #FFF;
+        background-color: transparent;
     }
+
+    .css-78trlr-MuiButtonBase-root-MuiIconButton-root{
+      color : ${({ disabled}) => disabled ? 'transparent' : 'rgba(0, 0, 0, 0.54)'};
+
+    }
+    
 
     .MuiOutlinedInput-notchedOutline:not(:hover) {
       border: none; 
     }
+    
 
     .css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input.css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input.css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input{
         padding: 0px;
@@ -133,4 +146,11 @@ export const CustomDropdown = styled(Select)<{dropdownstyles : DropdownStyles; d
     paddingLeft: '0px',
     height: '120px',
     boxShadow: '0px 4px 12px 0px #00000014'
-  }
+  };
+
+  export const StyledIconButton = styled(IconButton)<{disabled : boolean, styles : DropdownStyles}>`
+    &&{
+    cursor : ${({ disabled }) => disabled ? 'default' : 'pointer'};
+    padding : ${({ styles}) => styles.iconPadding || '8px'};
+    }
+  `;

@@ -1,7 +1,6 @@
 import { DEFAULT_PAGE_SIZE } from "../layout/BodyLayout/consts";
 import axios from 'axios';
 import { apiKeys, keyIndex } from "../utils/APIkeys";
-import { PARAMETERS_MISSING } from "./consts";
 
 export interface FetchHeadlinesParams {
     pageParam: number;

@@ -1,11 +1,11 @@
-import { FormControl, IconButton, Select, SelectChangeEvent, SelectProps } from '@mui/material';
-import DropdownArrow from '../../images/dropdown.svg';
-import { CustomDropdown, StyledParagraph, dropDownStyles, menuScrollerStyles, paperPropsStyles } from './styles';
+import { FormControl, Select, SelectChangeEvent, SelectProps, useTheme } from '@mui/material';
+import { CustomDropdown, StyledIconButton, StyledParagraph, dropDownStyles, menuScrollerStyles, paperPropsStyles } from './styles';
 import { useState } from 'react';
 import { DropdownItem, DropdownType } from './types';
 import { StyledMenuItem } from '../StyledMenuItem/StyledMenuItem';
 import { DropdownTypeToMenuItemTypeConverter, MenuItemTypeEnum } from '../../utils/Enums';
 import { getPlaceholders, getSelectedLabel } from './functions';
+import DropdownArrowIcon from '../../images/DropdownArrowIcon';
 
 
 export interface StyledDropdownProps extends SelectProps {
@@ -27,6 +27,7 @@ export const StyledDropdown: React.FC<StyledDropdownProps> = ({
   const styles = dropDownStyles[dropDownType];
   const menuItemType = DropdownTypeToMenuItemTypeConverter[dropDownType];
   const placeholder = getPlaceholders(dropDownType,styles,label);
+  const theme = useTheme();
 
   const handleValueChange = (event: SelectChangeEvent<unknown>) => {
     const newValue = event.target.value as string; 
@@ -43,9 +44,9 @@ export const StyledDropdown: React.FC<StyledDropdownProps> = ({
   };
 
   const DropdownIconButton = () => (
-    <IconButton style={{padding: `${styles.iconPadding || '8px'}`}} onClick={handleOpen}>
-      <img src={DropdownArrow} alt="Dropdown Arrow" />
-    </IconButton>
+    <StyledIconButton disabled={props.disabled ?? false} styles={styles} onClick={handleOpen}>
+      <DropdownArrowIcon color={props.disabled ? '#808080' : '#5A5A89'}/>
+    </StyledIconButton>
   );
 
   return (
@@ -57,7 +58,7 @@ export const StyledDropdown: React.FC<StyledDropdownProps> = ({
         value={value}
         onChange={handleValueChange}
         displayEmpty
-        input={<CustomDropdown dropdownstyles={styles} disabled={props.disabled}/>}
+        input={<CustomDropdown theme={theme} dropdownstyles={styles} disabled={props.disabled}/>}
         IconComponent={DropdownIconButton}
         renderValue={(selected) => <StyledParagraph>{getSelectedLabel(selected as string,placeholder,dropdownItems)}</StyledParagraph>}
         sx={{

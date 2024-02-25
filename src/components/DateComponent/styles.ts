@@ -9,6 +9,10 @@ export const StyledDatePicker = styled(DateRangePicker)` &&{
     justify-content: space-between;
     align-items: center;
 
+    ${({ theme }) => theme.breakpoints.up('sm')} {
+        height: 44px 
+      }
+
   ::-webkit-input-placeholder { 
     color: #5A5A89;
   }
@@ -24,6 +28,10 @@ export const StyledDatePicker = styled(DateRangePicker)` &&{
       font-weight: 400;
       line-height: 22px;
       letter-spacing: 0.25px;
+      
+      ${({ theme }) => theme.breakpoints.up('sm')} {
+        height: 44px 
+      }
       
       .rs-input-group-addon {
         color: #5A5A89;

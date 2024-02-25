@@ -9,6 +9,7 @@ import { useInView } from "react-intersection-observer";
 import { defaultHeadlinesTitle } from "./consts";
 import { formatDate } from "./functions";
 import { fetchHeadlines } from "../../API/api";
+import { useMediaQuery, useTheme } from "@mui/material";
 
 export interface BodyLayoutProps {
     filters : string;
@@ -25,6 +26,8 @@ const BodyLayout:React.FC<BodyLayoutProps> = ({filters, searchScope, searchInput
     const [emptyStateMessage, setEmptyStateMessage] = useState('We couldn’t find any matches for your query');
     const [initState, setInitState] = useState(true);
     const { ref, inView } = useInView();
+    const theme = useTheme();
+    const isDesktop = useMediaQuery(theme.breakpoints.up('md'));
 
     useEffect(() => {
         setInitState(isInitState);
@@ -83,9 +86,9 @@ const BodyLayout:React.FC<BodyLayoutProps> = ({filters, searchScope, searchInput
 
 
     return (
-        <BodyContainer>
-                    <HeadlinesTitle titlestyles={titleStyles}>{headlinesTitle}</HeadlinesTitle>
-                    <DataLayout>
+        <BodyContainer theme={theme}>
+                    <HeadlinesTitle theme={theme} titlestyles={titleStyles}>{headlinesTitle}</HeadlinesTitle>
+                    <DataLayout theme={theme}>
                         <HeadlinesLayout headlines={headlines} ref={ref} isEmptyState={showEmptyState} emptyStateMessage={emptyStateMessage}/>
                         <GraphsLayout 
                             headlines={headlines}
