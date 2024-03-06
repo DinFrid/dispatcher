@@ -1,4 +1,4 @@
-import { Box, IconButton } from "@mui/material";
+import { Box } from "@mui/material";
 import styled from "styled-components";
 
 export const StyledNavbar = styled(Box) (({theme}) => ({
@@ -21,14 +21,14 @@ export const StyledNavbar = styled(Box) (({theme}) => ({
 
 export const StyledBox = styled(Box) (({theme}) => ({
   display: 'flex',
-  
+  width: '100%',
 
-  [theme.breakpoints.up('sm')] : {
+
+  [theme.breakpoints.down('sm')] : {
     justifyContent: 'space-between',
   },
 
   [theme.breakpoints.up('md')] : {
-    width: '100%',
   },
 }));
 
@@ -45,21 +45,8 @@ export const ImageWrapper = styled(Box) `
   display: flex;
   
   ${({ theme }) => theme.breakpoints.up('md')} {
-
+      
       width: 14.5%;
   }
   
-`;
-
-export const IconsWrapper = styled(Box) `
-  display: flex;
-  align-items: center;
-  margin-right: 16px;
-
-`;
-
-export const StyledIconButton = styled(IconButton) `
-  && {
-    padding: 0;
-  }
 `;

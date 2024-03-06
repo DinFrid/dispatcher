@@ -61,16 +61,16 @@ export const everythingScopeMobileFilters = [
         label: FilterType.SortBy,
         items: sortByMenuItems
     },
-    {
-        label: FilterType.Dates,
-    },
+    // {
+    //     label: FilterType.Dates,
+    // },
     {
         label: FilterType.Sources,
         items: sourceMenuItems
     },
     {
         label: FilterType.Language,
-        items: DropdownTypeEnum.FiltersDropdown,
+        items: langMenuItems,
     },
 ];
 

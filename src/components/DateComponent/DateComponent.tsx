@@ -21,11 +21,11 @@ const DateComponent: React.FC<DateComponentProps> = ({onDateChange}) => {
       const startDateString = formatDate(start);
       const endDateString = formatDate(end);
 
-      onDateChange(`${startDateString},${endDateString}`, datesLabel);
+      onDateChange(datesLabel, `${startDateString},${endDateString}`);
 
     } else {
       
-      onDateChange("none", datesLabel);
+      onDateChange(datesLabel, "none");
     }
   };
 

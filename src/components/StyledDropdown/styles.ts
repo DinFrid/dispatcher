@@ -105,6 +105,10 @@ export const CustomDropdown = styled(Select)<{dropdownstyles : DropdownStyles; d
       color : ${({ disabled}) => disabled ? 'transparent' : 'rgba(0, 0, 0, 0.54)'};
 
     }
+
+    .MuiPaper-root .MuiPaper-elevation .MuiPaper-rounded .MuiPaper-elevation8 .MuiPopover-paper .MuiMenu-paper .MuiMenu-paper .css-3dzjca-MuiPaper-root-MuiPopover-paper-MuiMenu-paper{
+      width: 150px;
+    }
     
 
     .MuiOutlinedInput-notchedOutline:not(:hover) {
@@ -143,6 +147,14 @@ export const CustomDropdown = styled(Select)<{dropdownstyles : DropdownStyles; d
   export const paperPropsStyles = {
     marginTop: '6px',
     minWidth: '175px',
+    paddingLeft: '0px',
+    height: '120px',
+    boxShadow: '0px 4px 12px 0px #00000014'
+  };
+
+  export const mobilePaperPropsStyles = {
+    marginTop: '6px',
+    minWidth: '150px',
     paddingLeft: '0px',
     height: '120px',
     boxShadow: '0px 4px 12px 0px #00000014'

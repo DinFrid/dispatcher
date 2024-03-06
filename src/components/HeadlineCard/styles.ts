@@ -28,7 +28,6 @@ export const StyledCard = styled(Card)`
 export const StyledCardContent = styled(CardContent)`
 &&{
   gap:10px;
-  
   margin-top: 8px;
   display: flex;
   flex-direction: column;
@@ -40,7 +39,8 @@ export const StyledCardContent = styled(CardContent)`
   }
 
   ${({ theme }) => theme.breakpoints.up('sm')} {
-   width: 100%;
+    width: 100%;
+
   }
 
   ${({ theme }) => theme.breakpoints.up('md')} {
@@ -48,13 +48,17 @@ export const StyledCardContent = styled(CardContent)`
     padding: 1.5% 1.5% 2.3% 2% !important;
     margin-top: 0px;
   }
-
 }
 `;
 
-export const NewsImage = styled.img`
+export const NewsImage = styled.img<{ isfallback: string}>`
   object-fit: cover;
   height: 150px;
+
+  ${(props) => (props.isfallback === 'true') && `
+    display: block;
+    margin: 0 auto; 
+  `}
 
 
   ${({ theme }) => theme.breakpoints.up('sm')} {
@@ -94,7 +98,7 @@ export const StyledTypography = styled(Typography)<{ styles: HeadlineTypographyS
   -webkit-box-orient: vertical;
 
   ${({ theme }) => theme.breakpoints.up('sm')} {
-        width: calc(100% - 32px);
+        width: 100%;
     }
 
 }

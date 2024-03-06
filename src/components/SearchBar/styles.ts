@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Card, InputBase } from "@mui/material";
+import { Card, IconButton, InputBase } from "@mui/material";
 
 export const recentSearchesMenuProps = {
   PaperProps: {
@@ -12,7 +12,7 @@ export const recentSearchesMenuProps = {
   }
 };
 
-export const SearchIconWrapper = styled('div')`
+export const SearchIconWrapper = styled(IconButton)`
   position: absolute;
   pointer-events: none;
   display: flex;
@@ -22,16 +22,21 @@ export const SearchIconWrapper = styled('div')`
 `;
 
 export const SearchBarCard = styled(Card)`
-&&{
+  && {
     display: flex;
-    align-items: center; 
-    justify-content: space-between; 
-    width: 424px;
+    align-items: center;
+    justify-content: space-between;
     height: 50px;
+    width: 280px;
     border-radius: 10px;
     box-shadow: none;
-}
+
+    ${({ theme }) => theme.breakpoints.up('sm')} {
+      width: 424px;
+    }
+  }
 `;
+
 
 
 export const StyledInputBase = styled(InputBase)`
@@ -40,6 +45,6 @@ flex-grow: 1;
 
 .MuiInputBase-input {
   width: calc(100% - 64px);
-  margin-left: 55px;
+  margin-left: 10px;
 }
 `;

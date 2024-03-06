@@ -18,8 +18,7 @@ export const FiltersContainer = styled.div`
         box-shadow: 0px 32px 64px 0px #0000000D;
         justify-content: space-between;
         padding: 8px 0;
-        margin-right: none;
-    }
+        margin-right: none;    }
 
     ${({ theme }) => theme.breakpoints.up('md')} {
         height: 67px;
@@ -48,8 +47,24 @@ export const FiltersIconWrapper = styled(Box)`
 
 export const FiltersWrapper = styled(Box)`
     display: flex;
+
+    ${({ theme }) => theme.breakpoints.down('sm')} {
+        justify-content: space-between;
+        width: 100%;
+    }
     
     ${({ theme }) => theme.breakpoints.up('sm')} {
         gap: 10px;
     }
+
+    ${({ theme }) => theme.breakpoints.between('sm','md')} {
+        margin-left: 30px;
+    }
 `;
+
+export const StyledDiv = styled.div `
+    margin-left: 10px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+`

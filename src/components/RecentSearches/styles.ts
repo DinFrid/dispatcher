@@ -15,7 +15,7 @@ export const CustomRecentSearches = styled(Card)`
     position: absolute;
     z-index: 1000;
 
-    ${({ theme }) => theme.breakpoints.up('md')} {
+    ${({ theme }) => theme.breakpoints.up('sm')} {
 
     margin-top: 55px;
   }

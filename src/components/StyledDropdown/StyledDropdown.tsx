@@ -1,5 +1,5 @@
 import { FormControl, Select, SelectChangeEvent, SelectProps, useTheme } from '@mui/material';
-import { CustomDropdown, StyledIconButton, StyledParagraph, dropDownStyles, menuScrollerStyles, paperPropsStyles } from './styles';
+import { CustomDropdown, StyledIconButton, StyledParagraph, dropDownStyles, menuScrollerStyles, mobilePaperPropsStyles, paperPropsStyles } from './styles';
 import { useState } from 'react';
 import { DropdownItem, DropdownType } from './types';
 import { StyledMenuItem } from '../StyledMenuItem/StyledMenuItem';
@@ -12,7 +12,7 @@ export interface StyledDropdownProps extends SelectProps {
   label: string;
   dropDownType: keyof DropdownType;
   dropdownItems?: DropdownItem[];
-  onDropdownChange ?: (value : string, label : string) => void;
+  onDropdownChange ?: (label : string, value : string) => void;
 }
 
 export const StyledDropdown: React.FC<StyledDropdownProps> = ({
@@ -28,6 +28,7 @@ export const StyledDropdown: React.FC<StyledDropdownProps> = ({
   const menuItemType = DropdownTypeToMenuItemTypeConverter[dropDownType];
   const placeholder = getPlaceholders(dropDownType,styles,label);
   const theme = useTheme();
+  const isMobile = theme.breakpoints.down('sm');
 
   const handleValueChange = (event: SelectChangeEvent<unknown>) => {
     const newValue = event.target.value as string; 
@@ -35,7 +36,7 @@ export const StyledDropdown: React.FC<StyledDropdownProps> = ({
     setOpen(false);
 
     if (onDropdownChange) {
-      onDropdownChange(newValue, placeholder as string);
+      onDropdownChange(placeholder as string,newValue.toLowerCase());
     }
   };
 
@@ -70,7 +71,7 @@ export const StyledDropdown: React.FC<StyledDropdownProps> = ({
         }}
         MenuProps={{
           PaperProps: {
-            style: paperPropsStyles,
+            style: isMobile ? mobilePaperPropsStyles : paperPropsStyles,
             sx: menuScrollerStyles,
           },
         }}

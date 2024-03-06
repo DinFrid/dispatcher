@@ -1,24 +1,31 @@
 import React from "react";
-import { FiltersContainer, FiltersWrapper } from "./styles";
+import { FiltersContainer, FiltersWrapper, StyledDiv } from "./styles";
 import StyledDropdown, { StyledDropdownProps } from "../../components/StyledDropdown/StyledDropdown";
 import { DropdownTypeEnum } from "../../utils/Enums";
 import DateComponent from "../../components/DateComponent/DateComponent";
 import { checkIfDropdownIsDisabled } from "./functions";
 import { useMediaQuery, useTheme } from "@mui/material";
 import MobileFiltersButton from "../mobile/FilterIcon/MobileFiltersButton";
-import { topHeadlinesScopeMobileFilters } from "../../utils/consts/FiltersGroups";
+import { everythingScopeMobileFilters, searchBarDropDownProps, topHeadlinesScopeMobileFilters } from "../../utils/consts/FiltersGroups";
+import { recentSearchesMenuProps } from "../../components/SearchBar/styles";
 
 interface FiltersBarProps {
     dropdowns : StyledDropdownProps[];
     searchScope : string;
     disabledFilters : Set<string>
     onFilterDropdownChange : (label : string, value : string) => void;
-    onSearchDropdownChange : (value : string) => void;
+    onSearchDropdownChange : (label : string) => void;
 };
 
 export const FiltersBar:React.FC<FiltersBarProps> = ({dropdowns, searchScope, disabledFilters, onFilterDropdownChange, onSearchDropdownChange }) => {
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.between('xs','sm'));
+    const mobileDropdowns = searchScope === 'top-headlines' ? topHeadlinesScopeMobileFilters : everythingScopeMobileFilters;
+    
+    const handleSearchScopeFilterChange = (value: string, label: string) => {
+        console.log(`label: ${label}, value: ${value}`)
+        onSearchDropdownChange(label);
+    };        
     
     return(
         <FiltersContainer theme={theme}>
@@ -40,12 +47,21 @@ export const FiltersBar:React.FC<FiltersBarProps> = ({dropdowns, searchScope, di
                         );
                     }
                 })}
-                {isMobile && 
+                {isMobile &&
+                 <StyledDiv >
+                    <StyledDropdown 
+                    label={'Search Dropdown'}
+                    MenuProps={recentSearchesMenuProps} 
+                    dropDownType={searchBarDropDownProps.dropDownType} 
+                    dropdownItems={searchBarDropDownProps.dropdownItems}
+                    onDropdownChange={handleSearchScopeFilterChange}
+                    />
                     <MobileFiltersButton 
                     onFilterChange={onFilterDropdownChange}
                     disabledFilters={disabledFilters}
-                    filters={topHeadlinesScopeMobileFilters}
+                    filters={mobileDropdowns}
                     />
+                </StyledDiv>
                 }
             </FiltersWrapper>
 

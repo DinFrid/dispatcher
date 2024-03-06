@@ -26,6 +26,7 @@ const PageLayout:React.FC<PageLayoutProps> = () => {
           setDisabledFilters(new Set());
           setChosenFiltersMap(new Map());
           setIsInitState(false);
+          setIsInitialLoad(true);
       }
       else {
         setIsInitialLoad(false);
@@ -34,8 +35,6 @@ const PageLayout:React.FC<PageLayoutProps> = () => {
 
     const onSearchAction = (value : string) => {
         setSearchInput(value);
-
-        //console.log("Searched : " + value);
       };
 
       const handleFilterDropdownChange = (label: string, value: string) => {
@@ -46,7 +45,6 @@ const PageLayout:React.FC<PageLayoutProps> = () => {
 
         if(valueIsNone) {
             updatedDisabledFilters = handleClearFilterSelected(label,disabledFilters,chosenFiltersMap)
-            console.log("entered updatedDisabledFilter");
           }
         else {
             updatedDisabledFilters = disableDependenciesFilters(label,disabledFilters);
@@ -61,16 +59,14 @@ const PageLayout:React.FC<PageLayoutProps> = () => {
     }
     
     const handleSearchDropdownChange = (value : string) => {
-        const filtersGroupToSet = value === 'Everything' ? everythingScopeFilters : topHeadlinesScopeFilters;
-        
-        setFilters(filtersGroupToSet);
-        setSearchScope(replaceWhiteSpacesAndToLowerCase(value));
-
-        //console.log("chosen filters map : ",chosenFiltersMap);
+      const filtersGroupToSet = value === 'everything' ? everythingScopeFilters : topHeadlinesScopeFilters;
+    
+      setFilters(filtersGroupToSet);
+      setSearchScope(replaceWhiteSpacesAndToLowerCase(value));
         
       };
 
-      console.log('chosen filters : ',chosenFiltersMap);
+      //console.log('chosen filters : ',chosenFiltersMap);
 
     return (
         <PageContainer>

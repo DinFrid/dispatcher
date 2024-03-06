@@ -12,7 +12,7 @@ type Story = StoryObj<typeof StyledMenuItem>;
 export const Primary: Story = {
   args: {
     value: "option1",
-    menuItemType: MenuItemTypeEnum.FiltersMenuItem,
+    menuItemType: MenuItemTypeEnum.FiltersMenuItemType,
     children: 'MenuItem',
     style:{color:"black", backgroundColor: '#FFF',fontFamily: 'Mulish',
     fontSize: '12px',

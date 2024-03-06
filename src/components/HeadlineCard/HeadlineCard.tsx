@@ -23,11 +23,11 @@ const HeadlineCard = forwardRef<HTMLDivElement, HeadlineCardProps>(({
 }, ref) => {
   const theme = useTheme();
   const [imageSrc, setImageSrc] = useState<string>(urlToImage);
-  
+  const [isFallback, setIsFallback] = useState<boolean>(false); 
 
   const handleImageError = () => {
-    console.log('error image');
     setImageSrc(NavbarDesktopLogo);
+    setIsFallback(true); 
   };
 
   const onButtonClicked = () => {
@@ -37,8 +37,14 @@ const HeadlineCard = forwardRef<HTMLDivElement, HeadlineCardProps>(({
 
   return (
     <StyledCard theme={theme} ref={ref}>
-      <NewsImage theme={theme} src={imageSrc ? imageSrc : NavbarDesktopLogo} alt="News" onError={handleImageError}/>
-
+      
+      <NewsImage 
+        theme={theme} 
+        src={imageSrc ? imageSrc : NavbarDesktopLogo} 
+        alt="News" 
+        onError={handleImageError}
+        isfallback={isFallback.toString()}
+      />
       <StyledCardContent theme={theme}>
         <StyledTypography theme={theme} styles={dateStyles}>
           {publishedAt}

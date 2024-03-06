@@ -1,19 +1,17 @@
-import { useMediaQuery, useTheme } from '@mui/material';
+import { useTheme } from '@mui/material';
 import SearchComponent from '../SearchComponent/SearchComponent';
 import NavbarDesktopLogo from './NavbarDesktopLogo.svg';
-import { IconsWrapper, ImageWrapper, StyledBox, StyledIconButton, StyledImage, StyledNavbar } from './styles';
-import MobileSearchIcon from '../../layout/mobile/Icons/MobileSearchIcon';
+import { ImageWrapper, StyledBox, StyledImage, StyledNavbar } from './styles';
 
 export interface NavBarProps {
   onSearchAction : (value : string) => void;
-  handleSearchDropdownChange : (value : string, label : string) => void;
+  handleSearchDropdownChange : (value: string) => void;
 };
-
 
 
 const Navbar = ({onSearchAction, handleSearchDropdownChange} : NavBarProps) => {
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+
   return (
     <StyledNavbar theme={theme}>
       <StyledBox theme={theme}>
@@ -25,13 +23,7 @@ const Navbar = ({onSearchAction, handleSearchDropdownChange} : NavBarProps) => {
           onDropdownChange={handleSearchDropdownChange}
         />
       </StyledBox>
-      {isMobile && 
-      <IconsWrapper>
-        <StyledIconButton >
-          <MobileSearchIcon/>
-        </StyledIconButton>
-      </IconsWrapper>
-      }
+      
     </StyledNavbar>
   )
 }

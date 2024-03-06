@@ -70,23 +70,23 @@ export const disableDependenciesFilters = (selectedFilter : string, disabledFilt
   
     const filtersToReEnable = FILTER_DEPENDENCIES[clearedFilter];
   
-    console.log('Cleared filter :', clearedFilter);
+    //console.log('Cleared filter :', clearedFilter);
 
     if (filtersToReEnable) {
       for (const filter of filtersToReEnable) {
         let shouldReEnable = true;
-        console.log('filtersToReEnable : ',filtersToReEnable);
-        console.log('current filter from filtersToReEnable : ',filter);
+        //console.log('filtersToReEnable : ',filtersToReEnable);
+        //console.log('current filter from filtersToReEnable : ',filter);
         
   
         for (const [chosenFilterLabel, chosenFilterValue] of chosenFilters.entries()) {
-          console.log('current filter from chosenFilters : ',chosenFilterLabel);
+          //console.log('current filter from chosenFilters : ',chosenFilterLabel);
           if (chosenFilterLabel === toCamelCase(clearedFilter)) continue;
 
-          console.log('the cameled case : ', toCamelCase(chosenFilterLabel));
+          //console.log('the cameled case : ', toCamelCase(chosenFilterLabel));
 
           const dependenciesOfChosenFilter = FILTER_DEPENDENCIES[capitalizeFilterLabel(chosenFilterLabel)] || [];
-          console.log('dependenciesOfChosenFilter : ',dependenciesOfChosenFilter);
+          //console.log('dependenciesOfChosenFilter : ',dependenciesOfChosenFilter);
           if (dependenciesOfChosenFilter.includes(filter)) {
             shouldReEnable = false;
             break;

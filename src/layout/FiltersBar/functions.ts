@@ -1,3 +1,5 @@
+import { StyledDropdownProps } from "../../components/StyledDropdown/StyledDropdown";
+
 export const checkIfDropdownIsDisabled = (label : string, disabledFilters : Set<string>) => {
   return disabledFilters.has(label);
 }
@@ -17,4 +19,13 @@ export const checkIfDropdownIsDisabled = (label : string, disabledFilters : Set<
 
   export const updateChosenFiltersMap = (value : string, label : string, valueIsNone : boolean, updatedChosenFiltersMap : Map<string,string>) => {
     valueIsNone ? updatedChosenFiltersMap.delete(label) : updatedChosenFiltersMap.set(label, value);
-  }
+  };
+
+// export const mapDropdownsToMobileDropdowns = (dropdowns : StyledDropdownProps[]) => {
+//   return dropdowns.map((dropdown) =>  {
+//     return {
+//       label : dropdown.label,
+//       items : dropdown.dropdownItems
+//     }
+//   });
+// }

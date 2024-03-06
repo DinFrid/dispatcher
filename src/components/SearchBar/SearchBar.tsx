@@ -1,18 +1,20 @@
-import { useMediaQuery, useTheme } from '@mui/material';
+import { CardProps, useMediaQuery, useTheme } from '@mui/material';
 import SearchImg from '../../images/SearchIcon.svg';
 import StyledDropdown, { StyledDropdownProps } from '../StyledDropdown/StyledDropdown';
 import { SearchBarCard, SearchIconWrapper, StyledInputBase, recentSearchesMenuProps } from './styles';
 
-export interface SearchBarProps{
+export interface SearchBarProps extends CardProps{
   dropDownProps: StyledDropdownProps;
   onSearchAction: (value : string) => void;
   onSearchInputFieldClick: () => void;
-  onDropdownChange : (value : string, label : string) => void;
+  onDropdownChange : (value : string) => void;
+  isSearchBarVisible: boolean;
 }
 
-const SearchBar = ({dropDownProps, onSearchAction, onSearchInputFieldClick, onDropdownChange} : SearchBarProps) => {
+const SearchBar = ({dropDownProps, onSearchAction, onSearchInputFieldClick, onDropdownChange, onBlur} : SearchBarProps) => {
   const theme = useTheme();
-  const isDesktop = useMediaQuery(theme.breakpoints.up('md'));
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+
 
   const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
 
@@ -24,24 +26,30 @@ const SearchBar = ({dropDownProps, onSearchAction, onSearchInputFieldClick, onDr
     }
   };
 
+  const handleSearchScopeChange = (label: string, value: string) => {
+    onDropdownChange(value);
+  }
+
   return (
-    <SearchBarCard>
-      <SearchIconWrapper>
-      <img src={SearchImg} alt="Search Icon" />
-      </SearchIconWrapper>
+    <SearchBarCard onBlur={onBlur} theme={theme}>
+      {!isMobile && 
+        <SearchIconWrapper>
+          <img src={SearchImg} alt="Search Icon" />
+        </SearchIconWrapper>
+      }
       <StyledInputBase 
         placeholder='Search'
         onClick={onSearchInputFieldClick}
         onKeyUp={handleKeyPress}
       />
-
+        { !isMobile &&
         <StyledDropdown 
         label={'Search Dropdown'}
         MenuProps={recentSearchesMenuProps} 
         dropDownType={dropDownProps.dropDownType} 
         dropdownItems={dropDownProps.dropdownItems}
-        onDropdownChange={onDropdownChange}
-        /> 
+        onDropdownChange={handleSearchScopeChange}
+        /> }
 
     </SearchBarCard>
   );
