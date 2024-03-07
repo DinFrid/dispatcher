@@ -2,22 +2,24 @@ import styled from "styled-components";
 
 export const HeadlinesContainer = styled.div `
     flex: 1;
-    overflow-y: auto;
+    height: 95%;
     margin-bottom: 24px;
     margin-right: 1%;
+    overflow: scroll;
+
 
     ${({ theme }) => theme.breakpoints.between('xs','sm')} {
-        max-height: 510px;
+        /* max-height: 510px; */
     }
 
     ${({ theme }) => theme.breakpoints.up('sm')} {
-        max-height: 510px;
+        
 
     }
     
     ${({ theme }) => theme.breakpoints.up('md')} {
         margin-right: 15px;
-        max-height: 800px;
+        height: 90%;
     }
 
 
@@ -29,4 +31,5 @@ export const HeadlinesBody = styled.div `
     flex: 1;
     gap: 24px;
     margin-right: 15px;
+    /* height: calc(100% - 30px); */
 `;

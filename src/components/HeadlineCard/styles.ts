@@ -4,6 +4,7 @@ import { HeadlineTypographyStyles } from "./types";
 
 export const StyledCard = styled(Card)`
 &&{
+  overflow: visible;
   height: 450px;
   display: flex;
   flex-direction: column;

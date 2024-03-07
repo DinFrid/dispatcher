@@ -3,11 +3,13 @@ import styled from "styled-components";
 
 export const BodyContainer = styled.div `
     width: 100%;
-    height: 100%;
+    /* height: 100%; */
+    height: calc(100% - 142px);
     display: flex;
     flex-direction: column;
     align-items: center;
     background-color: #F3F3FF;
+    
 `;
 
 export const HeadlinesTitle = styled(Typography)<{titlestyles : TypographyStyle}> `
@@ -59,11 +61,13 @@ export const DataLayout = styled.div `
     width: 95%;
     display: flex;
     flex-direction: row;
-    height: 1231px;
-    
+    /* height: 1231px; */
+    height: calc(100% - 32px);
+
 
     ${({ theme }) => theme.breakpoints.up('md')} {
         width: 75%;
+        
         
     }
 `;
