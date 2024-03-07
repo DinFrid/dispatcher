@@ -16,7 +16,7 @@ export const StyledBox = styled(Box) (({theme}) => ({
     },
   
     [theme.breakpoints.between('sm','md')] : {
-        marginLeft : '50px'
+        marginLeft : '60px'
     }
   }));
 

@@ -15,8 +15,8 @@ export const StyledTypography = styled(Typography)`
 
 export const StyledCard = styled(Card)`
 &&{
-    width: 412px;
-    height: 355px;
+    width: 400px;
+    height: 340px;
     border-radius: 20px;
     border: 1px solid #D9DBE9;
     box-sizing: border-box;

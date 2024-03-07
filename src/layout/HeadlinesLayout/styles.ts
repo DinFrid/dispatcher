@@ -5,10 +5,22 @@ export const HeadlinesContainer = styled.div `
     overflow-y: auto;
     margin-bottom: 24px;
     margin-right: 1%;
+
+    ${({ theme }) => theme.breakpoints.between('xs','sm')} {
+        max-height: 510px;
+    }
+
+    ${({ theme }) => theme.breakpoints.up('sm')} {
+        max-height: 510px;
+
+    }
     
     ${({ theme }) => theme.breakpoints.up('md')} {
         margin-right: 15px;
+        max-height: 800px;
     }
+
+
 `;
 
 export const HeadlinesBody = styled.div `

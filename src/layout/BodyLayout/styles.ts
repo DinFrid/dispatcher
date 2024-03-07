@@ -27,6 +27,9 @@ export const HeadlinesTitle = styled(Typography)<{titlestyles : TypographyStyle}
         width: 95%;
         margin: 12px 0px 12px 18px;
     }
+    ${({ theme }) => theme.breakpoints.down('sm')} {
+        margin: 12px 0px 12px 30px;
+    }
 }
 `;
 

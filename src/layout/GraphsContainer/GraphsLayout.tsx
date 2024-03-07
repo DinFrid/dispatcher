@@ -13,9 +13,10 @@ export interface GraphsLayoutProps {
     pieTitle: string;
     headlines: HeadlineCardProps[]; 
     isEmptyState : boolean;
+    isLoading : boolean;
 }
 
-const GraphsLayout = ({ areaTitle, pieTitle, headlines, isEmptyState }: GraphsLayoutProps) => {
+const GraphsLayout = ({ areaTitle, pieTitle, headlines, isEmptyState, isLoading }: GraphsLayoutProps) => {
     const [pieData, setPieData] = useState<PieData[]>([]);
     const [areaData, setAreaData] = useState<AreaGraphData[]>([]);
     const theme = useTheme();
@@ -68,8 +69,8 @@ const GraphsLayout = ({ areaTitle, pieTitle, headlines, isEmptyState }: GraphsLa
 
 return isDesktop ? (
     <GraphsContainer>
-        <PieGraph data={pieData} title={pieTitle} label={headlines.length} isEmptyState={isEmptyState} emptyStateMessage={GRAPHS_EMPTY_STATE_MESSAGE} />
-        <AreaGraph data={areaData} title={areaTitle} isEmptyState={isEmptyState} emptyStateMessage={GRAPHS_EMPTY_STATE_MESSAGE} />
+        <PieGraph data={pieData} title={pieTitle} label={headlines.length} isEmptyState={isEmptyState} emptyStateMessage={GRAPHS_EMPTY_STATE_MESSAGE} isLoading={isLoading} />
+        <AreaGraph data={areaData} title={areaTitle} isEmptyState={isEmptyState} emptyStateMessage={GRAPHS_EMPTY_STATE_MESSAGE} isLoading={isLoading}/>
     </GraphsContainer>
 ) : null;
 };

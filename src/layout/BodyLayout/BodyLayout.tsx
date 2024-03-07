@@ -23,11 +23,13 @@ const BodyLayout:React.FC<BodyLayoutProps> = ({filters, searchScope, searchInput
     const [titleStyles, setTitleStyles] = useState(TopHeadlinesTitleStyles);
     const [totalResults, setTotalResults] = useState<number>(0);
     const [showEmptyState, setShowEmptyState] = useState(false);
-    const [emptyStateMessage, setEmptyStateMessage] = useState('We couldn’t find any matches for your query');
+    const [emptyStateMessage, setEmptyStateMessage] = useState('');
     const [initState, setInitState] = useState(true);
     const { ref, inView } = useInView();
     const theme = useTheme();
     const isDesktop = useMediaQuery(theme.breakpoints.up('md'));
+    const [isLoading,setIsLoading] = useState(false);
+
 
     useEffect(() => {
         setInitState(isInitState);
@@ -47,6 +49,7 @@ const BodyLayout:React.FC<BodyLayoutProps> = ({filters, searchScope, searchInput
             } 
     });
 
+
     useEffect(() => {
         if (inView && hasNextPage) {
             fetchNextPage();
@@ -59,7 +62,7 @@ const BodyLayout:React.FC<BodyLayoutProps> = ({filters, searchScope, searchInput
         }
         if ( data?.pages[0]?.totalResults !== undefined) {
             setTotalResults(data.pages[0].totalResults);
-            setHeadlinesTitle(`${data.pages[0].totalResults} Total results`);
+            setHeadlinesTitle(`${headlines.length} of ${data.pages[0].totalResults} results`);
             setTitleStyles(totalResultsHeadline);
         }
 
@@ -77,24 +80,34 @@ const BodyLayout:React.FC<BodyLayoutProps> = ({filters, searchScope, searchInput
     useEffect(() => {
         if(status === 'error' || (headlines.length === 0 && status !== 'pending')) {
             setShowEmptyState(true);
+            setEmptyStateMessage('We couldn’t find any matches for your query');
             setHeadlinesTitle('');
+            setIsLoading(false);
+            return;
+        }
+        if(status === 'pending') {
+            setIsLoading(true);
+            // setHeadlinesTitle('');
         }
         else {
+            setIsLoading(false);
             setShowEmptyState(false);
         }
     },[status, headlines])
 
-
+    
     return (
         <BodyContainer theme={theme}>
                     <HeadlinesTitle theme={theme} titlestyles={titleStyles}>{headlinesTitle}</HeadlinesTitle>
                     <DataLayout theme={theme}>
-                        <HeadlinesLayout headlines={headlines} ref={ref} isEmptyState={showEmptyState} emptyStateMessage={emptyStateMessage}/>
-                        <GraphsLayout 
+                        <HeadlinesLayout headlines={headlines} ref={ref} isEmptyState={showEmptyState} emptyStateMessage={emptyStateMessage} isLoading={isLoading}/>
+                        {isDesktop && <GraphsLayout 
                             headlines={headlines}
                             pieTitle='Sources' 
                             areaTitle='Dates'
-                            isEmptyState={showEmptyState} />
+                            isEmptyState={showEmptyState} 
+                            isLoading= {isLoading}
+                            />}
                     </DataLayout>
         </BodyContainer>
     );

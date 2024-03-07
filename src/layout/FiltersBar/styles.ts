@@ -6,7 +6,7 @@ export const FiltersContainer = styled.div`
     flex-direction: row;
     height: 44px;
     width: 100%;
-    background-color: #FFFFFF;
+    /* background-color: #FFFFFF; */
     border: 1px solid #D9DBE9;
     padding: 4px 0;
     justify-content: flex-end;
@@ -63,7 +63,7 @@ export const FiltersWrapper = styled(Box)`
 `;
 
 export const StyledDiv = styled.div `
-    margin-left: 10px;
+    margin-left: 25px;
     width: 100%;
     display: flex;
     justify-content: space-between;

@@ -11,6 +11,7 @@ export interface StyledMenuItemProps extends MenuItemProps {
 
 export const StyledMenuItem: React.FC<StyledMenuItemProps> = ({ menuItemType,label,value, ...props }) => {
     const styles = menuItemStyles[menuItemType]; 
+    
     return (
         <CustomMenuItem menuitemstyles={styles} value={value} {...props}>
             {props.children || label}

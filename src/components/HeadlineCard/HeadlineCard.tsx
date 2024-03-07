@@ -1,7 +1,7 @@
 import { forwardRef, useState } from 'react';
 import { StyledButton } from '../StyledButton/StyledButton';
-import { ButtonContainer, NewsImage, StyledCard, StyledCardContent, StyledTypography, contentStyles, dateStyles, sourceStyles, titleStyles } from './styles';
-import { useTheme } from '@mui/material';
+import { ButtonContainer, FallbackNewsImage, FallbackNewsWrapper, NewsImage, NewsWrapper, StyledCard, StyledCardContent, StyledTypography, contentStyles, dateStyles, sourceStyles, titleStyles } from './styles';
+import { Divider, useTheme } from '@mui/material';
 import NavbarDesktopLogo from '../Navbar/NavbarDesktopLogo.svg';
 
 export interface HeadlineCardProps {
@@ -34,17 +34,30 @@ const HeadlineCard = forwardRef<HTMLDivElement, HeadlineCardProps>(({
     window.open(urlToDispatch, urlToDispatch)?.focus();
   };
 
-
   return (
     <StyledCard theme={theme} ref={ref}>
+      {imageSrc ? 
+      <NewsWrapper theme={theme}>
+          <NewsImage 
+            theme={theme} 
+            src={imageSrc} 
+            alt="News" 
+            onError={handleImageError}
+            isfallback={isFallback.toString()}
+          /> 
+      </NewsWrapper>
+          : 
+          <FallbackNewsWrapper theme={theme}>
+            <FallbackNewsImage 
+              theme={theme} 
+              src={NavbarDesktopLogo} 
+              alt="Fallback News" 
+              onError={handleImageError}
+            />
+          </FallbackNewsWrapper>
+        }
       
-      <NewsImage 
-        theme={theme} 
-        src={imageSrc ? imageSrc : NavbarDesktopLogo} 
-        alt="News" 
-        onError={handleImageError}
-        isfallback={isFallback.toString()}
-      />
+      
       <StyledCardContent theme={theme}>
         <StyledTypography theme={theme} styles={dateStyles}>
           {publishedAt}

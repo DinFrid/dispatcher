@@ -3,27 +3,13 @@ import styled from "styled-components";
 
 export const PieGraphContainer = styled(Card)`
 &&{
-    width: 412px;
-    height: 378px;
+    width: 400px;
+    height: 370px;
     border-radius: 20px;
     border: 1px solid #D9DBE9;
     padding: 25px 15px 25px 25px;
     box-sizing: border-box;
     box-shadow: 0px 32px 64px 0px #0000000D;
-
-        
-    .recharts-default-legend{
-        display: flex;
-        flex-direction: column;
-        gap: 11px;
-        padding-left: 10px !important;
-        overflow-y: auto;
-        max-height: 120px;
-        width: 100%;
-    }
-    .recharts-legend-wrapper{
-      height: 100px !important;
-    }
   }
 `;
 

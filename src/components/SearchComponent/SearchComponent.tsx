@@ -43,6 +43,7 @@ const SearchComponent = ({ onSearchAction, onDropdownChange, } : SearchComponent
 
         if(checkIfValueIsNotEmpty(value)) {
             setRecentSearchesOpen(false);
+            setValueChooseByRecentSearches(value);
             onSearchAction(value);
             return;
         }
@@ -54,6 +55,7 @@ const SearchComponent = ({ onSearchAction, onDropdownChange, } : SearchComponent
         updateAndInsertRecentSearchesToLocalStorage(updatedRecentSearches);
         
         setRecentSearchesOpen(false);
+        setValueChooseByRecentSearches(value);
         onSearchAction(value);
     }
 
@@ -98,6 +100,7 @@ const SearchComponent = ({ onSearchAction, onDropdownChange, } : SearchComponent
                     onSearchAction={handleSearchAction}
                     onDropdownChange={onDropdownChange}
                     onBlur={() => setIsSearchBarVisible(false)}
+                    valueChooseByRecentSearches={valueChooseByRecentSearches}
                 />
                 </Slide>
             ) : (

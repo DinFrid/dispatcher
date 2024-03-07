@@ -9,12 +9,12 @@ export interface SearchBarProps extends CardProps{
   onSearchInputFieldClick: () => void;
   onDropdownChange : (value : string) => void;
   isSearchBarVisible: boolean;
+  valueChooseByRecentSearches ?: string;
 }
 
-const SearchBar = ({dropDownProps, onSearchAction, onSearchInputFieldClick, onDropdownChange, onBlur} : SearchBarProps) => {
+const SearchBar = ({dropDownProps, onSearchAction, onSearchInputFieldClick, onDropdownChange, onBlur, valueChooseByRecentSearches} : SearchBarProps) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
-
 
   const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
 
@@ -41,6 +41,7 @@ const SearchBar = ({dropDownProps, onSearchAction, onSearchInputFieldClick, onDr
         placeholder='Search'
         onClick={onSearchInputFieldClick}
         onKeyUp={handleKeyPress}
+        
       />
         { !isMobile &&
         <StyledDropdown 
@@ -49,6 +50,7 @@ const SearchBar = ({dropDownProps, onSearchAction, onSearchInputFieldClick, onDr
         dropDownType={dropDownProps.dropDownType} 
         dropdownItems={dropDownProps.dropdownItems}
         onDropdownChange={handleSearchScopeChange}
+        
         /> }
 
     </SearchBarCard>

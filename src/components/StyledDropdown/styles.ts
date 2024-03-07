@@ -81,14 +81,14 @@ export const CustomDropdown = styled(Select)<{dropdownstyles : DropdownStyles; d
     display: ${({ dropdownstyles }) => dropdownstyles.display || 'flex'};
     justify-content: ${({ dropdownstyles }) => dropdownstyles.justifyContent || 'space-between'};
     align-items: ${({ dropdownstyles }) => dropdownstyles.alignItems || 'center'};
-    max-width: ${({ dropdownstyles }) => dropdownstyles.maxWidth || '175px'};
     width: ${({ dropdownstyles }) => dropdownstyles.width || 'none'};
     border-left: ${({ dropdownstyles }) => dropdownstyles.borderLeft || 'none'};
     cursor: ${({ disabled }) => (disabled ? 'normal' : 'pointer')};
 
+    
     ${({ theme }) => theme.breakpoints.between('xs','md')} {
         height: 44px;
-        font-size: 16px;
+        font-size: 12px;
         max-width: none;
     }
   };
@@ -118,6 +118,10 @@ export const CustomDropdown = styled(Select)<{dropdownstyles : DropdownStyles; d
 
     .css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input.css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input.css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input{
         padding: 0px;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
     }
     &.Mui-focused {
     border: ${({ dropdownstyles }) => `1px solid ${dropdownstyles.focusBorderColor || 'none'}`};
@@ -127,7 +131,11 @@ export const CustomDropdown = styled(Select)<{dropdownstyles : DropdownStyles; d
 
   export const StyledParagraph = styled.p`
     padding-left: 10px;
-    
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 100%; 
+    display: block; 
   `;
 
   export const menuScrollerStyles = {
@@ -153,10 +161,8 @@ export const CustomDropdown = styled(Select)<{dropdownstyles : DropdownStyles; d
   };
 
   export const mobilePaperPropsStyles = {
-    marginTop: '6px',
-    minWidth: '150px',
+    minWidth: '100px',
     paddingLeft: '0px',
-    height: '120px',
     boxShadow: '0px 4px 12px 0px #00000014'
   };
 

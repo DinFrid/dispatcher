@@ -6,6 +6,10 @@ export const BodyEmptyStateContainer = styled.div `
     flex-direction: column;
     align-items: center;
     margin-top: 300px;
+
+    ${({ theme }) => theme.breakpoints.down('md')} {
+        margin-top: 100px
+    }
 `;
 
 export const GraphEmptyStateContainer = styled.div `

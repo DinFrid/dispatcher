@@ -28,6 +28,7 @@ export const StyledText = styled(ListItemText)<{isnone : string}> `
 
 export const StyledButton = styled(ListItemButton) `
     &&{
+        
         margin-bottom: 10px;
     }
 `;

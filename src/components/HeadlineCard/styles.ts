@@ -51,15 +51,14 @@ export const StyledCardContent = styled(CardContent)`
 }
 `;
 
-export const NewsImage = styled.img<{ isfallback: string}>`
-  object-fit: cover;
+export const NewsWrapper = styled.div`
   height: 150px;
 
-  ${(props) => (props.isfallback === 'true') && `
-    display: block;
-    margin: 0 auto; 
-  `}
-
+  ${({ theme }) => theme.breakpoints.between('xs','sm')} {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 
   ${({ theme }) => theme.breakpoints.up('sm')} {
     width: 245px;
@@ -67,7 +66,68 @@ export const NewsImage = styled.img<{ isfallback: string}>`
   }
     
   ${({ theme }) => theme.breakpoints.up('md')} {
-    width: 188px;
+    width: 250px;
+    height: 250px;
+  }
+`;
+
+export const NewsImage = styled.img<{ isfallback: string}>`
+  object-fit: cover;
+  height: 150px;
+  width: 100%;
+  
+
+  ${(props) => (props.isfallback === 'true') && `
+    display: block;
+    margin: 0 auto; 
+  `}
+
+  ${({ theme }) => theme.breakpoints.up('sm')} {
+    width: 245px;
+    height: 245px;
+  }
+    
+  ${({ theme }) => theme.breakpoints.up('md')} {
+    width: 250px;
+    height: 250px;
+  }
+`;
+
+export const FallbackNewsWrapper = styled.div`
+  height: 150px;
+
+  ${({ theme }) => theme.breakpoints.between('xs','sm')} {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 0.5px solid #D9DBE9;
+
+  }
+
+  ${({ theme }) => theme.breakpoints.up('sm')} {
+    width: 245px;
+    height: 245px;
+    border-right: 0.5px solid #D9DBE9;
+  }
+    
+  ${({ theme }) => theme.breakpoints.up('md')} {
+    width: 245px;
+    height: 250px;
+  }
+`;
+
+export const FallbackNewsImage = styled.img`
+  object-fit: cover;
+    height: 150px;
+    width: 150px;
+
+  ${({ theme }) => theme.breakpoints.up('sm')} {
+    width: 245px;
+    height: 245px;
+  }
+    
+  ${({ theme }) => theme.breakpoints.up('md')} {
+    width: 250px;
     height: 250px;
   }
 `;

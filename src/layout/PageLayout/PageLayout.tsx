@@ -20,6 +20,7 @@ const PageLayout:React.FC<PageLayoutProps> = () => {
     const [isInitialLoad, setIsInitialLoad] = useState(true);
     const [isFirstFilterChange, setIsFirstFilterChange] = useState(true);
     const [isInitState, setIsInitState] = useState(true);
+    const [resetDropdowns, setResetDropdowns] = useState(false);
 
     useEffect(() => {
       if (!isInitialLoad) {
@@ -27,6 +28,7 @@ const PageLayout:React.FC<PageLayoutProps> = () => {
           setChosenFiltersMap(new Map());
           setIsInitState(false);
           setIsInitialLoad(true);
+          setResetDropdowns(true)
       }
       else {
         setIsInitialLoad(false);
@@ -34,7 +36,9 @@ const PageLayout:React.FC<PageLayoutProps> = () => {
   },[searchInput, searchScope]);
 
     const onSearchAction = (value : string) => {
-        setSearchInput(value);
+      setChosenFiltersMap(new Map());
+      setSearchInput(value);
+      setResetDropdowns(true);
       };
 
       const handleFilterDropdownChange = (label: string, value: string) => {
@@ -63,7 +67,8 @@ const PageLayout:React.FC<PageLayoutProps> = () => {
     
       setFilters(filtersGroupToSet);
       setSearchScope(replaceWhiteSpacesAndToLowerCase(value));
-        
+      setChosenFiltersMap(new Map()); 
+      setDisabledFilters(new Set());       
       };
 
       //console.log('chosen filters : ',chosenFiltersMap);
@@ -78,7 +83,9 @@ const PageLayout:React.FC<PageLayoutProps> = () => {
               searchScope={searchScope} 
               disabledFilters={disabledFilters} 
               onFilterDropdownChange={handleFilterDropdownChange}
-              onSearchDropdownChange={handleSearchDropdownChange}/>
+              onSearchDropdownChange={handleSearchDropdownChange}
+              resetDropdowns={resetDropdowns}
+              />
             <BodyLayout 
               filters={parseFilters(chosenFiltersMap)} 
               searchScope={searchScope} 

@@ -1,6 +1,6 @@
-import { FormControl, Select, SelectChangeEvent, SelectProps, useTheme } from '@mui/material';
+import { FormControl, Select, SelectChangeEvent, SelectProps, useMediaQuery, useTheme } from '@mui/material';
 import { CustomDropdown, StyledIconButton, StyledParagraph, dropDownStyles, menuScrollerStyles, mobilePaperPropsStyles, paperPropsStyles } from './styles';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { DropdownItem, DropdownType } from './types';
 import { StyledMenuItem } from '../StyledMenuItem/StyledMenuItem';
 import { DropdownTypeToMenuItemTypeConverter, MenuItemTypeEnum } from '../../utils/Enums';
@@ -13,6 +13,7 @@ export interface StyledDropdownProps extends SelectProps {
   dropDownType: keyof DropdownType;
   dropdownItems?: DropdownItem[];
   onDropdownChange ?: (label : string, value : string) => void;
+  resetDropdown?: boolean;
 }
 
 export const StyledDropdown: React.FC<StyledDropdownProps> = ({
@@ -20,6 +21,7 @@ export const StyledDropdown: React.FC<StyledDropdownProps> = ({
   label,
   onDropdownChange,
   dropdownItems = [], 
+  resetDropdown,
   ...props }) => {
 
   const [value, setValue] = useState<string>('');
@@ -28,7 +30,13 @@ export const StyledDropdown: React.FC<StyledDropdownProps> = ({
   const menuItemType = DropdownTypeToMenuItemTypeConverter[dropDownType];
   const placeholder = getPlaceholders(dropDownType,styles,label);
   const theme = useTheme();
-  const isMobile = theme.breakpoints.down('sm');
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));  
+
+  useEffect(() => {
+    if(resetDropdown && resetDropdown === true) {
+      setValue('none');
+    }
+  },[resetDropdown])
 
   const handleValueChange = (event: SelectChangeEvent<unknown>) => {
     const newValue = event.target.value as string; 
@@ -78,7 +86,7 @@ export const StyledDropdown: React.FC<StyledDropdownProps> = ({
         {...props}
       >
 
-        {dropDownType !== 'SearchBarDropdown' && (
+        {(!isMobile && dropDownType !== 'SearchBarDropdown') && (
           <StyledMenuItem key="none" value="none" menuItemType={MenuItemTypeEnum.NoneItemType} label="None">(None)</StyledMenuItem>
         )}
 

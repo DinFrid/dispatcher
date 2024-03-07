@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { FiltersContainer, FiltersWrapper, StyledDiv } from "./styles";
 import StyledDropdown, { StyledDropdownProps } from "../../components/StyledDropdown/StyledDropdown";
 import { DropdownTypeEnum } from "../../utils/Enums";
@@ -15,15 +15,15 @@ interface FiltersBarProps {
     disabledFilters : Set<string>
     onFilterDropdownChange : (label : string, value : string) => void;
     onSearchDropdownChange : (label : string) => void;
+    resetDropdowns : boolean;
 };
 
-export const FiltersBar:React.FC<FiltersBarProps> = ({dropdowns, searchScope, disabledFilters, onFilterDropdownChange, onSearchDropdownChange }) => {
+export const FiltersBar:React.FC<FiltersBarProps> = ({dropdowns, searchScope, disabledFilters, onFilterDropdownChange, onSearchDropdownChange, resetDropdowns }) => {
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.between('xs','sm'));
-    const mobileDropdowns = searchScope === 'top-headlines' ? topHeadlinesScopeMobileFilters : everythingScopeMobileFilters;
+    const mobileDropdowns = searchScope === 'top-headlines' ? topHeadlinesScopeMobileFilters : everythingScopeMobileFilters;    
     
     const handleSearchScopeFilterChange = (value: string, label: string) => {
-        console.log(`label: ${label}, value: ${value}`)
         onSearchDropdownChange(label);
     };        
     
@@ -43,6 +43,7 @@ export const FiltersBar:React.FC<FiltersBarProps> = ({dropdowns, searchScope, di
                         label={dropdown.label} 
                         onDropdownChange={onFilterDropdownChange}
                         disabled={isDisabled}
+                        resetDropdown={resetDropdowns}
                         /> 
                         );
                     }
@@ -50,11 +51,11 @@ export const FiltersBar:React.FC<FiltersBarProps> = ({dropdowns, searchScope, di
                 {isMobile &&
                  <StyledDiv >
                     <StyledDropdown 
-                    label={'Search Dropdown'}
-                    MenuProps={recentSearchesMenuProps} 
-                    dropDownType={searchBarDropDownProps.dropDownType} 
+                    label={'Top Headlines'}
+                    dropDownType={DropdownTypeEnum.FiltersDropdown} 
                     dropdownItems={searchBarDropDownProps.dropdownItems}
                     onDropdownChange={handleSearchScopeFilterChange}
+                    resetDropdown={false}
                     />
                     <MobileFiltersButton 
                     onFilterChange={onFilterDropdownChange}

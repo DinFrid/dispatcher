@@ -43,7 +43,7 @@ export const MobileFiltersButton: React.FC<MobileFiltersButtonProps> = ({
   const renderFilters = () => (
       <List>
           {filters.map((filter) => (
-              <StyledButton key={filter.label} onClick={() => handleSelectFilter(filter)} disabled={disabledFilters.has(filter.label)}>
+              <StyledButton sx={{borderBottom: '0.5px solid #D9DBE9'}} key={filter.label} onClick={() => handleSelectFilter(filter)} disabled={disabledFilters.has(filter.label)}>
                   <StyledText isnone='false' primary={filter.label} />
               </StyledButton>
           ))}
@@ -52,7 +52,7 @@ export const MobileFiltersButton: React.FC<MobileFiltersButtonProps> = ({
 
   const renderFilterItems = (filter: MobileFilter) => (
       <>
-          <Button onClick={() => setCurrentFilter(null)}>Back</Button>
+          <Button sx={{}} onClick={() => setCurrentFilter(null)}>Back</Button>
           <List>
             <StyledButton onClick={() => handleSelectItem(filter.label,'none')}>
               <StyledText isnone='true' primary={'(None)'} />
