@@ -45,7 +45,7 @@ const BodyLayout:React.FC<BodyLayoutProps> = ({filters, searchScope, searchInput
             if(initState) {
                 return undefined;
             }
-            return allPages.length + 1;//TODO: handle 
+            return lastPage.length < 0 ? undefined : allPages.length + 1;
             } 
     });
 
@@ -98,17 +98,17 @@ const BodyLayout:React.FC<BodyLayoutProps> = ({filters, searchScope, searchInput
     
     return (
         <BodyContainer theme={theme}>
-                    <HeadlinesTitle theme={theme} titlestyles={titleStyles}>{headlinesTitle}</HeadlinesTitle>
-                    <DataLayout theme={theme}>
-                        <HeadlinesLayout headlines={headlines} ref={ref} isEmptyState={showEmptyState} emptyStateMessage={emptyStateMessage} isLoading={isLoading}/>
-                        {isDesktop && <GraphsLayout 
-                            headlines={headlines}
-                            pieTitle='Sources' 
-                            areaTitle='Dates'
-                            isEmptyState={showEmptyState} 
-                            isLoading= {isLoading}
-                            />}
-                    </DataLayout>
+            <HeadlinesTitle theme={theme} titlestyles={titleStyles}>{headlinesTitle}</HeadlinesTitle>
+            <DataLayout theme={theme}>
+                <HeadlinesLayout headlines={headlines} ref={ref} isEmptyState={showEmptyState} emptyStateMessage={emptyStateMessage} isLoading={isLoading}/>
+                {isDesktop && <GraphsLayout 
+                    headlines={headlines}
+                    pieTitle='Sources' 
+                    areaTitle='Dates'
+                    isEmptyState={showEmptyState} 
+                    isLoading= {isLoading}
+                    />}
+            </DataLayout>
         </BodyContainer>
     );
 };

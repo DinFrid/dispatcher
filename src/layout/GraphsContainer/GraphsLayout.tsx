@@ -48,24 +48,39 @@ const GraphsLayout = ({ areaTitle, pieTitle, headlines, isEmptyState, isLoading 
   }, [headlines]);
 
   useEffect(() => {
-    const monthCounts = new Map<string, number>();
-
+    const monthCounts = new Map();
     headlines.forEach(headline => {
         const monthName = getMonthName(headline.publishedAt);
-        const currentCount = monthCounts.get(monthName) ?? 0;
-        monthCounts.set(monthName, currentCount + 1);
+        monthCounts.set(monthName, (monthCounts.get(monthName) ?? 0) + 1);
     });
+
+    const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+    if (monthCounts.size === 1 || monthCounts.size === 2) {
+        const sortedMonths = Array.from(monthCounts.keys()).sort((a, b) => months.indexOf(a) - months.indexOf(b));
+        const firstMonthIndex = months.indexOf(sortedMonths[0]);
+        const lastMonthIndex = monthCounts.size === 2 ? months.indexOf(sortedMonths[1]) : firstMonthIndex;
+
+        if (firstMonthIndex > 0) {
+            monthCounts.set(months[firstMonthIndex - 1], 0);
+        }
+
+        if (lastMonthIndex < 11) {
+            monthCounts.set(months[lastMonthIndex + 1], 0);
+        }
+    }
 
     const calculatedAreaData: AreaGraphData[] = Array.from(monthCounts, ([date, sourcesNumber]) => ({
         date,
         sourcesNumber
-    })).sort((a, b) => {
-        const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-        return months.indexOf(a.date) - months.indexOf(b.date);
-    });
+    })).sort((a, b) => months.indexOf(a.date) - months.indexOf(b.date));
 
     setAreaData(calculatedAreaData);
 }, [headlines]);
+
+
+
+
 
 return isDesktop ? (
     <GraphsContainer>

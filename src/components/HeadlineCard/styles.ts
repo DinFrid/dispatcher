@@ -13,6 +13,7 @@ export const StyledCard = styled(Card)`
   box-shadow: 0px 32px 64px 0px #0000000D;
   background-color: #FFFFFF;
   margin-left: 16px;
+  
 
   .css-46bh2p-MuiCardContent-root:last-child {
     padding: 0px;
@@ -62,12 +63,12 @@ export const NewsWrapper = styled.div`
   }
 
   ${({ theme }) => theme.breakpoints.up('sm')} {
-    width: 245px;
+    max-width: 245px;
     height: 245px;
   }
     
   ${({ theme }) => theme.breakpoints.up('md')} {
-    width: 250px;
+    max-width: 250px;
     height: 250px;
   }
 `;

@@ -12,7 +12,7 @@ export interface MobileFiltersButtonProps {
 
 export type MobileFilter = {
   label : string;
-  items : DropdownItem[];
+  items ?: DropdownItem[];
 }
 
 export const MobileFiltersButton: React.FC<MobileFiltersButtonProps> = ({
@@ -52,12 +52,13 @@ export const MobileFiltersButton: React.FC<MobileFiltersButtonProps> = ({
 
   const renderFilterItems = (filter: MobileFilter) => (
       <>
+      
           <Button sx={{}} onClick={() => setCurrentFilter(null)}>Back</Button>
           <List>
             <StyledButton onClick={() => handleSelectItem(filter.label,'none')}>
               <StyledText isnone='true' primary={'(None)'} />
             </StyledButton>
-              {filter.items.map((item) => (
+              {filter.items && filter.items.map((item) => (
                   <StyledButton key={item.value} onClick={() => handleSelectItem(filter.label, item.value)}>
                       <StyledText isnone='false' primary={item.label} />
                   </StyledButton>

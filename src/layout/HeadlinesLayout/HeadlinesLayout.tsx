@@ -17,7 +17,7 @@ const HeadlinesLayout = React.forwardRef(({headlines, isEmptyState, emptyStateMe
 
   
   return (
-    <HeadlinesContainer theme={theme}>
+    <HeadlinesContainer theme={theme} className="HeadlinesContainer">
       <HeadlinesBody className="HeadlinesBody" > 
         {isLoading ? 
         (

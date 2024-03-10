@@ -7,13 +7,32 @@ export const HeadlinesContainer = styled.div `
     margin-right: 1%;
     overflow: scroll;
 
+    ::-webkit-scrollbar {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #9ea1bb;
+    border-radius: 5px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-corner {
+    background-color: transparent;
+  }
+
 
     ${({ theme }) => theme.breakpoints.between('xs','sm')} {
         /* max-height: 510px; */
     }
 
     ${({ theme }) => theme.breakpoints.up('sm')} {
-        
+        //height: 73%;
 
     }
     
@@ -31,5 +50,8 @@ export const HeadlinesBody = styled.div `
     flex: 1;
     gap: 24px;
     margin-right: 15px;
+
+    
+
     /* height: calc(100% - 30px); */
 `;

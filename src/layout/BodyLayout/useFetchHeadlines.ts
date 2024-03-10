@@ -15,7 +15,7 @@ export const useFetchHeadlines = ({ searchScope, searchInput, filters } : BodyLa
               'Authorization': `Bearer ${apiKeys[keyIndex]}`, 
             },
           });
-          console.log("Fetched Data! Page : ", pageParam);
+          //console.log("Fetched Data! Page : ", pageParam);
     
           return response.data; 
         } catch (error) {

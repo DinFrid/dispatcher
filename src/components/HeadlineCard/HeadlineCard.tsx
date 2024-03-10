@@ -37,7 +37,7 @@ const HeadlineCard = forwardRef<HTMLDivElement, HeadlineCardProps>(({
   return (
     <StyledCard theme={theme} ref={ref}>
       {imageSrc ? 
-      <NewsWrapper theme={theme}>
+      <NewsWrapper theme={theme} className='NewsWrapper'>
           <NewsImage 
             theme={theme} 
             src={imageSrc} 
@@ -47,7 +47,7 @@ const HeadlineCard = forwardRef<HTMLDivElement, HeadlineCardProps>(({
           /> 
       </NewsWrapper>
           : 
-          <FallbackNewsWrapper theme={theme}>
+          <FallbackNewsWrapper theme={theme} className='FallbackNewsWrapper'>
             <FallbackNewsImage 
               theme={theme} 
               src={NavbarDesktopLogo} 
