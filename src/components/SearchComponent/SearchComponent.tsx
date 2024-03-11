@@ -38,6 +38,7 @@ const SearchComponent = ({ onSearchAction, onDropdownChange, } : SearchComponent
     }
 
     const handleSearchAction = (value : string) => {
+        
         const currentRecentSearches = fetchRecentSearchesFromLocalStorage();
         const updatedRecentSearches = removeDuplicatedValues(value, currentRecentSearches);
 
@@ -80,7 +81,7 @@ const SearchComponent = ({ onSearchAction, onDropdownChange, } : SearchComponent
         clearRecentSearchesFromLocalStorage();
         updateAndInsertRecentSearchesToLocalStorage(EMPTY_ARRAY);
     }
-    
+        
     return (
         <StyledBox theme={theme} ref={recentSearchesRef}>
             {isMobile && !isSearchBarVisible && 
@@ -94,7 +95,6 @@ const SearchComponent = ({ onSearchAction, onDropdownChange, } : SearchComponent
             isMobile ? (
                 <Slide direction="right">
                 <SearchBar
-                    isSearchBarVisible={isSearchBarVisible}
                     dropDownProps={searchBarDropDownProps}
                     onSearchInputFieldClick={handleSearchInputFieldClick}
                     onSearchAction={handleSearchAction}
@@ -105,11 +105,11 @@ const SearchComponent = ({ onSearchAction, onDropdownChange, } : SearchComponent
                 </Slide>
             ) : (
                 <SearchBar
-                isSearchBarVisible={isSearchBarVisible}
                 dropDownProps={searchBarDropDownProps}
                 onSearchInputFieldClick={handleSearchInputFieldClick}
                 onSearchAction={handleSearchAction}
                 onDropdownChange={onDropdownChange}
+                valueChooseByRecentSearches={valueChooseByRecentSearches}
                 />
                 )
             )}

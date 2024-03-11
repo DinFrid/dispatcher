@@ -7,7 +7,6 @@ import { checkIfDropdownIsDisabled } from "./functions";
 import { useMediaQuery, useTheme } from "@mui/material";
 import MobileFiltersButton from "../mobile/FilterIcon/MobileFiltersButton";
 import { everythingScopeMobileFilters, searchBarDropDownProps, topHeadlinesScopeMobileFilters } from "../../utils/consts/FiltersGroups";
-import { recentSearchesMenuProps } from "../../components/SearchBar/styles";
 
 interface FiltersBarProps {
     dropdowns : StyledDropdownProps[];

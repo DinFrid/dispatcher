@@ -126,6 +126,7 @@ export const FallbackNewsImage = styled.img`
   ${({ theme }) => theme.breakpoints.up('sm')} {
     width: 245px;
     height: 245px;
+    padding-left:40px;
   }
     
   ${({ theme }) => theme.breakpoints.up('md')} {
